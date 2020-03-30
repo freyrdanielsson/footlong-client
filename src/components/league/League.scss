@@ -1,0 +1,16 @@
+@import '../../config.scss';
+
+.league {
+    @include row;
+    flex-wrap: wrap;
+
+    &__header {
+        @include columns(12);
+        background-color: #e1e1e1;
+    }
+
+    &__list {
+        @include columns(12);
+        list-style: none;
+    }
+}
