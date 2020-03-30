@@ -1,0 +1,6 @@
+@import '../../config.scss';
+
+.fixture {
+    @include row;
+    justify-content: space-between;
+}
