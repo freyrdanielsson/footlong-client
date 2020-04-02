@@ -3,6 +3,8 @@
 .league {
     @include row;
     flex-wrap: wrap;
+    max-width: 600px;
+    margin: 0 auto;
 
     &__header {
         @include columns(12);

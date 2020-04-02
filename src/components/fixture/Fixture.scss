@@ -1,6 +1,23 @@
 @import '../../config.scss';
 
 .fixture {
-    @include row;
+    display: flex;
     justify-content: space-between;
+
+    &__away {
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 200px;
+        text-align: right;
+    }
+
+    &__home {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    &__info {
+        align-self: center;
+        padding: 0 $gutter / 4;
+    }
 }
