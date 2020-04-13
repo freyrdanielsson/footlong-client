@@ -26,7 +26,10 @@ async function request(method, path, data = '') {
         options.body = JSON.stringify(data);
     }
 
-    // Probably want to check for token here as well    
+    const token = window.localStorage.getItem('token');    
+    if (token) {
+        options.headers['Authorization'] = `Bearer ${token}`;
+    }
 
     const response = await fetch(url.href, options);
 
