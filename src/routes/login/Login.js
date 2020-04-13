@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom'
 import LoginForm from '../../components/loginForm/LoginForm';
 
 function Login(props) {
-    
-    return ( 
+
+    return (
         <div>
             <Helmet title="Login" />
             <LoginForm {...props} />

@@ -6,7 +6,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case REGISTER_REQUEST:    
+    case REGISTER_REQUEST:
       return {
         ...state,
         isFetching: action.isFetching,

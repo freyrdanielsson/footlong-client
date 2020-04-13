@@ -10,7 +10,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN_REQUEST:    
+    case LOGIN_REQUEST:
       return {
         ...state,
         isFetching: action.isFetching,

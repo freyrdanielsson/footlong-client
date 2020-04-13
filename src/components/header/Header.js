@@ -9,7 +9,7 @@ export default function Header(props) {
     const { isAuth, dispatch } = props
 
     const toDisplay = isAuth ? <p onClick={() => dispatch(logoutUser())}>Logout</p>
-                            : <NavLink activeClassName='header__link--selected' exact to='/login'>Login</NavLink>;
+        : <NavLink activeClassName='header__link--selected' exact to='/login'>Login</NavLink>;
 
     return (
         <header className='header'>

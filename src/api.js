@@ -26,7 +26,7 @@ async function request(method, path, data = '') {
         options.body = JSON.stringify(data);
     }
 
-    const token = window.localStorage.getItem('token');    
+    const token = window.localStorage.getItem('token');
     if (token) {
         options.headers['Authorization'] = `Bearer ${token}`;
     }
@@ -44,7 +44,7 @@ async function request(method, path, data = '') {
     }
 }
 
- 
+
 
 
 

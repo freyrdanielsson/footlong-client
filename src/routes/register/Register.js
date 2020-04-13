@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom'
 import RegisterForm from '../../components/registerForm/RegisterForm';
 
 function Register(props) {
-    
-    return ( 
+
+    return (
         <div>
             <Helmet title="Register" />
             <RegisterForm {...props} />

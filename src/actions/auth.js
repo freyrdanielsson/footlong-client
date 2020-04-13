@@ -58,7 +58,7 @@ function requestFetch() {
     }
 }
 
-function fetchError () {
+function fetchError() {
     window.localStorage.removeItem('token');
     return {
         type: LOGIN_FETCH_FAILURE,
@@ -96,7 +96,7 @@ export const loginUser = (username, password) => {
 
         let login;
         try {
-            login = await post('/login', { "username":username, "password":password });
+            login = await post('/login', { "username": username, "password": password });
         } catch (e) {
             return dispatch(loginError(e))
         }
@@ -115,7 +115,7 @@ export const loginUser = (username, password) => {
 
 export const logoutUser = () => {
     return async (dispatch) => {
-      window.localStorage.removeItem('token');
-      dispatch(logout());
+        window.localStorage.removeItem('token');
+        dispatch(logout());
     }
-  }
+}
