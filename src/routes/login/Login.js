@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 import LoginForm from '../../components/loginForm/LoginForm';
 
@@ -10,6 +11,8 @@ function Login(props) {
         <div>
             <Helmet title="Login" />
             <LoginForm {...props} />
+
+            <Link to='/register'>Register</Link>
         </div>
     )
 }

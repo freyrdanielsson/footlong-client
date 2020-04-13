@@ -9,6 +9,7 @@ import UserRoute from './components/userRoute/UserRoute';
 import Home from './routes/home/Home';
 import Highlights from './routes/highlights/Highlights';
 import Login from './routes/login/Login';
+import Register from './routes/register/Register';
 
 import { fetchUser } from './actions/auth';
 
@@ -33,6 +34,7 @@ function App(props) {
                     <Route exact path='/' component={Home} />
                     <Route exact path='/highlights' component={Highlights} />
                     <UserRoute path="/login" authenticated={!isAuthenticated} redirect="/profile" component={Login} />
+                    <UserRoute path="/register" authenticated={!isAuthenticated} redirect="/profile" component={Register} />
                 </Switch>
             </main>
         </Fragment>

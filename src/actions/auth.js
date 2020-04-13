@@ -107,7 +107,6 @@ export const loginUser = (username, password) => {
 
         if (login.status === 200) {
             const { token, user } = login.data;
-            console.log(user);
             window.localStorage.setItem('token', token);
             dispatch(receiveLogin(user));
         }
