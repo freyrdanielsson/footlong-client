@@ -22,6 +22,20 @@ http://footlong.herokuapp.com/
 Our API:
 https://iprogbackend.herokuapp.com/
 
+## Tasks
+# Sprint 1
+- [X] Setup frontend environment **[Freyr]**
+    - [X] Dependencies
+    - [X] Linters
+    - [X] Code architecture
+    - [X] Store management
+    - [X] Receive highlight api data
+- [X] Setup backend environment **[Arnar]**
+    - [X] Connect to apis
+    - [X] Configure for heroku hosting
+    - [X] Send highlight api data
+    - [X] Code architecture
+    - [X] Add input validation code
 
 
-
+4
