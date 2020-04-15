@@ -9,6 +9,6 @@ export const leagueAnimation = {
 }
 
 export const fixtureAnimation = {
-    hidden: { y: -20, opacity: 0 },
+    hidden: { y: -60, opacity: 0 },
     visible: { y: 0, opacity: 1 }
 }

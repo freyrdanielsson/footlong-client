@@ -2,7 +2,10 @@
 
 .fixture {
     display: flex;
+    padding: 10px 0;
+    align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid rgba($color: #e1e1e1, $alpha: 0.8);
 
     &__away {
         flex-wrap: wrap;
