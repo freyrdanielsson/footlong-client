@@ -4,12 +4,12 @@
     @include row;
     flex-wrap: wrap;
     max-width: 600px;
-    margin: 0 auto;
+    margin: $gutter auto;
 
     &__header {
         z-index: 100;
         @include columns(12);
-        background-color: #e1e1e1;
+        background-color: $color-gray;
     }
 
     &__list {

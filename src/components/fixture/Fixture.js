@@ -3,19 +3,19 @@ import React from 'react';
 import './Fixture.scss';
 
 export default function Fixture(props) {
-    const { home, away, start } = props.fixture;
+    const { homeTeam, awayTeam, status } = props.fixture;
 
 
     return (
         <li className='fixture'>
             <div className='fixture__home'>
-                <p>{home}</p>
+                <p>{homeTeam.team_name}</p>
             </div>
             <div className='fixture__info'>
-                <p>{start}</p>
+                <p>{status}</p>
             </div>
             <div className='fixture__away'>
-                <p>{away}</p>
+                <p>{awayTeam.team_name}</p>
             </div>
 
         </li>

@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "framer-motion": "^1.10.3",
     "node-sass": "^4.13.1",
+    "query-string": "^6.12.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
