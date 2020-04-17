@@ -1,18 +1,5 @@
 const baseurl = process.env.REACT_APP_SERVICE_URL || '';
 
-/**
- * 
- *  TODO: Don't export get and post directly
- */
-
-export default async function get(path) {
-    return request('GET', path);
-}
-
-export async function post(path, data) {
-    return request('POST', path, data);
-}
-
 async function request(method, path, data = '') {
     const url = new URL(path, baseurl);
 
@@ -31,7 +18,18 @@ async function request(method, path, data = '') {
         options.headers['Authorization'] = `Bearer ${token}`;
     }
 
-    const response = await fetch(url.href, options);
+    let response;
+    try {
+      response = await fetch(url.href, options);
+    } catch (error) {
+      console.error('Error fetching', error);
+      return {
+        status: 500,
+        result: {
+          errors: [{message: 'Villa við að sækja gögn'}]
+        }
+      }
+    }
 
     const json = await response.json();
 
@@ -44,7 +42,12 @@ async function request(method, path, data = '') {
     }
 }
 
-
-
+export default {
+    get: request.bind(null, 'GET'),
+    post: request.bind(null, 'POST'),
+    patch: request.bind(null, 'PATCH'),
+    upload: request.bind(null, 'POST'),
+    delete: request.bind(null, 'DELETE'),
+};
 
 

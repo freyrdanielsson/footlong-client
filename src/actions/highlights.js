@@ -1,4 +1,4 @@
-import get from '../api';
+import api from '../api';
 
 export const HIGHLIGHTS_REQUEST = 'HIGHLIGHTS_REQUEST';
 export const HIGHLIGHTS_ERROR = 'HIGHLIGHTS_ERROR';
@@ -36,7 +36,7 @@ export default function fetchHighlights() {
         dispatch(requestHighlights());
         let highlights;
         try {
-            highlights = await get('/highlights');
+            highlights = await api.get('/highlights');
         } catch(e) {
             return dispatch(highlightsError(e));
         }

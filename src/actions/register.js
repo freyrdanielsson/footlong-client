@@ -1,4 +1,4 @@
-import { post } from '../api';
+import api from '../api';
 import { loginUser } from './auth';
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
@@ -26,7 +26,7 @@ export const registerUser = (name, username, password) => {
 
         let register;
         try {
-            register = await post('/register', { "username": username, "name": name, "password": password });
+            register = await api.post('/register', { "username": username, "name": name, "password": password });
         } catch (e) {
             return dispatch(registerError(e))
         }

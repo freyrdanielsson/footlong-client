@@ -1,4 +1,4 @@
-import get, { post } from '../api';
+import api from '../api';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -74,7 +74,7 @@ export const fetchUser = () => {
 
         let req;
         try {
-            req = await get('/users/me');
+            req = await api.get('/users/me');
         } catch (e) {
             return dispatch(fetchError());
         }
@@ -96,7 +96,7 @@ export const loginUser = (username, password) => {
 
         let login;
         try {
-            login = await post('/login', { "username": username, "password": password });
+            login = await api.post('/login', { "username": username, "password": password });
         } catch (e) {
             return dispatch(loginError(e))
         }
