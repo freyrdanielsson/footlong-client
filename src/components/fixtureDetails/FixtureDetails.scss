@@ -1,0 +1,19 @@
+@import '../../config.scss';
+
+.fixtureDetails {
+    width: 500px;
+    height: 500px;
+    border: 1px solid #000;
+
+    &__header {
+        padding: 0 20px;
+    }
+
+    &__close {
+        padding: 2px;
+        margin-left: 100%;
+        font-size: 1em;
+        font-weight: 700;
+        border-width: 0;
+    }
+}

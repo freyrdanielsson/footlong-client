@@ -4,9 +4,9 @@ import './Fixture.scss';
 
 export default function Fixture(props) {
     const { homeTeam, awayTeam, status } = props.fixture;
-
+    
     return (
-        <li className='fixture'>
+        <div className='fixture'>
             <div className='fixture__home'>
                 <p>{homeTeam.team_name}</p>
             </div>
@@ -26,6 +26,6 @@ export default function Fixture(props) {
                 <p>{awayTeam.team_name}</p>
             </div>
 
-        </li>
+        </div>
     );
 }

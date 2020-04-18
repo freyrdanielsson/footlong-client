@@ -9,7 +9,7 @@ import './League.scss';
 
 export default function League(props) {
 
-    const { title, fixtures } = props
+    const { title, fixtures, selectFixture } = props
 
     return (
         <motion.div initial='hidden' animate='visible' variants={leagueAnimation} className='league'>
@@ -19,7 +19,9 @@ export default function League(props) {
             </div>
             <motion.ul variants={fixtureAnimation} className='league__list'>
                 {fixtures.map((fixture, i) => {
-                    return <Fixture key={i} fixture={fixture} />
+                    return <li key={i} onClick={() => selectFixture(fixture)}>
+                        <Fixture  fixture={fixture} />
+                    </li>
                 })}
             </motion.ul>
         </motion.div>
