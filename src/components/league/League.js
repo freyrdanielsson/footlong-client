@@ -10,8 +10,6 @@ import './League.scss';
 export default function League(props) {
 
     const { title, fixtures } = props
-    console.log(fixtures);
-
 
     return (
         <motion.div initial='hidden' animate='visible' variants={leagueAnimation} className='league'>
