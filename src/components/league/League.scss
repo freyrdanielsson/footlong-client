@@ -8,13 +8,76 @@
 
     &__header {
         z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         @include columns(12);
         background-color: $color-gray;
+    }
+
+    &__title {
+        font-size: 1.5em;
+        text-transform: uppercase;
+        letter-spacing: $spacing-header;
     }
 
     &__list {
         z-index: 10;
         @include columns(12);
         list-style: none;
+    }
+
+    &__decoration {
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        width: 3em;
+        height: 3em;
+        margin: 5px 0;
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        &--Bundesliga {
+            background-image: url('./images/logo_bundesliga.png');
+        }
+
+        &--LaLiga {
+            background-image: url('./images/logo_la-liga.png');
+        }
+
+        &--PremierLeague {
+            background-image: url('./images/logo_premier.png');
+        }
+
+        &--SearieA {
+            background-image: url('./images/logo_serie-a.png');
+        }
+    }
+
+    &__flag {
+        width: 2em;
+        height: 2em;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+        //border-radius: 100%;
+
+        &--Bundesliga {
+            background-image: url('./images/flag_germany.svg');
+        }
+
+        &--LaLiga {
+            background-image: url('./images/flag_spain.svg');
+        }
+
+        &--PremierLeague {
+            background-image: url('./images/flag_england.svg');
+        }
+
+        &--SearieA {
+            background-image: url('./images/flag_italy.svg');
+        }
     }
 }
