@@ -101,7 +101,11 @@ export const loginUser = (username, password) => {
             return dispatch(loginError(e))
         }
 
-        if (login.data.error) {
+        if (login.result && login.result.errors) {
+            dispatch(loginError(login.result.errors[0].message))
+        }
+
+        if (login.data && login.data.error) {
             dispatch(loginError(login.data.error))
         }
 
