@@ -28,11 +28,15 @@ export const registerUser = (name, username, password) => {
         try {
             register = await api.post('/register', { "username": username, "name": name, "password": password });
         } catch (e) {
-            return dispatch(registerError(e))
+            return dispatch(registerError(e));
+        }
+
+        if(register.result && register.result.errors) {
+            dispatch(registerError(register.result.errors));
         }
         
-        if (!register.data.id) {
-            dispatch(registerError(register.data))
+        if (register.data && !register.data.id) {
+            dispatch(registerError(register.data));
         }
 
         if (register.status === 201) {
