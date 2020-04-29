@@ -4,12 +4,14 @@ import { withRouter } from 'react-router-dom';
 import Helmet from 'react-helmet';
 
 import MtPlayerSearch from '../../components/mtPlayerSearch/MtPlayerSearch';
+import DisplayTeam from '../../components/displayTeam/DisplayTeam'
 
 function MyTeam(props) {
+    // <MtPlayerSearch {...props} />
     return (
         <div>
             <Helmet title="My Team" />
-            <MtPlayerSearch {...props} />
+            <DisplayTeam />
         </div>
     )
 }

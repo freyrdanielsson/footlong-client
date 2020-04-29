@@ -29,11 +29,12 @@ export default function MtPlayerSearch(props) {
         )
     }
 
+    
+    
     return (
         <div>
             {teamProps.teams.length > 0 && <DropSelect itList={teamProps.teams} dispatch={dispatch} />}
             <SquadLists playerProps={playerProps}/>
-
         </div>
     )
 }

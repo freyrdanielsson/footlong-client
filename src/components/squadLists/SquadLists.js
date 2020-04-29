@@ -39,10 +39,10 @@ export default function SquadLists(props) {
 
     return (
         <div>
-            <SquadList playerList={gk} label={'Goalkeepers'} />
-            <SquadList playerList={def} label={'Defenders'} />
-            <SquadList playerList={mid} label={'Midfielders'} />
-            <SquadList playerList={att} label={'Attackers'} />
+            <SquadList playerList={gk} label='Goalkeepers' />
+            <SquadList playerList={def} label='Defenders' />
+            <SquadList playerList={mid} label='Midfielders' />
+            <SquadList playerList={att} label='Attackers' />
         </div>
     )
 }
