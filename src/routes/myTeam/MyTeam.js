@@ -7,11 +7,11 @@ import MtPlayerSearch from '../../components/mtPlayerSearch/MtPlayerSearch';
 import DisplayTeam from '../../components/displayTeam/DisplayTeam'
 
 function MyTeam(props) {
-    // <MtPlayerSearch {...props} />
     return (
         <div>
             <Helmet title="My Team" />
-            <DisplayTeam />
+            <DisplayTeam {...props} />
+            <MtPlayerSearch {...props} />
         </div>
     )
 }
@@ -30,9 +30,14 @@ const mapStateToProps = (state) => {
         isFetching: players.players_isFetching,
     };
 
+    const myTeamProps = {
+        myTeam: players.myTeam,
+    }
+
     return {
         teamProps,
         playerProps,
+        myTeamProps
     }
 }
 

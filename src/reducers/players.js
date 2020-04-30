@@ -5,7 +5,12 @@ import {
     PLAYERS_REQUEST,
     PLAYERS_ERROR,
     PLAYERS_SUCCESS,
+    MY_TEAM_SET,
 } from '../actions/players';
+
+const {
+    formations
+} = require('../utils/formations');
 
 const initialState = {
     teams_isFetching: false,
@@ -14,6 +19,7 @@ const initialState = {
     players_error: null,
     teams: [],
     players: [],
+    myTeam: formations[0],
 }
 
 export default (state = initialState, action) => {
@@ -53,6 +59,11 @@ export default (state = initialState, action) => {
                 ...state,
                 players_isFetching: action.players_isFetching,
                 players_error: action.players_error,
+            }
+        case MY_TEAM_SET:
+            return {
+                ...state,
+                myTeam: action.myTeam,
             }
 
         default:
