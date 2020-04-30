@@ -6,6 +6,7 @@ import {
     PLAYERS_ERROR,
     PLAYERS_SUCCESS,
     MY_TEAM_SET,
+    MY_TEAM_PLAYER_SET,
 } from '../actions/players';
 
 const {
@@ -20,6 +21,7 @@ const initialState = {
     teams: [],
     players: [],
     myTeam: formations[0],
+    myPlayer: {},
 }
 
 export default (state = initialState, action) => {
@@ -64,6 +66,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 myTeam: action.myTeam,
+            }
+        case MY_TEAM_PLAYER_SET:
+            return {
+                ...state,
+                myPlayer: action.myPlayer,
             }
 
         default:

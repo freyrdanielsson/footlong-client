@@ -1,10 +1,10 @@
 import React from 'react';
 
 import './SquadLists.scss';
+import { setMyPlayer } from '../../actions/players';
 
 export default function SquadLists(props) {
-    const { playerProps } = props;
-
+    const { playerProps, dispatch } = props;
     
     if ( playerProps.players.length === 0 && !playerProps.isFetching ) {
         return <p>Select a squad to fetch above</p>
@@ -23,6 +23,11 @@ export default function SquadLists(props) {
     const mid = getPosition(playerProps.players, 'Midfielder');
     const att = getPosition(playerProps.players, 'Attacker');
 
+    const playerSelect = (e) => {
+        const playerObj = playerProps.players.find( obj => obj.player_id === e.target.value);
+        dispatch(setMyPlayer(playerObj));
+    }
+
     const SquadList = (props) => {
         const {playerList, label} = props;
         return (
@@ -30,7 +35,11 @@ export default function SquadLists(props) {
                 <h4>{label}</h4>
                 <ul>
                     {playerList.map( obj => {
-                        return <li value={obj.player_id} key={obj.player_id}>{obj.player_name}</li>
+                        return (
+                            <li value={obj.player_id} key={obj.player_id} onClick={ (e) => playerSelect(e)}>
+                                {obj.player_name}
+                            </li>
+                        )
                     })}
                 </ul>
             </div>
