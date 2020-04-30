@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './DisplayTeam.scss';
 import { setMyTeam } from '../../actions/players';
 
 export default function DisplayTeam(props) {
     const { formations } = require('../../utils/formations');
-    const [ sFormation, setSFormation ] = useState(formations[0]);
-    const { dispatch } = props;
+    const { dispatch, myTeamProps } = props;
+    const { myTeam } = myTeamProps;
+
+    console.log(myTeam);
 
     const FieldFormation = (props) => {
-        const { obj } = props;
+        const { myTeam, pos } = props;
         return (
             <div className='playerPosition'>
-                {Object.keys(obj).map( k => {
-                    return (
-                        <div key={k} id={k} className='player'></div>
-                    )
+                {myTeam.formation[pos].map( k => { 
+                    const playerName = myTeam[k].player_name ? myTeam[k].player_name : ''; 
+                    return <div key={k} id={k} className='player'>{playerName}</div> 
                 })}
             </div>
         )
     }
 
     const changeFormation = (e) => {
-        setSFormation(formations[e.target.value]);
         dispatch(setMyTeam(formations[e.target.value]));
     }
 
@@ -35,10 +35,10 @@ export default function DisplayTeam(props) {
                 </select>
             </div>
             <div className='field'>
-                <FieldFormation obj={sFormation.formation.gk} />
-                <FieldFormation obj={sFormation.formation.def} />
-                <FieldFormation obj={sFormation.formation.mid} />
-                <FieldFormation obj={sFormation.formation.att} />
+                <FieldFormation myTeam={myTeam} pos='gk' />
+                <FieldFormation myTeam={myTeam} pos='def' />
+                <FieldFormation myTeam={myTeam} pos='mid' />
+                <FieldFormation myTeam={myTeam} pos='att' />
             </div>
         </div>
     )

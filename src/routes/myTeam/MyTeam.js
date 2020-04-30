@@ -8,14 +8,14 @@ import DisplayTeam from '../../components/displayTeam/DisplayTeam';
 import MtSelectPosition from '../../components/mtSelectPosition/MtSelectPosition';
 
 function MyTeam(props) {
-    const { myPlayer } = props.myTeamProps;
+    const { myTeamProps, dispatch } = props;
     return (
         <div>
             <Helmet title="My Team" />
             <DisplayTeam {...props} />
             <MtPlayerSearch {...props} />
-            {Object.keys(myPlayer).length > 0 && 
-                <MtSelectPosition myPlayer={myPlayer} />
+            {Object.keys(myTeamProps.myPlayer).length > 0 && 
+                <MtSelectPosition myTeamProps={myTeamProps} dispatch={dispatch}/>
             }
         </div>
     )
