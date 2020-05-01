@@ -8,17 +8,26 @@ export default function MtSelectPosition(props) {
     const { myTeamProps, dispatch } = props;
     const { myTeam, myPlayer } = myTeamProps
     const { formation } = myTeam;
+    
+    const allPos = getAllPositions(formation);
 
     const addToTeam = () => {
         const pos = document.querySelector('.positionSelect').value;
+        for (let i=0; i<allPos.length; i += 1) {
+            if (myTeam.team[allPos[i]].player_id === myPlayer.player_id ) {
+                alert('Player is already in team');
+                return;
+            }
+        }
+
         myTeam.team[pos] = {
             player_id: myPlayer.player_id,
             player_name: myPlayer.player_name
         }
+
         dispatch(setMyTeam(myTeam));
     }
 
-    const allPos = getAllPositions(formation);
 
     return (
         <div className='confirmPlayer'>
