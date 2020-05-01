@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
@@ -7,6 +7,7 @@ import { fetchLeagues, fetchFixtureDetails } from '../../actions/fixtures';
 
 import League from '../../components/league/League';
 import FixtureDetails from '../../components/fixtureDetails/FixtureDetails';
+import DatePicker from '../../components/datePicker/DatePicker';
 
 import './Home.scss';
 
@@ -15,7 +16,7 @@ export function Home(props) {
     const { leaguesProps, fixtureProps, dispatch } = props
     const parsedQuery = queryString.parse(props.location.search);
     const today = new Date();
-    const date = parsedQuery.date || today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    const [date, setDate] = useState(parsedQuery.date || `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`);
 
     useEffect(() => {
         dispatch(fetchLeagues(date));
@@ -45,19 +46,33 @@ export function Home(props) {
         dispatch(fetchFixtureDetails(null));
     }
 
+    const onDateChange = (date) => {
+        const newDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+        setDate(newDate);
+
+        props.history.push({
+            pathname: '/',
+            search: `?date=${newDate}`
+        });
+    }
+
     return (
-        <div className='home'>
-            <div className='leagues'>
-                {leaguesProps.leagues && leaguesProps.leagues.map(league => {
-                    return <League
-                        key={league.title}
-                        title={league.title}
-                        fixtures={league.data.fixtures}
-                        selectFixture={selectFixture} />
-                })}
+        <React.Fragment>
+            <DatePicker onChange={onDateChange} />
+            <div className='home'>
+                <div className='leagues'>
+                    {leaguesProps.leagues && leaguesProps.leagues.map(league => {
+                        return <League
+                            key={league.title}
+                            title={league.title}
+                            fixtures={league.data.fixtures}
+                            selectFixture={selectFixture} />
+                    })}
+                </div>
+
+                <FixtureDetails fixtureProps={fixtureProps} onClose={closeFixtures} />
             </div>
-            {<FixtureDetails fixtureProps={fixtureProps} onClose={closeFixtures} />}
-        </div>
+        </React.Fragment>
     )
 }
 
