@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Helmet from 'react-helmet';
 
+import './MyTeam.scss';
+
 import MtPlayerSearch from '../../components/mtPlayerSearch/MtPlayerSearch';
 import DisplayTeam from '../../components/displayTeam/DisplayTeam';
 import MtSelectPosition from '../../components/mtSelectPosition/MtSelectPosition';
@@ -10,13 +12,15 @@ import MtSelectPosition from '../../components/mtSelectPosition/MtSelectPosition
 function MyTeam(props) {
     const { myTeamProps, dispatch } = props;
     return (
-        <div>
+        <div className='myTeam'>
             <Helmet title="My Team" />
-            <DisplayTeam {...props} />
-            <MtPlayerSearch {...props} />
-            {Object.keys(myTeamProps.myPlayer).length > 0 && 
-                <MtSelectPosition myTeamProps={myTeamProps} dispatch={dispatch}/>
-            }
+            <div className='displayTeam'>
+                <DisplayTeam {...props} />
+                <MtPlayerSearch {...props} />
+            </div>
+            <div className='selectedPlayer'>
+                {myTeamProps.myPlayer.player_id && <MtSelectPosition myTeamProps={myTeamProps} dispatch={dispatch}/>}
+            </div>
         </div>
     )
 }

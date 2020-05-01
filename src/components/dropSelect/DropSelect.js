@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import './DropSelect.scss'
+
 import { fetchPlayers } from '../../actions/players';
 
 export default function DropSelect(props) {
@@ -7,27 +9,27 @@ export default function DropSelect(props) {
     const [ opIndex, setOptIndex ] = useState(0);
 
     const getSquadClick = () => {
-        const sE = document.querySelector('.teamSelect');
+        const sE = document.querySelector('#teamSelect');
         dispatch(fetchPlayers(sE.value));
     }
 
     return (
-       <div>
-           <div>
+       <div className='searchTeam'>
+           <div className='labelDrop'>
                 <label>Leagues</label>
-                <select onChange={ (e) => setOptIndex(e.target.value)}>
+                <select className='mySelect' onChange={ (e) => setOptIndex(e.target.value)}>
                     {itList.map( (obj, i) =>  <option value={i} key={i}>{obj.title}</option> )}
                 </select>
            </div>
-           <div>
+           <div className='labelDrop'>
                 <label>Teams</label>
-                <select className='teamSelect'>
+                <select className='mySelect' id='teamSelect'>
                     {itList[opIndex].teams
                     .sort( (a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
                     .map( obj => <option value={obj.team_id} key={obj.team_id}>{obj.name}</option> )}
                 </select>
            </div>
-           <button onClick={ () => getSquadClick()}>Get Squad</button> 
+           <button className='myButton' onClick={ () => getSquadClick()}>Get Squad</button> 
        </div>
     )
 }

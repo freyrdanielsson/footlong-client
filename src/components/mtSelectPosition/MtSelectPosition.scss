@@ -1,8 +1,6 @@
 @import '../../config.scss';
 
 .confirmPlayer {
-    width: 100%;
-    height: 200px;
-    margin: 20px;
+    margin: $gutter;
     border: 1px solid black;
 }

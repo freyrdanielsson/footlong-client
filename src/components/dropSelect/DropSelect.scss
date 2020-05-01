@@ -1,1 +1,31 @@
 @import '../../config.scss';
+
+.searchTeam {
+    display: flex;
+    flex-direction: row;
+}
+
+.labelDrop {
+    display: flex;
+    margin-right: $gutter;
+    flex-direction: column;
+}
+
+.mySelect {
+    max-width: 5 * $gutter;
+}
+
+.myButton {
+    padding: 10px;
+    font-weight: bold;
+    color: $color-font;
+    cursor: pointer;
+    background-color: $color-gray;
+    border: 1px solid $color-font;
+    border-radius: 10px;
+}
+
+.myButton:hover {
+    background-color: $color-hover;
+    transition: 0.7s;
+}

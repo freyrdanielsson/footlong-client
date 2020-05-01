@@ -1,16 +1,22 @@
 @import '../../config.scss';
 
+.teamVisual {
+    display: flex;
+    height: 100%;
+    margin-right: $gutter;
+    flex-direction: column;
+}
+
 .field {
     display: flex;
 
-    width: 400px;
-    height: 400px;
-
-    margin-top: 20px;
-    margin-left: 20px;
-
+    // 606 X 808
+    width: 500px;
+    height: 100%;
+    margin-top: $gutter;
     flex-direction: column;
-    border: 1px solid #000000;
+    background-image: url('/fieldImg.PNG');
+    background-size: cover;
     justify-content: space-between;
 }
 
@@ -25,7 +31,5 @@
 }
 
 .player {
-    width: 40px;
-    height: 40px;
-    border: 1px solid blue;
+    margin-top: 0.2 * $gutter;
 }

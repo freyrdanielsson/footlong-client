@@ -13,8 +13,8 @@ export default function DisplayTeam(props) {
         return (
             <div className='playerPosition'>
                 {myTeam.formation[pos].map( k => { 
-                    const playerName = myTeam.team[k].player_name ? myTeam.team[k].player_name : ''; 
-                    return <div key={k} id={k} className='player'>{playerName}</div> 
+                    const playerName = myTeam.team[k].player_name ? myTeam.team[k].player_name : k; 
+                    return <p key={k} id={k} className='player'>{playerName}</p> 
                 })}
             </div>
         )
@@ -33,10 +33,10 @@ export default function DisplayTeam(props) {
     }
 
     return (
-        <div>
-            <div>
+        <div className='teamVisual'>
+            <div className='labelDrop'>
                 <label>Formations</label>
-                <select onChange={ (e) => changeFormation(e)}>
+                <select className='mySelect' onChange={ (e) => changeFormation(e)}>
                     {formations.map( (obj, i) => <option value={i} key={i}>{obj.label}</option>)}
                 </select>
             </div>

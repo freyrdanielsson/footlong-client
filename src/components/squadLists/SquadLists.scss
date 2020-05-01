@@ -1,1 +1,51 @@
 @import '../../config.scss';
+
+.allListsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    margin-top: $gutter;
+    overflow: hidden;
+}
+
+.listContainer {
+    display: flex;
+    width: 5 * $gutter;
+    height: 100%;
+    margin: 0 $gutter 0 0;
+    flex-direction: column;
+}
+
+.positionList {
+    height: 100%;
+    overflow: auto;
+    list-style-type: none;
+}
+
+.playerListItem {
+    cursor: pointer;
+}
+
+.positionList::-webkit-scrollbar {
+    width: 10px;
+    height: 5px;
+}
+
+.positionList::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.positionList::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.positionList::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@media (max-width: $max-width + 250px) {
+    .listContainer {
+        height: 50%;
+        margin-bottom: 0.333 * $gutter;
+    }
+}

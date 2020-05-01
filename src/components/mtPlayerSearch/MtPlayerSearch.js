@@ -30,7 +30,7 @@ export default function MtPlayerSearch(props) {
     }
 
     return (
-        <div>
+        <div className='searchContainer'>
             {teamProps.teams.length > 0 && <DropSelect itList={teamProps.teams} dispatch={dispatch} />}
             <SquadLists playerProps={playerProps} myTeamProps={myTeamProps} dispatch={dispatch}/>
         </div>

@@ -31,12 +31,12 @@ export default function SquadLists(props) {
     const SquadList = (props) => {
         const {playerList, label} = props;
         return (
-            <div>
+            <div className='listContainer'>
                 <h4>{label}</h4>
-                <ul>
+                <ul className='positionList'>
                     {playerList.map( obj => {
                         return (
-                            <li value={obj.player_id} key={obj.player_id} onClick={ (e) => playerSelect(e)}>
+                            <li className='playerListItem' value={obj.player_id} key={obj.player_id} onClick={ (e) => playerSelect(e)}>
                                 {obj.player_name}
                             </li>
                         )
@@ -47,7 +47,7 @@ export default function SquadLists(props) {
     }
 
     return (
-        <div>
+        <div className='allListsContainer'>
             <SquadList playerList={gk} label='Goalkeepers' />
             <SquadList playerList={def} label='Defenders' />
             <SquadList playerList={mid} label='Midfielders' />
