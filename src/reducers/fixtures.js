@@ -13,7 +13,7 @@ const initialState = {
     fixture_isFetching: false,
     fixture_error: null,
     leagues: [],
-    fixture_details: null,
+    fixture_events: null,
     fixture: null,
 }
 
@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 fixture_isFetching: action.fixture_isFetching,
-                fixture_details: action.fixture_details,
+                fixture_events: action.fixture_events,
             }
         case FIXTURE_ERROR:
             return {

@@ -2,8 +2,8 @@
 
 .fixtureDetails {
     width: 600px;
-    height: 600px;
-    border: 1px solid #000;
+
+    margin-left: 4 * $gutter;
 
     &__header {
         padding: 0 20px;

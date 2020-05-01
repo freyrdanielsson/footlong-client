@@ -32,7 +32,6 @@ function leaguesSuccess(leagues) {
 }
 
 export function fetchLeagues(date) {
-    // Thunk
     return async (dispatch) => {
         dispatch(requestLeagues());
         let result;
@@ -67,18 +66,32 @@ function fixtureError(error) {
     }
 }
 
-function fixtureSuccess(fixture_detail) {
+function fixtureSuccess(fixture_events) {
     return {
         type: FIXTURE_SUCCESS,
         fixture_isFetching: false,
-        fixture_detail,
+        fixture_events,
     }
 }
 
-export function fetchFixtureDetails(fixture, homeId = null, awayId = null) {
+export function fetchFixtureDetails(fixture) {
     // Thunk
     return async (dispatch) => {
         dispatch(requestFixture(fixture));
-        dispatch(fixtureSuccess({}));
+
+        if (fixture === null) return;
+        
+        let events_res;
+        try {
+            events_res = await api.get(`/football/fixture/events/${fixture.fixture_id}`);
+        } catch (e) {
+            return dispatch(fixtureError(e));
+        }
+
+        if (events_res.status === 500 || events_res.data.error) {
+            dispatch(fixtureError('Unable to get fixtures'))
+        }
+
+        dispatch(fixtureSuccess(events_res.data));
     }
 }

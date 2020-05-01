@@ -1,0 +1,53 @@
+@import '../../config.scss';
+
+.event {
+    display: flex;
+    padding: 0 $gutter;
+    margin: $gutter / 2 0;
+    font-size: 0.9em;
+    align-items: center;
+
+    &--away {
+        flex-direction: row-reverse;
+    }
+
+    &__main {
+        margin: 0 $gutter;
+
+        &--away {
+            text-align: end;
+        }
+    }
+}
+
+.subst {
+    color: $color-sub;
+
+    &--out {
+        color: $color-sub-out;
+    }
+}
+
+.goal {
+    display: flex;
+
+    &__state {
+        margin-left: 10px;
+    }
+
+    &--assist {
+        font-size: 0.8em;
+        color: $color-goal-assist;
+    }
+}
+
+.card {
+    padding: 0 10px;
+    background-color: $color-card-yellow;
+    border: 1px solid $color-gray;
+    border-radius: 5px;
+
+    &--red {
+        background-color: $color-card-red;
+    }
+}

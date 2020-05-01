@@ -4,14 +4,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { variants, transition } from './animations';
 
 import Fixture from '../fixture/Fixture';
+import Events from '../events/Events';
 
 import './FixtureDetails.scss';
 
 export default function FixtureDetails(props) {
     const { onClose } = props;
-    const { fixture } = props.fixtureProps;
-    console.log(fixture);
+    const { fixture, fixture_events, error, isFetching } = props.fixtureProps;
+    console.log('[FIXTURE]', fixture);
+    console.log('[ERROR]', error);
+    console.log('[LOADING', isFetching);
 
+    const teamSide = (teamName) => {
+        return (teamName === fixture.homeTeam.team_name)
+            ? 'home'
+            : 'away'
+    }
 
     return (
         <AnimatePresence>
@@ -28,9 +36,7 @@ export default function FixtureDetails(props) {
                     </button>
                     <Fixture fixture={fixture} />
                 </div>
-                <div className='fixtureDetails__details'>
-
-                </div>
+                {!isFetching && <Events teamSide={teamSide} fixture_events={fixture_events}/>}
             </motion.div>}
         </AnimatePresence>
     );
