@@ -1,0 +1,19 @@
+@import '../../config.scss';
+
+.date-picker {
+    width: 100%;
+    margin: 0 0 $gutter 0;
+    text-align: center;
+
+    &__input {
+        padding: 5px 0;
+        font-size: 1em;
+        text-align: center;
+        border: 0;
+    }
+
+    &__input:hover {
+        cursor: pointer;
+    }
+
+}
