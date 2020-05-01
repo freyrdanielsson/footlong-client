@@ -9,9 +9,7 @@ import {
     MY_TEAM_PLAYER_SET,
 } from '../actions/players';
 
-const {
-    formations
-} = require('../utils/formations');
+import { formations } from '../utils/formations';
 
 const initialState = {
     teams_isFetching: false,

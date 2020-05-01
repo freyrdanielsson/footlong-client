@@ -2,6 +2,7 @@ import React from 'react';
 
 import './MtSelectPosition.scss';
 import { setMyTeam } from '../../actions/players';
+import { getAllPositions } from '../../utils/formations';
 
 export default function MtSelectPosition(props) {
     const { myTeamProps, dispatch } = props;
@@ -10,17 +11,14 @@ export default function MtSelectPosition(props) {
 
     const addToTeam = () => {
         const pos = document.querySelector('.positionSelect').value;
-        myTeam[pos] = {
+        myTeam.team[pos] = {
             player_id: myPlayer.player_id,
             player_name: myPlayer.player_name
         }
         dispatch(setMyTeam(myTeam));
     }
 
-    const allPos = formation.gk
-                    .concat(formation.def)
-                    .concat(formation.mid)
-                    .concat(formation.att);
+    const allPos = getAllPositions(formation);
 
     return (
         <div className='confirmPlayer'>
