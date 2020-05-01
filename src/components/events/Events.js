@@ -9,8 +9,6 @@ export default function Events(props) {
         away: 0,
     }
 
-    console.log('[DETAILS]', fixture_events);
-
     const eventType = (event) => {
         switch (event.type) {
             case 'subst':
