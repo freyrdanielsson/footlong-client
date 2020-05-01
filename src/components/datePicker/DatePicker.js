@@ -18,6 +18,7 @@ export default function DatePicker(props) {
 
     return (
         <REACT_DATE_PICKER
+            todayButton='TODAY'
             dateFormat='yyyy-MM-dd'
             selected={startDate}
             onChange={onChange}
