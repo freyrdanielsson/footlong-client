@@ -1,11 +1,10 @@
 import React from 'react';
 
 import './MtSelectPosition.scss';
-import { setMyTeam } from '../../actions/players';
 import { getAllPositions } from '../../utils/formations';
 
 export default function MtSelectPosition(props) {
-    const { myTeamProps, dispatch } = props;
+    const { myTeamProps, teamSetter } = props;
     const { myTeam, myPlayer } = myTeamProps
     const { formation } = myTeam;
     
@@ -25,7 +24,7 @@ export default function MtSelectPosition(props) {
             player_name: myPlayer.player_name
         }
 
-        dispatch(setMyTeam(myTeam));
+        teamSetter(myTeam);
     }
 
 

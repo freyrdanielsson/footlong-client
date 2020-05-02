@@ -1,12 +1,10 @@
 import React from 'react';
 
 import './DisplayTeam.scss';
-import { setMyTeam } from '../../actions/players';
 import { getAllPositions, formations } from '../../utils/formations';
 
 export default function DisplayTeam(props) {
-    const { dispatch, myTeamProps } = props;
-    const { myTeam } = myTeamProps;
+    const { teamSetter, myTeam } = props;
 
     const FieldFormation = (props) => {
         const { myTeam, pos } = props;
@@ -29,7 +27,7 @@ export default function DisplayTeam(props) {
                 newTeam.team[newPositions[i]] = myTeam.team[oldPositions[i]];
             }
         }
-        dispatch(setMyTeam(newTeam));
+        teamSetter(newTeam);
     }
 
     return (

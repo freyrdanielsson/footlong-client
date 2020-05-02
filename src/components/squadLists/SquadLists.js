@@ -1,14 +1,10 @@
 import React from 'react';
 
 import './SquadLists.scss';
-import { setMyPlayer } from '../../actions/players';
 
 export default function SquadLists(props) {
-    const { playerProps, dispatch } = props;
+    const { playerProps, playerSetter } = props;
     
-    if ( playerProps.players.length === 0 && !playerProps.isFetching ) {
-        return <p>Select a squad to fetch above</p>
-    }
     if ( playerProps.isFetching ) {
         return <p>Fetching squad...</p>
     }
@@ -25,7 +21,7 @@ export default function SquadLists(props) {
 
     const playerSelect = (e) => {
         const playerObj = playerProps.players.find( obj => obj.player_id === e.target.value);
-        dispatch(setMyPlayer(playerObj));
+        playerSetter(playerObj);
     }
 
     const SquadList = (props) => {
