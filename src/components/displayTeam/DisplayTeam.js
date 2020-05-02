@@ -4,7 +4,7 @@ import './DisplayTeam.scss';
 import { getAllPositions, formations } from '../../utils/formations';
 
 export default function DisplayTeam(props) {
-    const { teamSetter, myTeam } = props;
+    const { teamSetter, myTeam, playerSetter } = props;
 
     const FieldFormation = (props) => {
         const { myTeam, pos } = props;
@@ -12,7 +12,7 @@ export default function DisplayTeam(props) {
             <div className='playerPosition'>
                 {myTeam.formation[pos].map( k => { 
                     const playerName = myTeam.team[k].player_name ? myTeam.team[k].player_name : k; 
-                    return <p key={k} id={k} className='player'>{playerName}</p> 
+                    return <p onClick={ () => playerSetter(myTeam.team[k])} key={k} id={k} className='player'>{playerName}</p> 
                 })}
             </div>
         )

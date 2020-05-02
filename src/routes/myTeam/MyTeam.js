@@ -30,11 +30,11 @@ function MyTeam(props) {
         <div className='myTeam'>
             <Helmet title="My Team" />
             <div className='displayTeam'>
-                <DisplayTeam myTeam={myTeamProps.myTeam} teamSetter={teamSetter} />
+                <DisplayTeam myTeam={myTeamProps.myTeam} teamSetter={teamSetter} playerSetter={playerSetter} />
                 <MtPlayerSearch teamProps={teamProps} playerProps={playerProps} squadFetcher={squadFetcher} playerSetter={playerSetter} />
             </div>
             <div className='selectedPlayer'>
-                {myTeamProps.myPlayer.player_id && <MtSelectPosition myTeamProps={myTeamProps} teamSetter={teamSetter}/>}
+                {myTeamProps.myPlayer.player_id && <MtSelectPosition myTeamProps={myTeamProps} teamSetter={teamSetter} playerSetter={playerSetter}/>}
             </div>
         </div>
     )
