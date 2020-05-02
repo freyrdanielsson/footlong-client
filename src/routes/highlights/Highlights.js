@@ -1,33 +1,33 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
 
-
-import fetchHighlights from '../../actions/highlights';
-
-function Highlights(props) {
-    const { dispatch, highlights } = props;
-
+function Highlights() {
     useEffect(() => {
-        dispatch(fetchHighlights());
-    }, [dispatch]);
+        const widget = document.getElementById('highlights_iframe');
+        widget.onload = function () {
+            console.clear();
+            // Fakk...
+            setTimeout(() => { console.clear() }, 500);
+        }
+    }, [])
 
     return (
-        <div>
-            {highlights.map(highlight => {
-                return <a key={highlight.title} href={highlight.url}>
-                    <img src={highlight.thumbnail} alt={highlight.title}></img>
-                </a>
-            })}
-        </div>
+        <React.Fragment>
+            <iframe
+                id='highlights_iframe'
+                title='highlights'
+                src='https://www.scorebat.com/embed/'
+                frameBorder='0' width='600' height='760'
+                /* allow='autoplay; fullscreen'
+                allowFullScreen */
+                style={{
+                    width: '600px',
+                    height: '760px',
+                    overflow: 'hidden',
+                    display: 'block',
+                }}
+                className='_scorebatEmbeddedPlayer_' />
+        </React.Fragment>
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        isFetching: state.highlights.isFetching,
-        error: state.highlights.error,
-        highlights: state.highlights.highlights,
-    }
-}
-
-export default connect(mapStateToProps)(Highlights);
+export default Highlights;
