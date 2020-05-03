@@ -33,7 +33,7 @@ export default function DisplayTeam(props) {
     return (
         <div className='teamVisual'>
             <div className='labelDrop'>
-                <label>Formations</label>
+                <h4 className='dropLabel'>Formations</h4>
                 <select className='mySelect' onChange={ (e) => changeFormation(e)}>
                     {formations.map( (obj, i) => <option value={i} key={i}>{obj.label}</option>)}
                 </select>

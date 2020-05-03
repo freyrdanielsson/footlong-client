@@ -14,13 +14,13 @@ export default function DropSelect(props) {
     return (
        <div className='searchTeam'>
            <div className='labelDrop'>
-                <label>Leagues</label>
+                <h4 className='dropLabel'>Leagues</h4>
                 <select className='mySelect' onChange={ (e) => getLeagueClick(e.target.value)}>
-                    {itList.map( (obj, i) =>  <option value={i} key={i}>{obj.title}</option> )}
+                    {itList.map( (obj, i) =>  <option className='dropOption' value={i} key={i}>{obj.title}</option> )}
                 </select>
            </div>
            <div className='labelDrop'>
-                <label>Teams</label>
+                <h4 className='dropLabel'>Teams</h4>
                 <select onChange={(e) => squadFetcher(e.target.value)} className='mySelect' id='teamSelect'>
                     {itList[opIndex].teams
                     .map( obj => <option value={obj.team_id} key={obj.team_id}>{obj.name}</option> )}

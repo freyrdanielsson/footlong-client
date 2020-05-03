@@ -26,7 +26,7 @@ export default function SquadLists(props) {
         const {playerList, label} = props;
         return (
             <div className='listContainer'>
-                <h4>{label}</h4>
+                <h4 className='squadPositionLabel'>{label}</h4>
                 <ul className='positionList'>
                     {playerList.map( obj => {
                         return (

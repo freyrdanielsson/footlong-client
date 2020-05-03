@@ -11,6 +11,19 @@
     flex-direction: column;
 }
 
+.dropLabel {
+    margin-bottom: 5px;
+}
+
 .mySelect {
     max-width: 5 * $gutter;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.mySelect:not(:active),
+.mySelect:active,
+.mySelect:hover {
+    outline-color: $color-gray;
 }
