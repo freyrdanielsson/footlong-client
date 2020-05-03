@@ -4,22 +4,20 @@ import './SquadLists.scss';
 
 export default function SquadLists(props) {
     const { playerProps, playerSetter } = props;
-    
-    if ( playerProps.isFetching ) {
-        return <p>Fetching squad...</p>
-    }
 
     const getPosition = (arr, pos) => {
         return arr.filter( obj => obj.position === pos)
                 .sort( (a,b) => (a.player_name > b.player_name) ? 1 : ((b.player_name > a.player_name) ? -1 : 0));
     }
     
-    const gk = getPosition(playerProps.players, 'Goalkeeper');
-    const def = getPosition(playerProps.players, 'Defender');
-    const mid = getPosition(playerProps.players, 'Midfielder');
-    const att = getPosition(playerProps.players, 'Attacker');
+    const ifFetching = [{player_id: 0, player_name: 'Fetching...'}];
+    const gk =  playerProps.isFetching ? ifFetching : getPosition(playerProps.players, 'Goalkeeper');
+    const def = playerProps.isFetching ? ifFetching : getPosition(playerProps.players, 'Defender');
+    const mid = playerProps.isFetching ? ifFetching : getPosition(playerProps.players, 'Midfielder');
+    const att = playerProps.isFetching ? ifFetching : getPosition(playerProps.players, 'Attacker');
 
     const playerSelect = (e) => {
+        if (playerProps.isFetching) return;
         const playerObj = playerProps.players.find( obj => obj.player_id === e.target.value);
         playerSetter(playerObj);
     }
