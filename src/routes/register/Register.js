@@ -7,7 +7,7 @@ import { registerUser } from '../../actions/register';
 import RegisterForm from '../../components/registerForm/RegisterForm';
 
 function Register(props) {
-    const { dispatch, isFetching, message } = props;
+    const { dispatch, isFetching, message, logginIn } = props;
 
     const registerDispatch = (e, email, uName, pass) => {
         e.preventDefault();
@@ -17,7 +17,7 @@ function Register(props) {
     return (
         <div>
             <Helmet title="Register" />
-            <RegisterForm isFetching={isFetching} message={message} registerDispatch={registerDispatch} />
+            <RegisterForm isFetching={isFetching} message={message} logginIn={logginIn} registerDispatch={registerDispatch} />
 
             <Link to='/login'>Login</Link>
         </div>
@@ -28,6 +28,7 @@ const mapStateToProps = (state) => {
     return {
         isFetching: state.register.isFetching,
         message: state.register.message,
+        logginIn: state.auth.isFetching,
     }
 }
 

@@ -7,9 +7,9 @@ export default function RegisterForm(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const { isFetching, message, registerDispatch } = props;
+    const { isFetching, message, registerDispatch, logginIn } = props;
 
-    if (isFetching) {
+    if (isFetching || logginIn) {
         return (
             <div>
                 <Helmet defaultTitle="Creating User.." />
@@ -47,12 +47,12 @@ export default function RegisterForm(props) {
 
                     <div className="form form--container">
                         <label htmlFor="username">Username:</label>
-                        <input className="form__input" id="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                        <input className="form__input" id="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
                     </div>
 
                     <div className="form form--container">
                         <label htmlFor="password">Password:</label>
-                        <input className="form__input" id="password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <input className="form__input" id="password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                     </div>
 
                     <button disabled={isFetching}>Register User</button>
