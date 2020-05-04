@@ -1,11 +1,11 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_LOGOUT, LOGIN_FETCH, LOGIN_FETCH_FAILURE } from '../actions/auth';
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_LOGOUT } from '../actions/auth';
 
-const token = window.localStorage.getItem('token') || null;
+const user = JSON.parse(window.localStorage.getItem('user') || 'null');
 
 const initialState = {
   isFetching: false,
-  isAuthenticated: false,
-  isFetchingProfile: token ? true : false,
+  isAuthenticated: user ? true : false,
+  user,
 };
 
 export default (state = initialState, action) => {
@@ -15,7 +15,6 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: action.isFetching,
         isAuthenticated: action.isAuthenticated,
-        isFetchingProfile: action.isFetchingProfile,
       };
     case LOGIN_SUCCESS:
       return {
@@ -24,7 +23,6 @@ export default (state = initialState, action) => {
         isAuthenticated: action.isAuthenticated,
         user: action.user,
         message: action.message,
-        isFetchingProfile: action.isFetchingProfile,
       };
     case LOGIN_FAILURE:
       return {
@@ -33,7 +31,6 @@ export default (state = initialState, action) => {
         isAuthenticated: action.isAuthenticated,
         message: action.message,
         user: action.user,
-        isFetchingProfile: action.isFetchingProfile,
       };
     case LOGIN_LOGOUT:
       return {
@@ -41,21 +38,6 @@ export default (state = initialState, action) => {
         isFetching: action.isFetching,
         isAuthenticated: action.isAuthenticated,
         user: action.user,
-        isFetchingProfile: action.isFetchingProfile,
-      };
-    case LOGIN_FETCH:
-      return {
-        ...state,
-        isFetching: action.isFetching,
-        isAuthenticated: action.isAuthenticated,
-        isFetchingProfile: action.isFetchingProfile,
-      };
-    case LOGIN_FETCH_FAILURE:
-      return {
-        ...state,
-        isFetching: action.isFetching,
-        isAuthenticated: action.isAuthenticated,
-        isFetchingProfile: action.isFetchingProfile,
       };
     default:
       return state;

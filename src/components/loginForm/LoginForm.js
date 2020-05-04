@@ -7,7 +7,7 @@ import './LoginForm.scss';
 export default function LoginForm(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { dispatch, isFetching, message, isFetchingProfile } = props;
+    const { dispatch, isFetching, message } = props;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,15 +19,6 @@ export default function LoginForm(props) {
             <div>
                 <Helmet defaultTitle="Logging in.." />
                 <p>Logging in <em>{username}</em>...</p>
-            </div>
-        );
-    }
-
-    if (isFetchingProfile) {
-        return (
-            <div>
-                <Helmet defaultTitle="Fetching Profile.." />
-                <p>Fetching Profile...</p>
             </div>
         );
     }

@@ -22,7 +22,6 @@ const mapStateToProps = (state) => {
         isFetching: state.auth.isFetching,
         isAuthenticated: state.auth.isAuthenticated,
         message: state.auth.message,
-        isFetchingProfile: state.auth.isFetchingProfile,
     }
 }
 
