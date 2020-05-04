@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 
-import { registerUser } from '../../actions/register';
 import './RegisterForm.scss';
 
 export default function RegisterForm(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
-    const { dispatch, isFetching, message } = props;
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        dispatch(registerUser(name, username, password));
-    }
+    const { isFetching, message, registerDispatch } = props;
 
     if (isFetching) {
         return (
@@ -37,7 +31,7 @@ export default function RegisterForm(props) {
                 </ul>
             )}
             <div className="form">
-                <form method="POST" onSubmit={(e) => handleSubmit(e)}>
+                <form method="POST" onSubmit={(e) => registerDispatch(e, name, username, password)}>
                     <div className="form form--container">
                         <label htmlFor="name">Name:</label>
                         <input className="form__input" id="name" type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />

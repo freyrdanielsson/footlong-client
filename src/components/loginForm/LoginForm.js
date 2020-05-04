@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 
-import { loginUser } from '../../actions/auth';
 import './LoginForm.scss';
 
 export default function LoginForm(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { dispatch, isFetching, message } = props;
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        dispatch(loginUser(username, password));
-    }
+    const { isFetching, message, postUser } = props;
 
     if (isFetching) {
         return (
@@ -30,7 +24,7 @@ export default function LoginForm(props) {
                 <p>{message}</p>
             )}
             <div className="form row">
-                <form method="POST" onSubmit={(e) => handleSubmit(e)}>
+                <form method="POST" onSubmit={(e) => postUser(e, username, password)}>
 
                     <div className="form form--container col col-12">
                         <label htmlFor="username">Username:</label>

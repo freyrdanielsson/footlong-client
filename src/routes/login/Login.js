@@ -4,13 +4,20 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 
 import LoginForm from '../../components/loginForm/LoginForm';
+import { loginUser } from '../../actions/auth';
 
 function Login(props) {
+    const { dispatch, isFetching, message } = props;
+
+    const postUser = async (e, username, password) => {
+        e.preventDefault();
+        dispatch(loginUser(username, password));
+    }
 
     return (
         <div>
             <Helmet title="Login" />
-            <LoginForm {...props} />
+            <LoginForm isFetching={isFetching} message={message} postUser={postUser} />
 
             <Link to='/register'>Register</Link>
         </div>
@@ -20,7 +27,6 @@ function Login(props) {
 const mapStateToProps = (state) => {
     return {
         isFetching: state.auth.isFetching,
-        isAuthenticated: state.auth.isAuthenticated,
         message: state.auth.message,
     }
 }
