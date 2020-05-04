@@ -1,0 +1,53 @@
+@import '../../config.scss';
+
+.allListsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    height: 90%;
+    margin-top: $gutter;
+    overflow: hidden;
+}
+
+.listContainer {
+    display: flex;
+    width: 5 * $gutter;
+    height: 100%;
+    margin: 0 0.5 * $gutter 0.5 * $gutter 0;
+    flex-direction: column;
+}
+
+.positionList {
+    height: 100%;
+    overflow: auto;
+    list-style-type: none;
+}
+
+.squadPositionLabel {
+    margin-bottom: 5px;
+    background-color: $color-gray;
+}
+
+.playerListItem {
+    cursor: pointer;
+}
+
+.positionList::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    margin-top: 10px;
+}
+
+.positionList::-webkit-scrollbar-thumb {
+    background: $color-gray;
+}
+
+.positionList::-webkit-scrollbar-thumb:hover {
+    background: $color-darkGray;
+}
+
+@media (max-width: $max-width - 132px) {
+    .listContainer {
+        height: 48%;
+        margin-bottom: 0.333 * $gutter;
+    }
+}

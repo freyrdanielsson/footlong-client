@@ -10,6 +10,7 @@ import Home from './routes/home/Home';
 import Highlights from './routes/highlights/Highlights';
 import Login from './routes/login/Login';
 import Register from './routes/register/Register';
+import MyTeam from './routes/myTeam/MyTeam';
 
 import { fetchUser } from './actions/auth';
 
@@ -33,6 +34,7 @@ function App(props) {
                 <Switch location={location}>
                     <Route exact path='/' component={Home} />
                     <Route exact path='/highlights' component={Highlights} />
+                    <Route exact path='/my-team' component={MyTeam} />
                     <UserRoute path="/login" authenticated={!isAuthenticated} redirect="/profile" component={Login} />
                     <UserRoute path="/register" authenticated={!isAuthenticated} redirect="/profile" component={Register} />
                 </Switch>
