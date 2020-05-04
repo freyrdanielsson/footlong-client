@@ -9,9 +9,9 @@ import RegisterForm from '../../components/registerForm/RegisterForm';
 function Register(props) {
     const { dispatch, isFetching, message } = props;
 
-    const registerDispatch = (e, name, uName, pass) => {
+    const registerDispatch = (e, email, uName, pass) => {
         e.preventDefault();
-        dispatch(registerUser(name, uName, pass));
+        dispatch(registerUser(email, uName, pass));
     }
 
     return (

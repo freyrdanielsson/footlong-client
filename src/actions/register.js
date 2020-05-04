@@ -20,13 +20,13 @@ function registerError(message) {
     }
 }
 
-export const registerUser = (name, username, password) => {
+export const registerUser = (email, username, password) => {
     return async (dispatch) => {
         dispatch(requestRegister());
 
         let register;
         try {
-            register = await api.post('/register', { "username": username, "name": name, "password": password });
+            register = await api.post('/register', { "username": username, "email": email, "password": password });
         } catch (e) {
             return dispatch(registerError(e));
         }

@@ -6,7 +6,7 @@ import './RegisterForm.scss';
 export default function RegisterForm(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
     const { isFetching, message, registerDispatch } = props;
 
     if (isFetching) {
@@ -31,10 +31,10 @@ export default function RegisterForm(props) {
                 </ul>
             )}
             <div className="form">
-                <form method="POST" onSubmit={(e) => registerDispatch(e, name, username, password)}>
+                <form method="POST" onSubmit={(e) => registerDispatch(e, email, username, password)}>
                     <div className="form form--container">
-                        <label htmlFor="name">Name:</label>
-                        <input className="form__input" id="name" type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
+                        <label htmlFor="name">Email:</label>
+                        <input className="form__input" id="email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
 
                     <div className="form form--container">
