@@ -1,4 +1,4 @@
-import { REGISTER_REQUEST, REGISTER_FAILURE } from '../actions/register';
+import { REGISTER_REQUEST, REGISTER_FAILURE, REGISTER_SUCCESS } from '../actions/register';
 
 const initialState = {
   isFetching: false,
@@ -17,6 +17,11 @@ export default (state = initialState, action) => {
         isFetching: action.isFetching,
         message: action.message
       };
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        isFetching: action.isFetching,
+      }
     default:
       return state;
   }

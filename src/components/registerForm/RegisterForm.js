@@ -18,6 +18,14 @@ export default function RegisterForm(props) {
         );
     }
 
+    if (message && message[0].error) {
+        return (
+            <div>
+                <p>Internal Error - Could not create user</p>
+            </div>
+        )
+    }
+
     return (
         <div>
             <h1>Register</h1>
@@ -34,7 +42,7 @@ export default function RegisterForm(props) {
                 <form method="POST" onSubmit={(e) => registerDispatch(e, email, username, password)}>
                     <div className="form form--container">
                         <label htmlFor="name">Email:</label>
-                        <input className="form__input" id="email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <input className="form__input" id="email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                     </div>
 
                     <div className="form form--container">

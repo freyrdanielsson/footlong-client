@@ -12,6 +12,13 @@ function requestRegister() {
     }
 }
 
+function registerSuccess() {
+    return {
+        type: REGISTER_SUCCESS,
+        isFetching: false,
+    }
+}
+
 function registerError(message) {
     return {
         type: REGISTER_FAILURE,
@@ -40,6 +47,7 @@ export const registerUser = (email, username, password) => {
         }
 
         if (register.status === 201) {
+            dispatch(registerSuccess());
             dispatch(loginUser(username, password));
         }
     }
