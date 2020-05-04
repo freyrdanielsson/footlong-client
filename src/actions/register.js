@@ -12,6 +12,13 @@ function requestRegister() {
     }
 }
 
+function registerSuccess() {
+    return {
+        type: REGISTER_SUCCESS,
+        isFetching: false,
+    }
+}
+
 function registerError(message) {
     return {
         type: REGISTER_FAILURE,
@@ -20,13 +27,13 @@ function registerError(message) {
     }
 }
 
-export const registerUser = (name, username, password) => {
+export const registerUser = (email, username, password) => {
     return async (dispatch) => {
         dispatch(requestRegister());
 
         let register;
         try {
-            register = await api.post('/register', { "username": username, "name": name, "password": password });
+            register = await api.post('/register', { "username": username, "email": email, "password": password });
         } catch (e) {
             return dispatch(registerError(e));
         }
@@ -40,6 +47,7 @@ export const registerUser = (name, username, password) => {
         }
 
         if (register.status === 201) {
+            dispatch(registerSuccess());
             dispatch(loginUser(username, password));
         }
     }

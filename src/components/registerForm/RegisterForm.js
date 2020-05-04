@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 
-import { registerUser } from '../../actions/register';
 import './RegisterForm.scss';
 
 export default function RegisterForm(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const { dispatch, isFetching, message } = props;
+    const [email, setEmail] = useState('');
+    const { isFetching, message, registerDispatch, logginIn } = props;
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        dispatch(registerUser(name, username, password));
-    }
-
-    if (isFetching) {
+    if (isFetching || logginIn) {
         return (
             <div>
                 <Helmet defaultTitle="Creating User.." />
                 <p>Creating new user: <em>{username}</em>...</p>
             </div>
         );
+    }
+
+    if (message && message[0].error) {
+        return (
+            <div>
+                <p>Internal Error - Could not create user</p>
+            </div>
+        )
     }
 
     return (
@@ -37,20 +39,20 @@ export default function RegisterForm(props) {
                 </ul>
             )}
             <div className="form">
-                <form method="POST" onSubmit={(e) => handleSubmit(e)}>
+                <form method="POST" onSubmit={(e) => registerDispatch(e, email, username, password)}>
                     <div className="form form--container">
-                        <label htmlFor="name">Name:</label>
-                        <input className="form__input" id="name" type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
+                        <label htmlFor="name">Email:</label>
+                        <input className="form__input" id="email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                     </div>
 
                     <div className="form form--container">
                         <label htmlFor="username">Username:</label>
-                        <input className="form__input" id="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                        <input className="form__input" id="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
                     </div>
 
                     <div className="form form--container">
                         <label htmlFor="password">Password:</label>
-                        <input className="form__input" id="password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <input className="form__input" id="password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                     </div>
 
                     <button disabled={isFetching}>Register User</button>

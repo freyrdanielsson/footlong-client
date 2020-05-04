@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Route, Switch, withRouter } from 'react-router-dom';
@@ -12,18 +12,11 @@ import Login from './routes/login/Login';
 import Register from './routes/register/Register';
 import MyTeam from './routes/myTeam/MyTeam';
 
-import { fetchUser } from './actions/auth';
-
 import './App.scss';
 
 
 function App(props) {
     const { isAuthenticated, dispatch, location } = props;
-    const token = window.localStorage.getItem('token') || null;
-
-    useEffect(() => {
-        if (token && !isAuthenticated) dispatch(fetchUser(token));
-    }, [dispatch, isAuthenticated, token]);
 
     return (
         <Fragment>
@@ -34,9 +27,9 @@ function App(props) {
                 <Switch location={location}>
                     <Route exact path='/' component={Home} />
                     <Route exact path='/highlights' component={Highlights} />
-                    <Route exact path='/my-team' component={MyTeam} />
-                    <UserRoute path="/login" authenticated={!isAuthenticated} redirect="/profile" component={Login} />
-                    <UserRoute path="/register" authenticated={!isAuthenticated} redirect="/profile" component={Register} />
+                    <UserRoute path='/login' authenticated={!isAuthenticated} redirect='/profile' component={Login} />
+                    <UserRoute path='/register' authenticated={!isAuthenticated} redirect='/profile' component={Register} />
+                    <UserRoute path='/my-team' authenticated={isAuthenticated} redirect='/login' component={MyTeam} />
                 </Switch>
             </main>
         </Fragment>
