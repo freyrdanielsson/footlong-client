@@ -87,6 +87,7 @@ const mapStateToProps = (state) => {
     const fixtureProps = {
         fixture: fixtures.fixture,
         fixture_events: fixtures.fixture_events,
+        fixture_stats: fixtures.fixture_stats,
         error: fixtures.fixture_error,
         isFetching: fixtures.fixture_isFetching
     }

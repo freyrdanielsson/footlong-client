@@ -66,11 +66,12 @@ function fixtureError(error) {
     }
 }
 
-function fixtureSuccess(fixture_events) {
+function fixtureSuccess(fixture_events, fixture_stats) {
     return {
         type: FIXTURE_SUCCESS,
         fixture_isFetching: false,
         fixture_events,
+        fixture_stats,
     }
 }
 
@@ -80,18 +81,26 @@ export function fetchFixtureDetails(fixture) {
         dispatch(requestFixture(fixture));
 
         if (fixture === null) return;
-        
+
         let events_res;
+        let stats_res;
         try {
-            events_res = await api.get(`/football/fixture/events/${fixture.fixture_id}`);
+            [
+                events_res,
+                stats_res, // might be empty
+            ] = await Promise.all([
+                api.get(`/football/fixture/events/${fixture.fixture_id}`),
+                api.get(`/football/fixture/statistics/${fixture.fixture_id}`)
+            ])
         } catch (e) {
             return dispatch(fixtureError(e));
         }
 
-        if (events_res.status === 500 || events_res.data.error) {
-            dispatch(fixtureError('Unable to get fixtures'))
+        if (events_res.status === 500 || events_res.data.error
+            || stats_res.status === 500 || stats_res.data.error) {
+            dispatch(fixtureError('Unable to get fixture details'))
         }
 
-        dispatch(fixtureSuccess(events_res.data));
+        dispatch(fixtureSuccess(events_res.data, stats_res.data));
     }
 }

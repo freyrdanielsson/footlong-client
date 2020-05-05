@@ -10,10 +10,11 @@ import {
 const initialState = {
     leagues_isFetching: false,
     leagues_error: null,
+    leagues: [],
     fixture_isFetching: false,
     fixture_error: null,
-    leagues: [],
     fixture_events: null,
+    fixture_stats: null,
     fixture: null,
 }
 
@@ -49,6 +50,7 @@ export default (state = initialState, action) => {
                 ...state,
                 fixture_isFetching: action.fixture_isFetching,
                 fixture_events: action.fixture_events,
+                fixture_stats: action.fixture_stats,
             }
         case FIXTURE_ERROR:
             return {

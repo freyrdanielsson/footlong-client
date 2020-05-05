@@ -2,8 +2,8 @@
 
 .fixtureDetails {
     width: 600px;
-
     margin-left: 4 * $gutter;
+    overflow: scroll;
 
     &__header {
         padding: 0 20px;

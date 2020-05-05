@@ -1,5 +1,13 @@
 @import '../../config.scss';
 
+.events {
+    &__title {
+        text-align: center;
+        border-bottom: 1px solid rgba($color: #e1e1e1, $alpha: 0.8);
+
+    }
+}
+
 .event {
     display: flex;
     padding: 0 $gutter;
