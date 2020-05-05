@@ -5,12 +5,13 @@ import { variants, transition } from './animations';
 
 import Fixture from '../fixture/Fixture';
 import Events from '../events/Events';
+import Statistics from '../statistics/Statistics';
 
 import './FixtureDetails.scss';
 
 export default function FixtureDetails(props) {
     const { onClose } = props;
-    const { fixture, fixture_events, error, isFetching } = props.fixtureProps;
+    const { fixture, fixture_events, fixture_stats, error, isFetching } = props.fixtureProps;
 
     const teamSide = (teamName) => {
         return (teamName === fixture.homeTeam.team_name)
@@ -37,7 +38,8 @@ export default function FixtureDetails(props) {
 
                 {error && <p>Unable to get events for this fixture</p>}
 
-                {!isFetching && <Events teamSide={teamSide} fixture_events={fixture_events}/>}
+                {!isFetching && <Events teamSide={teamSide} fixture_events={fixture_events} />}
+                {!isFetching && <Statistics fixture_stats={fixture_stats} />}
             </motion.div>}
         </AnimatePresence>
     );

@@ -1,0 +1,45 @@
+@import '../../config.scss';
+
+.statistics {
+    width: 100%;
+    height: 100px;
+
+    &__title {
+        text-align: center;
+        border-bottom: 1px solid rgba($color: #e1e1e1, $alpha: 0.8);
+
+    }
+
+    &__stat {
+        padding: 0 $gutter * 2;
+        margin: $gutter / 2 0;
+    }
+
+    &__chart {
+        display: flex;
+    }
+
+    &__header {
+        display: flex;
+        padding: 0 $gutter;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__heading {
+        font-size: 1em;
+        font-weight: 300;
+        //color: $color-goal-assist;
+    }
+
+    &__bar {
+        height: 6px;
+        background-color: $color-sub;
+        border-radius: 10px 0 0 10px;
+
+        &--away {
+            background-color: $color-sub-out;
+            border-radius: 0 10px 10px 0;
+        }
+    }
+}
