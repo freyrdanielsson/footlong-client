@@ -2,6 +2,7 @@ import React from 'react';
 
 import './DisplayTeam.scss';
 import { getAllPositions, formations } from '../../utils/formations';
+import Select from '../select/Select';
 
 export default function DisplayTeam(props) {
     const { teamSetter, myTeam, playerSetter } = props;
@@ -18,8 +19,8 @@ export default function DisplayTeam(props) {
         )
     }
 
-    const changeFormation = (e) => {
-        const newTeam = formations[e.target.value];
+    const changeFormation = (val) => {
+        const newTeam = formations[val];
         const newPositions = getAllPositions(newTeam.formation);
         const oldPositions = getAllPositions(myTeam.formation);
         for (let i=0; i<newPositions.length; i += 1) {
@@ -32,12 +33,7 @@ export default function DisplayTeam(props) {
 
     return (
         <div className='teamVisual'>
-            <div className='labelDrop'>
-                <h4 className='dropLabel'>Formations</h4>
-                <select className='mySelect' onChange={ (e) => changeFormation(e)}>
-                    {formations.map( (obj, i) => <option value={i} key={i}>{obj.label}</option>)}
-                </select>
-            </div>
+            <Select options={formations} onClickFun={changeFormation} label='Formations' valueKey='value' labelKey='label' />
             <div className='field'>
                 <FieldFormation myTeam={myTeam} pos='gk' />
                 <FieldFormation myTeam={myTeam} pos='def' />

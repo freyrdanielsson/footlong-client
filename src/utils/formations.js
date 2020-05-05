@@ -1,4 +1,5 @@
 const f442 = {
+    value: 0,
     label: '4-4-2',
     formation: {
         gk: ['gk'],
@@ -21,6 +22,7 @@ const f442 = {
     }
 }
 const f433 = {
+    value: 1,
     label: '4-3-3',
     formation: {
         gk: ['gk'],
@@ -43,6 +45,7 @@ const f433 = {
     }
 }
 const f352 = {
+    value: 2,
     label: '3-5-2',
     formation: {
         gk: ['gk'],
@@ -65,6 +68,7 @@ const f352 = {
     }
 }
 const f532 = {
+    value: 3,
     label: '5-3-2',
     formation: {
         gk: ['gk'],
@@ -87,6 +91,7 @@ const f532 = {
     }
 }
 const f523 = {
+    value: 4,
     label: '5-2-3',
     formation: {
         gk: ['gk'],
