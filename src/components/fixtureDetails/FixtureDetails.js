@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import { variants, transition } from './animations';
 
@@ -20,7 +20,7 @@ export default function FixtureDetails(props) {
     }
 
     return (
-        <AnimatePresence>
+        <React.Fragment>
             {fixture &&
                 <div className='fixtureDetails__wrapper'>
                     <motion.div
@@ -44,6 +44,6 @@ export default function FixtureDetails(props) {
                         </div>
                     </motion.div>
                 </div>}
-        </AnimatePresence>
+        </React.Fragment>
     );
 }
