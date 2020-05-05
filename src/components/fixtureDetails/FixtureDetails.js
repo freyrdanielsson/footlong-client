@@ -37,10 +37,10 @@ export default function FixtureDetails(props) {
                             <Fixture fixture={fixture} />
                         </div>
 
-                        {error && <p>Unable to get events for this fixture</p>}
+                        {error && <p>Oops! Unable to get stats and events for this fixture</p>}
                         <div className='fixtureDetails__content'>
-                            {!isFetching && <Events teamSide={teamSide} fixture_events={fixture_events} />}
-                            {!isFetching && <Statistics fixture_stats={fixture_stats} />}
+                            {!isFetching && !error && <Events teamSide={teamSide} fixture_events={fixture_events} />}
+                            {!isFetching && !error && <Statistics fixture_stats={fixture_stats} />}
                         </div>
                     </motion.div>
                 </div>}
