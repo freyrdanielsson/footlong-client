@@ -6,30 +6,3 @@
     margin-right: $gutter;
     flex-direction: column;
 }
-
-.field {
-    display: flex;
-
-    // 606 X 808
-    width: 500px;
-    height: 100%;
-    margin-top: $gutter;
-    flex-direction: column;
-    background-image: url('/fieldImg.PNG');
-    background-size: cover;
-    justify-content: space-between;
-}
-
-.playerPosition {
-    display: flex;
-
-    width: 100%;
-    height: 100%;
-
-    flex-direction: row-reverse;
-    justify-content: space-around;
-}
-
-.player {
-    margin-top: 0.2 * $gutter;
-}
