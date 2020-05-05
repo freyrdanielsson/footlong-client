@@ -21,26 +21,29 @@ export default function FixtureDetails(props) {
 
     return (
         <AnimatePresence>
-            {fixture && <motion.div
-                initial='hidden'
-                animate='visible'
-                exit='exit'
-                variants={variants}
-                transition={transition}
-                className='fixtureDetails'>
+            {fixture &&
+                <div className='fixtureDetails__wrapper'>
+                    <motion.div
+                        initial='hidden'
+                        animate='visible'
+                        exit='exit'
+                        variants={variants}
+                        transition={transition}
+                        className='fixtureDetails'>
+                        <div className='fixtureDetails__header'>
+                            <button className='fixtureDetails__close' onClick={onClose}>
+                                <span>✕</span>
+                            </button>
+                            <Fixture fixture={fixture} />
+                        </div>
 
-                <div className='fixtureDetails__header'>
-                    <button className='fixtureDetails__close' onClick={onClose}>
-                        <span>✕</span>
-                    </button>
-                    <Fixture fixture={fixture} />
-                </div>
-
-                {error && <p>Unable to get events for this fixture</p>}
-
-                {!isFetching && <Events teamSide={teamSide} fixture_events={fixture_events} />}
-                {!isFetching && <Statistics fixture_stats={fixture_stats} />}
-            </motion.div>}
+                        {error && <p>Unable to get events for this fixture</p>}
+                        <div className='fixtureDetails__content'>
+                            {!isFetching && <Events teamSide={teamSide} fixture_events={fixture_events} />}
+                            {!isFetching && <Statistics fixture_stats={fixture_stats} />}
+                        </div>
+                    </motion.div>
+                </div>}
         </AnimatePresence>
     );
 }

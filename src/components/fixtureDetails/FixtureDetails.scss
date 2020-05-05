@@ -2,8 +2,40 @@
 
 .fixtureDetails {
     width: 600px;
-    margin-left: 4 * $gutter;
-    overflow: scroll;
+    margin-left: 2 * $gutter;
+
+    @media (max-width: 1200px) {
+        margin-left: 0;
+    }
+
+    @media (max-width: 1000px) {
+        position: relative;
+        width: 80vw;
+        padding: 1em;
+        margin: auto;
+        background-color: #fff;
+        border: 1px solid #000;
+        border-radius: 5px;
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.75);
+
+        &__wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            font-size: 20px;
+            // Same color as $color-background but with opacity
+            background-color: rgba(225, 225, 225, 0.7);
+        }
+    }
+
+    &__content {
+        height: 700px;
+        overflow: scroll;
+    }
 
     &__header {
         padding: 0 20px;
