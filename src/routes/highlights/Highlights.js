@@ -1,14 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 function Highlights() {
-    useEffect(() => {
-        const widget = document.getElementById('highlights_iframe');
-        widget.onload = function () {
-            console.clear();
-            // Fakk...
-            setTimeout(() => { console.clear() }, 500);
-        }
-    }, [])
 
     return (
         <React.Fragment>

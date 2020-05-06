@@ -47,10 +47,11 @@ function logout() {
 export const loginUser = (username, password) => {
     return async (dispatch) => {
         dispatch(requestLogin());
-
+        console.log(username, password);
+        
         let login;
         try {
-            login = await api.post('/login', { "username": username, "password": password });
+            login = await api.post('/login', { 'username': username, 'password': password });
         } catch (e) {
             return dispatch(loginError(e))
         }

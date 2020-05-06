@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 
 import './RegisterForm.scss';
@@ -6,18 +6,50 @@ import './RegisterForm.scss';
 export default function RegisterForm(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [rePassword, setRePassword] = useState('');
+    const [errorClass, setErrorClass] = useState({});
     const [email, setEmail] = useState('');
-    const { isFetching, message, registerDispatch, logginIn } = props;
+    const { isFetching, message, registerDispatch, registerError, logginIn } = props;
+
+    const registerUser = (e) => {
+        e.preventDefault();
+
+        // Client side validation for matching pw
+        if (password !== rePassword) {
+            return registerError([
+                {
+                    field: 'password',
+                    message: 'Passwords do not match'
+                },
+                {
+                    field: 'rePassword'
+                }
+            ])
+        }
+        setErrorClass({});
+        return registerDispatch(email, username, password)
+    }
+
+    useEffect(() => {
+        if (message) {
+            const msg = {}
+            message.map(error => {
+                return msg[error.field] = 'error'
+            })
+            setErrorClass(msg);
+        }
+    }, [message]);
 
     if (isFetching || logginIn) {
         return (
             <div>
-                <Helmet defaultTitle="Creating User.." />
+                <Helmet defaultTitle='Creating User..' />
                 <p>Creating new user: <em>{username}</em>...</p>
             </div>
         );
     }
 
+    // If message contains error attribute, it's an internal server error.
     if (message && message[0].error) {
         return (
             <div>
@@ -27,37 +59,46 @@ export default function RegisterForm(props) {
     }
 
     return (
-        <div>
-            <h1>Register</h1>
-            {message && (
-                <ul>{message.map((error, i) => (
-                    <ul key={i}>
-                        <dt>{error.field}</dt>
-                        <dd>{error.message}</dd>
-                    </ul>
-                ))}
-                </ul>
-            )}
-            <div className="form">
-                <form method="POST" onSubmit={(e) => registerDispatch(e, email, username, password)}>
-                    <div className="form form--container">
-                        <label htmlFor="name">Email:</label>
-                        <input className="form__input" id="email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-                    </div>
+        <div className='register-form'>
+            <h1 className='register-form__title'>Register</h1>
 
-                    <div className="form form--container">
-                        <label htmlFor="username">Username:</label>
-                        <input className="form__input" id="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
-                    </div>
 
-                    <div className="form form--container">
-                        <label htmlFor="password">Password:</label>
-                        <input className="form__input" id="password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-                    </div>
+            <form className='register-form__content' method='POST' onSubmit={(e) => registerUser(e)}>
+                <div className='register-form__input-container'>
+                    <label className='register-form__label' htmlFor='email'>Email</label>
+                    <input className={`register-form__input ${errorClass.email || ''}`} id='email' type='email' name='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                </div>
 
-                    <button disabled={isFetching}>Register User</button>
-                </form>
-            </div>
+                <div className='register-form__input-container'>
+                    <label className='register-form__label' htmlFor='username'>Username</label>
+                    <input className={`register-form__input ${errorClass.username || ''}`} id='username' type='text' name='username' value={username} onChange={(e) => setUsername(e.target.value)} />
+                </div>
+
+                <div className='register-form__input-container'>
+                    <label className='register-form__label' htmlFor='password'>Password</label>
+                    <input className={`register-form__input ${errorClass.password || ''}`} id='password' type='password' name='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                </div>
+
+                <div className='register-form__input-container'>
+                    <label className='register-form__label' htmlFor='password'>
+                        Password again <span role='img' aria-label=''>🙄</span> ...
+                    </label>
+                    <input className={`register-form__input ${errorClass.rePassword || ''}`} id='rePassword' type='password' name='rePassword' value={rePassword} onChange={(e) => setRePassword(e.target.value)} />
+                </div>
+
+                <button className='register-form__button' disabled={isFetching}>Register User</button>
+            </form>
+
+            {message &&
+                <ul>
+                    {message.map((error, i) => {
+                        return (
+                            <ul className='register-form__error' key={i}>
+                                <dd>{error.message}</dd>
+                            </ul>);
+                    })}
+                </ul>}
+
         </div>
     );
 }

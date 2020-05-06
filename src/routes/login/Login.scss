@@ -1,0 +1,20 @@
+@import '../../config.scss';
+
+.login {
+    display: flex;
+    flex-direction: column;
+
+    &__register {
+        margin: $gutter auto;
+        display: flex;
+
+        &__text {
+            margin-right: 5px;
+        }
+
+        &__link {
+            color: $color-sub;
+            font-weight: 600;
+        }
+    }
+}

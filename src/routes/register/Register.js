@@ -3,23 +3,31 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 
-import { registerUser } from '../../actions/register';
+import { registerUser, registerError } from '../../actions/register';
 import RegisterForm from '../../components/registerForm/RegisterForm';
+
+import './Register.scss';
 
 function Register(props) {
     const { dispatch, isFetching, message, logginIn } = props;
 
-    const registerDispatch = (e, email, uName, pass) => {
-        e.preventDefault();
+    const registerDispatch = (email, uName, pass) => {
         dispatch(registerUser(email, uName, pass));
     }
 
-    return (
-        <div>
-            <Helmet title="Register" />
-            <RegisterForm isFetching={isFetching} message={message} logginIn={logginIn} registerDispatch={registerDispatch} />
+    const updateMessages = (msg) => {
+        dispatch(registerError(msg));
+    }
 
-            <Link to='/login'>Login</Link>
+    return (
+        <div className='register'>
+            <Helmet title='Register' />
+            <RegisterForm isFetching={isFetching} message={message} logginIn={logginIn} registerDispatch={registerDispatch} registerError={updateMessages}/>
+
+            <div className='register__login'>
+                <p className='register__login__text'>Have an account?</p>
+                <Link className='register__login__link' to='/login'>Login</Link>
+            </div>
         </div>
     )
 }
