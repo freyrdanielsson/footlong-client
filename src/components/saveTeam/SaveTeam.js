@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import './SaveTeam.scss'
 
 export default function SaveTeam(props) {
-    const { teamSaver, teamPatcher, teamDelete, myTeam, id } = props;
+    const { teamSaver, teamPatcher, teamDelete, idTeamProps, id } = props;
+    const { myTeam, isDeleting, delError, delSucc } = idTeamProps;
     const [ tName, setTname ] = useState('');
 
     const user = JSON.parse(window.localStorage.getItem('user'));
@@ -17,6 +19,19 @@ export default function SaveTeam(props) {
             lineup: stringTeam,
         }
     }
+
+    if (isDeleting) {
+        return <p>Deleting team...</p>
+    }
+
+    if (delError) {
+        return <p>{delError}</p>
+    }
+
+    if (delSucc) {
+        return(<Redirect to={`/teams`} />)        
+    }
+
     
     return (
         <div className='saveTeam'>

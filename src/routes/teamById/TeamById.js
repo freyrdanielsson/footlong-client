@@ -90,6 +90,9 @@ const mapStateToProps = (state) => {
         myTeam: team.myTeam,
         error: team.idTeam_error,
         isFetching: team.idTeam_isFetching,
+        isDeleting: team.delete_isDeleting,
+        delError: team.delete_error,
+        delSucc: team.delete_success,
     }
 
     return {

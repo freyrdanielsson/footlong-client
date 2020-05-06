@@ -22,6 +22,7 @@ const initialState = {
     save_error: null,
     delete_isDeleting: false,
     delete_error: null,
+    delete_success: false,
     myPlayer: {},
     fetchedTeam: [],
 }
@@ -68,17 +69,20 @@ export default (state = initialState, action) => {
                 ...state,
                 delete_isSaving: action.delete_isDeleting,
                 delete_error: action.delete_error,
+                delete_success: action.delete_success,
             }
         case DELETE_SUCCESS:
             return {
                 ...state,
                 delete_isDeleting: action.delete_isDeleting,
+                delete_success: action.delete_success,
             }
         case DELETE_ERROR:
             return {
                 ...state,
                 delete_isDeleting: action.delete_isDeleting,
                 delete_error: action.delete_error,
+                delete_success: action.delete_success,
             }
         case MY_TEAM_SET:
             return {

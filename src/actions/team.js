@@ -41,6 +41,7 @@ function deleteRequest() {
         type: DELETE_REQUEST,
         delete_isDeleting: true,
         delete_error: null,
+        delete_success: false,
     }
 }
 
@@ -49,6 +50,7 @@ function deleteError(error) {
         type: DELETE_ERROR,
         delete_isDeleting: false,
         delete_error: error,
+        delete_success: false,
     }
 }
 
@@ -56,6 +58,7 @@ function deleteSuccess() {
     return {
         type: DELETE_SUCCESS,
         delete_isDeleting: false,
+        delete_success: true,
     }
 }
 

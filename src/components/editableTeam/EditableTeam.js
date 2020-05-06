@@ -33,7 +33,7 @@ export default function EditableTeam(props) {
                 </div>
                 <MtPlayerSearch teamProps={teamProps} playerProps={playerProps} squadFetcher={squadFetcher} playerSetter={playerSetter}/>
             </div>
-            <SaveTeam myTeam={myTeam} teamSaver={teamSaver} teamPatcher={teamPatcher} teamDelete={teamDelete} id={id} />
+            <SaveTeam idTeamProps={idTeamProps} teamSaver={teamSaver} teamPatcher={teamPatcher} teamDelete={teamDelete} id={id} />
             <MtSelectPosition myTeamProps={idTeamProps} teamSetter={teamSetter} playerSetter={playerSetter}/>
         </div>
     )
