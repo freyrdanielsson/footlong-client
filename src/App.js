@@ -10,8 +10,8 @@ import Home from './routes/home/Home';
 import Highlights from './routes/highlights/Highlights';
 import Login from './routes/login/Login';
 import Register from './routes/register/Register';
-import MyTeam from './routes/myTeam/MyTeam';
-import allTeams from './routes/allTeams/AllTeams';
+import AllTeams from './routes/allTeams/AllTeams';
+import MyTeams from './routes/myTeams/MyTeams';
 
 import './App.scss';
 
@@ -28,10 +28,10 @@ function App(props) {
                 <Switch location={location}>
                     <Route exact path='/' component={Home} />
                     <Route exact path='/highlights' component={Highlights} />
-                    <Route exact path='/teams' component={allTeams} />
+                    <Route exact path='/teams' component={AllTeams} />
+                    <UserRoute path='/teams/me' authenticated={isAuthenticated} redirect='/login' component={MyTeams} />
                     <UserRoute path='/login' authenticated={!isAuthenticated} redirect='/profile' component={Login} />
                     <UserRoute path='/register' authenticated={!isAuthenticated} redirect='/profile' component={Register} />
-                    <UserRoute path='/my-team' authenticated={isAuthenticated} redirect='/login' component={MyTeam} />
                 </Switch>
             </main>
         </Fragment>

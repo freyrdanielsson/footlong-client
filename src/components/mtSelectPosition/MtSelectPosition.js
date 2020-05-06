@@ -7,6 +7,8 @@ export default function MtSelectPosition(props) {
     const { myTeamProps, teamSetter, playerSetter } = props;
     const { myTeam, myPlayer } = myTeamProps
     const { formation } = myTeam;
+
+    const toDisplay = myPlayer.player_id ? {} : {display: 'none'};
     
     const allPos = getAllPositions(formation);
 
@@ -40,7 +42,7 @@ export default function MtSelectPosition(props) {
 
 
     return (
-        <div className='confirmPlayer'>
+        <div className='confirmPlayer' style={toDisplay}>
             <p>Name: {myPlayer.player_name}</p>
             <p>Age: {myPlayer.age}</p>
             <p>Nationality: {myPlayer.nationality}</p>

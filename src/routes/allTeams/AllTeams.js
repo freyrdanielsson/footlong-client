@@ -7,32 +7,16 @@ import { fetchCustomTeams } from '../../actions/teams';
 import ListTeams from '../../components/listTeams/ListTeams';
 
 function AllTeams(props) {
-    const { customTeamProps, dispatch } = props;
+    const { dispatch, customTeamProps } = props;
 
     useEffect(() => {
-        dispatch(fetchCustomTeams());
+        dispatch(fetchCustomTeams('/custom-teams'));
     }, [dispatch]);
-
-    if (customTeamProps.isFetching) {
-        return (
-            <div>
-                <p>Loading teams...</p>
-            </div>
-        )
-    }
-
-    if (customTeamProps.error) {
-        return (
-            <div>
-                <p>{customTeamProps.error}</p>
-            </div>
-        )
-    }
 
     return (
         <div className='allTeams'>
             <Helmet title="Teams" />
-            <ListTeams teamList={customTeamProps.customTeams} />
+            <ListTeams customTeamProps={customTeamProps} all={true} />
         </div>
     )
 }

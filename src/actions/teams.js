@@ -4,6 +4,7 @@ export const CUSTOM_TEAMS_REQUEST = 'CUSTOM_TEAMS_REQUEST';
 export const CUSTOM_TEAMS_ERROR = 'CUSTOM_TEAMS_ERROR';
 export const CUSTOM_TEAMS_SUCCESS = 'CUSTOM_TEAMS_SUCCESS';
 
+
 function customTeamsRequest() {
     return {
         type: CUSTOM_TEAMS_REQUEST,
@@ -28,18 +29,22 @@ function customTeamsSuccess(customTeams) {
     }
 }
 
-export function fetchCustomTeams() {
+export function fetchCustomTeams(endpoint) {
     return async (dispatch) => {
         dispatch(customTeamsRequest());
         let result;
         try {
-            result = await api.get('/custom-teams');
+            result = await api.get(endpoint);
         } catch(e) {
             return dispatch(customTeamsError(e));
         }
+
+        if (result.status === 404 ) {
+            return dispatch(customTeamsError('No Squads Found'))
+        }
         
         if (result.status === 500 || result.data.error) {
-            dispatch(customTeamsError('Unable to get Squads'))
+            return dispatch(customTeamsError('Unable to get Squads'))
         }
 
         dispatch(customTeamsSuccess(result.data));
