@@ -13,10 +13,12 @@ export default function DisplayField(props) {
             <div className='playerPosition'>
                 {formation[pos].map( k => { 
                     const playerName = team[k].player_name ? team[k].player_name : k;
+                    const playerTeam = team[k].team ? team[k].team : '';
+                    const playerLabel = `${playerName} ${playerTeam}`
                     if( playerSetter )
-                        return <p onClick={ () => playerSetter(team[k])} key={k} id={k} className='player'>{playerName}</p> 
+                        return <p onClick={ () => playerSetter(team[k])} key={k} id={k} className='player'>{playerLabel}</p> 
                         
-                    return <p key={k} id={k} className='player'>{playerName}</p>            
+                    return <p key={k} id={k} className='player'>{playerLabel}</p>            
                 })}
             </div>
         )

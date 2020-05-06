@@ -72,6 +72,9 @@ const mapStateToProps = (state) => {
     const idTeamProps = {
         myPlayer: team.myPlayer,
         myTeam: team.myTeam,
+        isSaving: team.save_isSaving,
+        saveError: team.save_error,
+        saveSucc: team.save_success,
     }
 
     return {

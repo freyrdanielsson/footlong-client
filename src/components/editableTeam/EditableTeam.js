@@ -24,8 +24,12 @@ export default function EditableTeam(props) {
         teamSetter(newTeam);
     }
 
+    const { fetchedTeam } = idTeamProps;
+    const oldName = fetchedTeam && id ? fetchedTeam[0].team_name : null; 
+
     return (
         <div className='myTeam'>
+            {oldName && <h3>{oldName}</h3>}
             <div className='displayTeam'>
                 <div className='teamVisual'>
                     <Select options={formations} onClickFun={changeFormation} label='Formations' valueKey='value' labelKey='label' />

@@ -5,8 +5,10 @@ import './SaveTeam.scss'
 
 export default function SaveTeam(props) {
     const { teamSaver, teamPatcher, teamDelete, idTeamProps, id } = props;
-    const { myTeam, isDeleting, delError, delSucc, isSaving, saveError, saveSucc } = idTeamProps;
+    const { myTeam, isDeleting, delError, delSucc, isSaving, saveError, saveSucc, fetchedTeam } = idTeamProps;
     const [ tName, setTname ] = useState('');
+
+    const oldName = fetchedTeam && id ? fetchedTeam[0].team_name : '';
 
     const user = JSON.parse(window.localStorage.getItem('user'));
 
@@ -47,7 +49,6 @@ export default function SaveTeam(props) {
             )
         })
     } 
-
     
     return (
         <div className='saveTeam'>
@@ -62,7 +63,7 @@ export default function SaveTeam(props) {
             {id &&
                 <div className='doubleButtonLayout'>
                     <label>Team Name</label>
-                    <input type='text' onChange={(e) => setTname(e.target.value)}></input>
+                    <input type='text' placeholder={oldName} onChange={(e) => setTname(e.target.value)}></input>
                     <button onClick={ () => teamPatcher(id, createInfo())}>Save Team</button>
                     <button onClick={ () => teamDelete(id)}>Delete Team</button>
                     {saveError && <ErrorDisplay />}
