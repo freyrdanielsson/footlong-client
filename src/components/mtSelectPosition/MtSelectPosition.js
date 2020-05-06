@@ -7,6 +7,8 @@ export default function MtSelectPosition(props) {
     const { myTeamProps, teamSetter, playerSetter } = props;
     const { myTeam, myPlayer } = myTeamProps
     const { formation } = myTeam;
+
+    const toDisplay = myPlayer.player_id ? {} : {display: 'none'};
     
     const allPos = getAllPositions(formation);
 
@@ -19,19 +21,23 @@ export default function MtSelectPosition(props) {
             return;
         }
 
-        // Check if player is already in team - Then remove and put in same position
+        // Check if player is already in team - Then remove 
         for (let i=0; i<allPos.length; i += 1) {
             if (myTeam.team[allPos[i]].player_id === myPlayer.player_id ) {
                 myTeam.team[allPos[i]] = {};
             }
         }
 
+        const sel = document.getElementById('Teams');
+        const realTeam = sel.options[sel.selectedIndex].text;
+
         myTeam.team[pos] = {
             player_id: myPlayer.player_id,
             player_name: myPlayer.player_name,
             age: myPlayer.age,
             nationality: myPlayer.nationality,
-            position: myPlayer.position
+            position: myPlayer.position,
+            team: realTeam,
         }
 
         teamSetter(myTeam);
@@ -40,7 +46,7 @@ export default function MtSelectPosition(props) {
 
 
     return (
-        <div className='confirmPlayer'>
+        <div className='confirmPlayer' style={toDisplay}>
             <p>Name: {myPlayer.player_name}</p>
             <p>Age: {myPlayer.age}</p>
             <p>Nationality: {myPlayer.nationality}</p>

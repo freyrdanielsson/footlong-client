@@ -1,0 +1,8 @@
+@import '../../config.scss';
+
+.teamVisual {
+    display: flex;
+    height: 100%;
+    margin-right: $gutter;
+    flex-direction: column;
+}
