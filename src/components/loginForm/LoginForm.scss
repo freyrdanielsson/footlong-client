@@ -2,7 +2,6 @@
 
 .login-form {
     margin: 0 auto;
-    height: 300px;
     width: 300px;
 
     &__input-container {
@@ -19,7 +18,7 @@
         background-color: #fff;
     }
 
-    input:focus {
+    &__input:focus {
         outline: none;
     }
 
@@ -36,6 +35,7 @@
     }
 
     &__button {
+        border-radius: 5px;
         margin-top: $gutter / 2;
         font-weight: 700;
         font-size: 1em;
@@ -43,5 +43,9 @@
         width: 100%;
         background-color: $color-sub;
         color: #fff;
+    }
+
+    &__button:hover {
+        cursor: pointer;
     }
 }

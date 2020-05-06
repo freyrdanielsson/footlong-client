@@ -11,8 +11,7 @@ import './Login.scss';
 function Login(props) {
     const { dispatch, isFetching, message } = props;
 
-    const postUser = async (e, username, password) => {
-        e.preventDefault();
+    const postUser = async (username, password) => {
         dispatch(loginUser(username, password));
     }
 

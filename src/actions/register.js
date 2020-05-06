@@ -19,7 +19,7 @@ function registerSuccess() {
     }
 }
 
-function registerError(message) {
+export function registerError(message) {
     return {
         type: REGISTER_FAILURE,
         isFetching: false,
