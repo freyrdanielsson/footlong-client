@@ -67,6 +67,7 @@ function saveRequest() {
         type: SAVE_REQUEST,
         save_isSaving: true,
         save_error: null,
+        save_success: false,
     }
 }
 
@@ -75,6 +76,7 @@ function saveError(error) {
         type: SAVE_ERROR,
         save_isSaving: false,
         save_error: error,
+        save_success: false,
     }
 }
 
@@ -82,6 +84,7 @@ function saveSuccess() {
     return {
         type: SAVE_SUCCESS,
         save_isSAVING: false,
+        save_success: true,
     }
 }
 
@@ -144,6 +147,10 @@ export function saveTeam(team) {
         } catch(e) {
             return dispatch(saveError(e));
         }
+
+        if (result.status === 400) {
+            return dispatch(saveError(result.data));
+        }
         
         if (result.status === 500 || result.data.error) {
             return dispatch(saveError('Could not save team'))
@@ -161,6 +168,10 @@ export function patchTeam(id, team) {
             result = await api.patch(`/custom-teams/${id}`, team);
         } catch(e) {
             return dispatch(saveError(e));
+        }
+
+        if (result.status === 400) {
+            return dispatch(saveError(result.data));
         }
         
         if (result.status === 500 || result.data.error) {

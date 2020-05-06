@@ -93,6 +93,9 @@ const mapStateToProps = (state) => {
         isDeleting: team.delete_isDeleting,
         delError: team.delete_error,
         delSucc: team.delete_success,
+        isSaving: team.save_isSaving,
+        saveError: team.save_error,
+        saveSucc: team.save_success,
     }
 
     return {

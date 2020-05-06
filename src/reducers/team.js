@@ -20,6 +20,7 @@ const initialState = {
     myTeam: formations[0],
     save_isSaving: false,
     save_error: null,
+    save_success: false,
     delete_isDeleting: false,
     delete_error: null,
     delete_success: false,
@@ -52,17 +53,20 @@ export default (state = initialState, action) => {
                 ...state,
                 save_isSaving: action.save_isSaving,
                 save_error: action.save_error,
+                save_success: action.save_success,
             }
         case SAVE_SUCCESS:
             return {
                 ...state,
                 save_isSaving: action.save_isSaving,
+                save_success: action.save_success,
             }
         case SAVE_ERROR:
             return {
                 ...state,
                 save_isSaving: action.save_isSaving,
                 save_error: action.save_error,
+                save_success: action.save_success,
             }
         case DELETE_REQUEST:
             return {

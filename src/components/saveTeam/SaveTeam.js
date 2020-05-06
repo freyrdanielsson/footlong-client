@@ -5,7 +5,7 @@ import './SaveTeam.scss'
 
 export default function SaveTeam(props) {
     const { teamSaver, teamPatcher, teamDelete, idTeamProps, id } = props;
-    const { myTeam, isDeleting, delError, delSucc } = idTeamProps;
+    const { myTeam, isDeleting, delError, delSucc, isSaving, saveError, saveSucc } = idTeamProps;
     const [ tName, setTname ] = useState('');
 
     const user = JSON.parse(window.localStorage.getItem('user'));
@@ -20,8 +20,9 @@ export default function SaveTeam(props) {
         }
     }
 
-    if (isDeleting) {
-        return <p>Deleting team...</p>
+    if (isDeleting || isSaving) {
+        const res = isDeleting ? 'Deleting team...' : 'Saving team...';
+        return <p>{res}</p>
     }
 
     if (delError) {
@@ -32,6 +33,21 @@ export default function SaveTeam(props) {
         return(<Redirect to={`/teams`} />)        
     }
 
+    if (saveSucc) {
+        return(<Redirect to={`/my-teams`} />)        
+    }
+
+    const ErrorDisplay = () => {
+        return saveError.map( errObj => {
+            return (
+                <div key={errObj.field}>
+                    <p>{errObj.field}</p>
+                    <p>{errObj.message}</p>
+                </div>
+            )
+        })
+    } 
+
     
     return (
         <div className='saveTeam'>
@@ -40,6 +56,7 @@ export default function SaveTeam(props) {
                     <label>Team Name</label>
                     <input type='text' onChange={(e) => setTname(e.target.value)}></input>
                     <button onClick={ () => teamSaver(createInfo())}>Save Team</button>
+                    {saveError && <ErrorDisplay />}
                 </div>
             }
             {id &&
@@ -48,6 +65,7 @@ export default function SaveTeam(props) {
                     <input type='text' onChange={(e) => setTname(e.target.value)}></input>
                     <button onClick={ () => teamPatcher(id, createInfo())}>Save Team</button>
                     <button onClick={ () => teamDelete(id)}>Delete Team</button>
+                    {saveError && <ErrorDisplay />}
                 </div>
             }
         </div>
