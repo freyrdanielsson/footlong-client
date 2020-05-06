@@ -12,6 +12,7 @@ import Login from './routes/login/Login';
 import Register from './routes/register/Register';
 import AllTeams from './routes/allTeams/AllTeams';
 import MyTeams from './routes/myTeams/MyTeams';
+import TeamById from './routes/teamById/TeamById';
 
 import './App.scss';
 
@@ -29,7 +30,8 @@ function App(props) {
                     <Route exact path='/' component={Home} />
                     <Route exact path='/highlights' component={Highlights} />
                     <Route exact path='/teams' component={AllTeams} />
-                    <UserRoute path='/teams/me' authenticated={isAuthenticated} redirect='/login' component={MyTeams} />
+                    <Route exact path='/teams/:id' component={TeamById} />
+                    <UserRoute path='/my-teams' authenticated={isAuthenticated} redirect='/login' component={MyTeams} />
                     <UserRoute path='/login' authenticated={!isAuthenticated} redirect='/profile' component={Login} />
                     <UserRoute path='/register' authenticated={!isAuthenticated} redirect='/profile' component={Register} />
                 </Switch>

@@ -4,7 +4,6 @@ export const CUSTOM_TEAMS_REQUEST = 'CUSTOM_TEAMS_REQUEST';
 export const CUSTOM_TEAMS_ERROR = 'CUSTOM_TEAMS_ERROR';
 export const CUSTOM_TEAMS_SUCCESS = 'CUSTOM_TEAMS_SUCCESS';
 
-
 function customTeamsRequest() {
     return {
         type: CUSTOM_TEAMS_REQUEST,
