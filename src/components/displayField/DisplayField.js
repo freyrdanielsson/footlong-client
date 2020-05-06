@@ -8,6 +8,7 @@ export default function DisplayField(props) {
     const PositionFormation = (props) => {
         const { pos } = props;
         const { formation, team } = myTeam;
+
         return (
             <div className='playerPosition'>
                 {formation[pos].map( k => { 

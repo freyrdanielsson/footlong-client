@@ -5,12 +5,13 @@ import { Helmet } from 'react-helmet';
 
 import './MyTeams.scss';
 import { fetchCustomTeams } from '../../actions/teams';
-import { setMyPlayer, setMyTeam, fetchTeams, fetchPlayers } from '../../actions/players';
+import { saveTeam, patchTeam, deleteTeam, setMyPlayer, setMyTeam } from '../../actions/team';
+import { fetchTeams, fetchPlayers } from '../../actions/players';
 import ListTeams from '../../components/listTeams/ListTeams';
 import EditableTeam from '../../components/editableTeam/EditableTeam';
 
 function MyTeams(props) {
-    const { myTeamProps, playerProps, teamProps, customTeamProps, dispatch } = props;
+    const { idTeamProps, playerProps, teamProps, customTeamProps, dispatch } = props;
 
     useEffect(() => {
         dispatch(fetchCustomTeams('/custom-teams/my-teams/me'));
@@ -26,25 +27,31 @@ function MyTeams(props) {
     const teamSetter = (team) => dispatch(setMyTeam(team));
     const squadFetcher = (id) => dispatch(fetchPlayers(id));
     const playerSetter = (player) => dispatch(setMyPlayer(player));
+    const teamSaver = (team) => dispatch(saveTeam(team));
+    const teamPatcher = (id, team) => dispatch(patchTeam(id,team));
+    const teamDelete = (id) => dispatch(deleteTeam(id)); 
 
     return (
         <div>
             <Helmet title="Teams" />
             <ListTeams customTeamProps={customTeamProps} />
             <EditableTeam 
-                myTeamProps={myTeamProps}
+                idTeamProps={idTeamProps}
                 teamProps={teamProps}
                 playerProps={playerProps}
                 teamSetter={teamSetter}
                 playerSetter={playerSetter}
                 squadFetcher={squadFetcher}
+                teamSaver={teamSaver}
+                teamPatcher={teamPatcher}
+                teamDelete={teamDelete}
             />
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
-    const { teams, players } = state;
+    const { teams, players, team } = state;
     const customTeamProps = {
         customTeams: teams.customTeams,
         error: teams.customTeams_error,
@@ -62,16 +69,16 @@ const mapStateToProps = (state) => {
         isFetching: players.players_isFetching,
     };
 
-    const myTeamProps = {
-        myTeam: players.myTeam,
-        myPlayer: players.myPlayer,
+    const idTeamProps = {
+        myPlayer: team.myPlayer,
+        myTeam: team.myTeam,
     }
 
     return {
         customTeamProps,
         teamProps,
         playerProps,
-        myTeamProps,
+        idTeamProps,
     }
 }
 

@@ -2,12 +2,28 @@ import {
     TEAM_BY_ID_REQUEST,
     TEAM_BY_ID_ERROR,
     TEAM_BY_ID_SUCCESS,
+    SAVE_REQUEST,
+    SAVE_ERROR,
+    SAVE_SUCCESS,
+    DELETE_REQUEST,
+    DELETE_ERROR,
+    DELETE_SUCCESS,
+    MY_TEAM_SET,
+    MY_TEAM_PLAYER_SET,
 } from '../actions/team';
+
+import { formations } from '../utils/formations';
 
 const initialState = {
     idTeam_isFetching: false,
     idTeam_error: null,
-    idTeam: [],
+    myTeam: formations[0],
+    save_isSaving: false,
+    save_error: null,
+    delete_isDeleting: false,
+    delete_error: null,
+    myPlayer: {},
+    fetchedTeam: [],
 }
 
 export default (state = initialState, action) => {
@@ -22,13 +38,57 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 idTeam_isFetching: action.idTeam_isFetching,
-                idTeam: action.idTeam,
+                fetchedTeam: action.fetchedTeam,
             }
         case TEAM_BY_ID_ERROR:
             return {
                 ...state,
                 idTeam_isFetching: action.idTeam_isFetching,
                 idTeam_error: action.idTeam_error,
+            }
+        case SAVE_REQUEST:
+            return {
+                ...state,
+                save_isSaving: action.save_isSaving,
+                save_error: action.save_error,
+            }
+        case SAVE_SUCCESS:
+            return {
+                ...state,
+                save_isSaving: action.save_isSaving,
+            }
+        case SAVE_ERROR:
+            return {
+                ...state,
+                save_isSaving: action.save_isSaving,
+                save_error: action.save_error,
+            }
+        case DELETE_REQUEST:
+            return {
+                ...state,
+                delete_isSaving: action.delete_isDeleting,
+                delete_error: action.delete_error,
+            }
+        case DELETE_SUCCESS:
+            return {
+                ...state,
+                delete_isDeleting: action.delete_isDeleting,
+            }
+        case DELETE_ERROR:
+            return {
+                ...state,
+                delete_isDeleting: action.delete_isDeleting,
+                delete_error: action.delete_error,
+            }
+        case MY_TEAM_SET:
+            return {
+                ...state,
+                myTeam: action.myTeam,
+            }
+        case MY_TEAM_PLAYER_SET:
+            return {
+                ...state,
+                myPlayer: action.myPlayer,
             }
         
         default:

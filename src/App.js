@@ -32,8 +32,8 @@ function App(props) {
                     <Route exact path='/teams' component={AllTeams} />
                     <Route exact path='/teams/:id' component={TeamById} />
                     <UserRoute path='/my-teams' authenticated={isAuthenticated} redirect='/login' component={MyTeams} />
-                    <UserRoute path='/login' authenticated={!isAuthenticated} redirect='/profile' component={Login} />
-                    <UserRoute path='/register' authenticated={!isAuthenticated} redirect='/profile' component={Register} />
+                    <UserRoute path='/login' authenticated={!isAuthenticated} redirect='/my-teams' component={Login} />
+                    <UserRoute path='/register' authenticated={!isAuthenticated} redirect='/my-teams' component={Register} />
                 </Switch>
             </main>
         </Fragment>

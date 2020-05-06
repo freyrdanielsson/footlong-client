@@ -6,7 +6,6 @@ export const TEAMS_SUCCESS = 'TEAMS_SUCCESS';
 export const PLAYERS_REQUEST = 'PLAYERS_REQUEST';
 export const PLAYERS_ERROR = 'PLAYERS_ERROR';
 export const PLAYERS_SUCCESS = 'PLAYERS_SUCCESS';
-export const MY_TEAM_SET = 'MY_TEAM_SET';
 export const MY_TEAM_PLAYER_SET = 'MY_TEAM_PLAYER_SET';
 
 function requestTeams() {
@@ -54,32 +53,6 @@ function playersSuccess(players) {
         type: PLAYERS_SUCCESS,
         players_isFetching: false,
         players,
-    }
-}
-
-function myTeamSet(myTeam) {
-    return {
-        type: MY_TEAM_SET,
-        myTeam,
-    }
-}
-
-function myPlayerSet(myPlayer) {
-    return {
-        type: MY_TEAM_PLAYER_SET,
-        myPlayer,
-    }
-}
-
-export function setMyPlayer(player) {
-    return (dispatch) => {
-        dispatch(myPlayerSet(player));
-    }
-}
-
-export function setMyTeam(team) {
-    return (dispatch) => {
-        dispatch(myTeamSet(team));
     }
 }
 

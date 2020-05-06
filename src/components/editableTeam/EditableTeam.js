@@ -6,10 +6,11 @@ import MtPlayerSearch from '../mtPlayerSearch/MtPlayerSearch';
 import MtSelectPosition from '../mtSelectPosition/MtSelectPosition';
 import Select from '../select/Select';
 import DisplayField from '../displayField/DisplayField'
+import SaveTeam from '../saveTeam/SaveTeam';
 
 export default function EditableTeam(props) {
-    const { myTeamProps, teamProps, playerProps, teamSetter, playerSetter, squadFetcher } = props;
-    const { myTeam } = myTeamProps;
+    const { idTeamProps, teamProps, playerProps, teamSetter, playerSetter, squadFetcher, teamSaver, teamPatcher, teamDelete, id } = props;
+    const { myTeam } = idTeamProps;
 
     const changeFormation = (val) => {
         const newTeam = formations[val];
@@ -32,7 +33,8 @@ export default function EditableTeam(props) {
                 </div>
                 <MtPlayerSearch teamProps={teamProps} playerProps={playerProps} squadFetcher={squadFetcher} playerSetter={playerSetter}/>
             </div>
-            <MtSelectPosition myTeamProps={myTeamProps} teamSetter={teamSetter} playerSetter={playerSetter}/>
+            <SaveTeam myTeam={myTeam} teamSaver={teamSaver} teamPatcher={teamPatcher} teamDelete={teamDelete} id={id} />
+            <MtSelectPosition myTeamProps={idTeamProps} teamSetter={teamSetter} playerSetter={playerSetter}/>
         </div>
     )
 }
