@@ -4,15 +4,10 @@ import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 import './MyTeams.scss';
-
-
 import { fetchCustomTeams } from '../../actions/teams';
 import { setMyPlayer, setMyTeam, fetchTeams, fetchPlayers } from '../../actions/players';
 import ListTeams from '../../components/listTeams/ListTeams';
-import MtPlayerSearch from '../../components/mtPlayerSearch/MtPlayerSearch';
-import DisplayTeam from '../../components/displayTeam/DisplayTeam';
-import MtSelectPosition from '../../components/mtSelectPosition/MtSelectPosition';
-
+import EditableTeam from '../../components/editableTeam/EditableTeam';
 
 function MyTeams(props) {
     const { myTeamProps, playerProps, teamProps, customTeamProps, dispatch } = props;
@@ -35,14 +30,15 @@ function MyTeams(props) {
     return (
         <div>
             <Helmet title="Teams" />
-            <div className='myTeam'>
-                <div className='displayTeam'>
-                    <DisplayTeam myTeam={myTeamProps.myTeam} teamSetter={teamSetter} playerSetter={playerSetter} />
-                    <MtPlayerSearch teamProps={teamProps} playerProps={playerProps} squadFetcher={squadFetcher} playerSetter={playerSetter} />
-                </div>
-                <MtSelectPosition myTeamProps={myTeamProps} teamSetter={teamSetter} playerSetter={playerSetter}/>
-            </div>
             <ListTeams customTeamProps={customTeamProps} />
+            <EditableTeam 
+                myTeamProps={myTeamProps}
+                teamProps={teamProps}
+                playerProps={playerProps}
+                teamSetter={teamSetter}
+                playerSetter={playerSetter}
+                squadFetcher={squadFetcher}
+            />
         </div>
     )
 }
