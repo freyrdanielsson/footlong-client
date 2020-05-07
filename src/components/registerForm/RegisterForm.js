@@ -80,7 +80,7 @@ export default function RegisterForm(props) {
                 </div>
 
                 <div className='register-form__input-container'>
-                    <label className='register-form__label' htmlFor='password'>
+                    <label className='register-form__label' htmlFor='rePassword'>
                         Password again <span role='img' aria-label=''>🙄</span> ...
                     </label>
                     <input className={`register-form__input ${errorClass.rePassword || ''}`} id='rePassword' type='password' name='rePassword' value={rePassword} onChange={(e) => setRePassword(e.target.value)} />

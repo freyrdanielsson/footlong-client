@@ -43,6 +43,16 @@
         width: 100%;
         background-color: $color-sub;
         color: #fff;
+
+        &--password {
+            text-align: left;
+            border: 0;
+            padding: 0;
+            font-size: 0.8em;
+            width: 50%;
+            color: $color-card-red;
+            background-color: #fff;
+        }
     }
 
     &__button:hover {
