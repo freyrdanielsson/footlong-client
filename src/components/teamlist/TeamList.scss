@@ -1,0 +1,23 @@
+@import '../../config.scss';
+
+.teams {
+    @include row;
+    flex-wrap: wrap;
+    max-width: 600px;
+    margin: $gutter auto;
+
+    &__table {
+        width: 100%;
+    }
+
+    &__header {
+        @include columns(12);
+        background-color: $color-gray;
+    }
+
+    &__list {
+        @include columns(12);
+        text-align: center;
+    }
+
+}

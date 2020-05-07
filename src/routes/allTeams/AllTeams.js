@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 import { fetchCustomTeams } from '../../actions/teams';
-import ListTeams from '../../components/listTeams/ListTeams';
+import TeamList from '../../components/teamlist/TeamList';
 
 function AllTeams(props) {
     const { dispatch, customTeamProps } = props;
@@ -13,11 +13,23 @@ function AllTeams(props) {
         dispatch(fetchCustomTeams('/custom-teams'));
     }, [dispatch]);
 
+    /*
+    <div className='allTeams'>
+        <Helmet title="Teams" />
+        <ListTeams customTeamProps={customTeamProps} all={true} />
+    </div>
+    */
+
     return (
-        <div className='allTeams'>
-            <Helmet title="Teams" />
-            <ListTeams customTeamProps={customTeamProps} all={true} />
-        </div>
+        <React.Fragment>
+            <Helmet title='Teams'/>
+            <div className='allTeams'>
+                <div className='customTeams'>
+                    <TeamList customTeamProps={customTeamProps}/>
+                </div>
+            </div>
+
+        </React.Fragment>
     )
 }
 
