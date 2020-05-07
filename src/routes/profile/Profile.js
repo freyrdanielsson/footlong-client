@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-import './MyTeams.scss';
+import './Profile.scss';
 import { fetchCustomTeams } from '../../actions/teams';
 import { saveTeam, patchTeam, deleteTeam, setMyPlayer, setMyTeam } from '../../actions/team';
 import { fetchTeams, fetchPlayers } from '../../actions/players';
 import ListTeams from '../../components/listTeams/ListTeams';
 import EditableTeam from '../../components/editableTeam/EditableTeam';
 
-function MyTeams(props) {
+function Profile(props) {
     const { idTeamProps, playerProps, teamProps, customTeamProps, dispatch } = props;
 
     useEffect(() => {
@@ -85,4 +85,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(MyTeams))
+export default withRouter(connect(mapStateToProps)(Profile))
