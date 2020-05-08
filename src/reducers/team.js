@@ -5,14 +5,15 @@ import {
     SAVE_REQUEST,
     SAVE_ERROR,
     SAVE_SUCCESS,
+    SAVE_REFRESH,
     PATCH_REQUEST,
     PATCH_ERROR,
     PATCH_SUCCESS,
+    PATCH_REFRESH,
     DELETE_REQUEST,
     DELETE_ERROR,
     DELETE_SUCCESS,
-    MY_TEAM_SET,
-    MY_TEAM_PLAYER_SET,
+    DELETE_REFRESH,
 } from '../actions/team';
 
 import { formations } from '../utils/formations';
@@ -78,6 +79,13 @@ export default (state = initialState, action) => {
                 save_error: action.save_error,
                 save_success: action.save_success,
             }
+        case SAVE_REFRESH:
+            return {
+                ...state,
+                save_isSaving: action.save_isSaving,
+                save_error: action.save_error,
+                save_success: action.save_success,
+            }
         case PATCH_REQUEST:
             return {
                 ...state,
@@ -90,9 +98,17 @@ export default (state = initialState, action) => {
                 ...state,
                 patch_isSaving: action.patch_isSaving,
                 patch_success: action.patch_success,
+                patch_error: action.patch_error,
                 id: action.id,
             }
         case PATCH_ERROR:
+            return {
+                ...state,
+                patch_isSaving: action.patch_isSaving,
+                patch_error: action.patch_error,
+                patch_success: action.patch_success,
+            }
+        case PATCH_REFRESH:
             return {
                 ...state,
                 patch_isSaving: action.patch_isSaving,
@@ -120,15 +136,12 @@ export default (state = initialState, action) => {
                 delete_error: action.delete_error,
                 delete_success: action.delete_success,
             }
-        case MY_TEAM_SET:
+        case DELETE_REFRESH:
             return {
                 ...state,
-                myTeam: action.myTeam,
-            }
-        case MY_TEAM_PLAYER_SET:
-            return {
-                ...state,
-                myPlayer: action.myPlayer,
+                delete_isDeleting: action.delete_isDeleting,
+                delete_error: action.delete_error,
+                delete_success: action.delete_success,
             }
         
         default:

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import './EditTeam.scss';
 
 import { getAllPositions, formations } from '../../utils/formations';
-import { fetchTeamById, patchTeam, deleteTeam } from '../../actions/team';
+import { fetchTeamById, patchTeam, deleteTeam, deleteRefresh, patchRefresh, saveRefresh } from '../../actions/team';
 import { fetchTeams, fetchPlayers } from '../../actions/players';
 import Select from '../../components/select/Select';
 import TeamDisplay from '../../components/teamDisplay/TeamDisplay';
@@ -62,7 +62,6 @@ function EditTeam(props) {
         return <p>Error fetching team :( </p>
     }
     
-    const handleSuccess = () => props.history.push({pathname: '/profile'});
     const handleDeleteTeam = (id) => dispatch(deleteTeam(id));
     const handleEditTeam = (id, team) => dispatch(patchTeam(id,team));
     const handleFetchSquad = (id) => dispatch(fetchPlayers(id));
@@ -81,9 +80,17 @@ function EditTeam(props) {
         setChange(!teamChange);
         setTeam(team);
     }
+
     const handleSetTeam = (team) => {
         setChange(!teamChange);
         setTeam(team);
+    }
+
+    const handleSuccess = () => {
+        dispatch(deleteRefresh());
+        dispatch(patchRefresh());
+        dispatch(saveRefresh());
+        props.history.push({pathname: '/profile'});
     }
 
     const editHandlers = {
