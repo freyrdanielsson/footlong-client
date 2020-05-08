@@ -12,7 +12,6 @@ import Login from './routes/login/Login';
 import Register from './routes/register/Register';
 import AllTeams from './routes/allTeams/AllTeams';
 import Profile from './routes/profile/Profile';
-import TeamById from './routes/teamById/TeamById';
 import EditTeam from './routes/editTeam/EditTeam';
 
 import './App.scss';
@@ -31,7 +30,6 @@ function App(props) {
                     <Route exact path='/' component={Home} />
                     <Route exact path='/highlights' component={Highlights} />
                     <Route exact path='/teams' component={AllTeams} />
-                    <Route exact path='/teams/:id' component={TeamById} />
                     <UserRoute exact path='/profile' authenticated={isAuthenticated} redirect='/login' component={Profile} />
                     <UserRoute exact path='/profile/edit/:id' authenticated={isAuthenticated} redirect='/login' component={EditTeam} />
                     <UserRoute path='/login' authenticated={!isAuthenticated} redirect='/profile' component={Login} />
