@@ -24,4 +24,8 @@
         cursor: pointer;
     }
 
+    &__owner {
+        background-color: rgba($color: $color-sub, $alpha: 0.3);
+    }
+
 }

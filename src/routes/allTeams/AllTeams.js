@@ -48,7 +48,7 @@ function AllTeams(props) {
             <Helmet title='Teams'/>
             <div className='teamsHome'>
                 <div className='teamsHome__listcontainer'>
-                    <TeamList teamListProps={teamListProps} handler={handleTeamClick}/>
+                    <TeamList teamListProps={teamListProps} handler={handleTeamClick} user={idTeamProps.user}/>
                 </div>
                 <TeamDetails 
                     idTeamProps={idTeamProps} 
@@ -73,10 +73,10 @@ const mapStateToProps = (state) => {
         isFetching: team.idTeam_isFetching,
         user: auth.user
     }
-
+    
     return {
         teamListProps,
-        idTeamProps
+        idTeamProps,
     }
 }
 
