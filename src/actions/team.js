@@ -14,11 +14,12 @@ export const MY_TEAM_SET = 'MY_TEAM_SET';
 export const MY_TEAM_PLAYER_SET = 'MY_TEAM_PLAYER_SET';
 
 
-function teamByIdRequest() {
+function teamByIdRequest(fetchedTeam) {
     return {
         type: TEAM_BY_ID_REQUEST,
         idTeam_isFetching: true,
         idTeam_error: null,
+        fetchedTeam,
     }
 }
 
@@ -40,7 +41,9 @@ function teamByIdSuccess(fetchedTeam) {
 
 export function fetchTeamById(id) {
     return async (dispatch) => {
-        dispatch(teamByIdRequest());
+        dispatch(teamByIdRequest(id));
+        if(id === null) return;
+
         let result;
         try {
             result = await api.get(`/custom-teams/${id}`);
@@ -98,8 +101,6 @@ function saveRequest() {
 }
 
 function saveError(error) {
-    console.log(error);
-    
     return {
         type: SAVE_ERROR,
         save_isSaving: false,
