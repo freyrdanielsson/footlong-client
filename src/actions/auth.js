@@ -97,7 +97,7 @@ function receiveUpload(user) {
         type: UPDATE_USER_SUCCESS,
         isFetching: false,
         user,
-        message: null,
+        message: [{field: 'success', message: 'Profile updated!'}],
     }
 }
 
@@ -124,6 +124,11 @@ export const updateUser = (userInfo) => {
         if (update.result && update.result.errors) {
             dispatch(uploadError(update.result.errors));
         }
+        
+        if (!update.ok) {
+            dispatch(uploadError(update.data));
+        }
+        
 
         if (update.status === 200) {
             const user = update.data[0];

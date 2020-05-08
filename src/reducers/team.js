@@ -60,6 +60,7 @@ export default (state = initialState, action) => {
                 ...state,
                 save_isSaving: action.save_isSaving,
                 save_success: action.save_success,
+                id: action.id,
             }
         case SAVE_ERROR:
             return {

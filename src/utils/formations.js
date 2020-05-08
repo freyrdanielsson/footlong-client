@@ -1,4 +1,4 @@
-const f442 = {
+export const f442 = {
     value: 0,
     label: '4-4-2',
     formation: {

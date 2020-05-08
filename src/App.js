@@ -31,7 +31,7 @@ function App(props) {
                     <Route exact path='/highlights' component={Highlights} />
                     <Route exact path='/teams' component={AllTeams} />
                     <Route exact path='/teams/:id' component={TeamById} />
-                    <UserRoute path='/profile' authenticated={isAuthenticated} redirect='/login' component={Profile} />
+                    <UserRoute exact path='/profile' authenticated={isAuthenticated} redirect='/login' component={Profile} />
                     <UserRoute path='/login' authenticated={!isAuthenticated} redirect='/profile' component={Login} />
                     <UserRoute path='/register' authenticated={!isAuthenticated} redirect='/profile' component={Register} />
                 </Switch>
