@@ -15,8 +15,8 @@ export default function TeamList(props) {
             return (
                 <tr key={obj.id} className='teams__line' onClick={() => handler(obj.id)}>
                     <td className={`teams__${isOwner}`}>{obj.owner_username}</td>
-                    <td>{obj.team_name}</td>
-                    <td>{created.toDateString()}</td>
+                    <td className={`teams__${isOwner}`}>{obj.team_name}</td>
+                    <td className={`teams__${isOwner}`}>{created.toDateString()}</td>
                 </tr>
             )
         }) 

@@ -4,6 +4,8 @@
     min-width: 500px;
     min-height: 350px;
     padding: 4px 10px 4px 4px;
+    margin-right: $gutter;
+    margin-bottom: $gutter;
     background-color: #fff;
     border: 1px solid #000;
     border-radius: 5px;
@@ -46,7 +48,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-        background-color: rgba(255, 255, 255, 0.35);
+        background-color: rgba(255, 255, 255, 0.65);
     }
 
     &__headerinfo {
