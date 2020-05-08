@@ -7,6 +7,9 @@ export const TEAM_BY_ID_SUCCESS = 'TEAM_BY_ID_SUCCESS';
 export const SAVE_REQUEST = 'SAVE_REQUEST';
 export const SAVE_ERROR = 'SAVE_ERROR';
 export const SAVE_SUCCESS = 'SAVE_SUCCESS';
+export const PATCH_REQUEST = 'PATCH_REQUEST';
+export const PATCH_ERROR = 'PATCH_ERROR';
+export const PATCH_SUCCESS = 'PATCH_SUCCESS';
 export const DELETE_REQUEST = 'DELETE_REQUEST';
 export const DELETE_ERROR = 'DELETE_ERROR';
 export const DELETE_SUCCESS = 'DELETE_SUCCESS';
@@ -61,9 +64,11 @@ export function fetchTeamById(id) {
             return dispatch(teamByIdError('Unable to get team'))
         }
 
-        const teamObj = JSON.parse(result.data[0].lineup);
-        dispatch(setMyTeam(teamObj))
-        dispatch(teamByIdSuccess(result.data));
+        const parsedLineup = JSON.parse(result.data[0].lineup);
+        result.data[0].lineup = parsedLineup;
+
+        dispatch(setMyTeam(parsedLineup))
+        dispatch(teamByIdSuccess(result.data[0]));
     }
 }
 
@@ -145,25 +150,52 @@ export function createTeam(teamHeader) {
     }
 }
 
+function patchRequest() {
+    return {
+        type: PATCH_REQUEST,
+        patch_isSaving: true,
+        patch_error: null,
+        patch_success: false,
+    }
+}
+
+function patchError(error) {
+    return {
+        type: PATCH_ERROR,
+        patch_isSaving: false,
+        patch_error: error,
+        patch_success: false,
+    }
+}
+
+function patchSuccess(id) {
+    return {
+        type: PATCH_SUCCESS,
+        patch_isSAVING: false,
+        patch_success: true,
+        id,
+    }
+}
+
 export function patchTeam(id, team) {
     return async (dispatch) => {
-        dispatch(saveRequest());
+        dispatch(patchRequest());
         let result;
         try {
             result = await api.patch(`/custom-teams/${id}`, team);
         } catch (e) {
-            return dispatch(saveError(e));
+            return dispatch(patchError(e));
         }
 
         if (result.status === 400) {
-            return dispatch(saveError(result.data));
+            return dispatch(patchError(result.data));
         }
 
         if (result.status === 500 || result.data.error) {
-            return dispatch(saveError('Could not save team'))
+            return dispatch(patchError('Could not save team'))
         }
 
-        dispatch(saveSuccess(id));
+        dispatch(patchSuccess(id));
     }
 }
 
