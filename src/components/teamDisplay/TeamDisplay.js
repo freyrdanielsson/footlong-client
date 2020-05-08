@@ -4,7 +4,7 @@ import React from 'react';
 import './TeamDisplay.scss';
 
 export default function TeamDisplay(props) {
-    const { idTeam, isFetching, error } = props.myTeam;
+    const { idTeam, isFetching, error, playerSetter } = props;
 
     if (isFetching) {
         return (
@@ -26,15 +26,16 @@ export default function TeamDisplay(props) {
 
     const PositionFormation = (props) => {
         const { pos } = props;
-        const lineup = JSON.parse(idTeam[0].lineup);    
-        const { formation, team } = lineup;
+        const { formation, team } = idTeam.lineup;
 
         return (
             <div className='pitch__line'>
                 {formation[pos].map( k => { 
                     const playerName = team[k].player_name ? team[k].player_name : k;
-                    const playerTeam = team[k].team ? team[k].team : '';
-                    return <p key={k} id={k} className='pitch__player'>{`${playerName} ${playerTeam}`}</p>            
+                    if (playerSetter) {
+                        return <p onClick={ () => playerSetter(team[k])} key={k} id={k} className='pitch__player'>{playerName}</p> 
+                    }
+                    return <p key={k} id={k} className='pitch__player'>{playerName}</p>            
                 })}
             </div>
         )

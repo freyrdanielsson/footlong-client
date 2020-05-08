@@ -5,6 +5,9 @@ import {
     SAVE_REQUEST,
     SAVE_ERROR,
     SAVE_SUCCESS,
+    PATCH_REQUEST,
+    PATCH_ERROR,
+    PATCH_SUCCESS,
     DELETE_REQUEST,
     DELETE_ERROR,
     DELETE_SUCCESS,
@@ -24,6 +27,9 @@ const initialState = {
     delete_isDeleting: false,
     delete_error: null,
     delete_success: false,
+    patch_isPatching: false,
+    patch_error: null,
+    patch_success: false,
     myPlayer: {},
     fetchedTeam: null,
 }
@@ -71,6 +77,27 @@ export default (state = initialState, action) => {
                 save_isSaving: action.save_isSaving,
                 save_error: action.save_error,
                 save_success: action.save_success,
+            }
+        case PATCH_REQUEST:
+            return {
+                ...state,
+                patch_isSaving: action.patch_isSaving,
+                patch_error: action.patch_error,
+                patch_success: action.patch_success,
+            }
+        case PATCH_SUCCESS:
+            return {
+                ...state,
+                patch_isSaving: action.patch_isSaving,
+                patch_success: action.patch_success,
+                id: action.id,
+            }
+        case PATCH_ERROR:
+            return {
+                ...state,
+                patch_isSaving: action.patch_isSaving,
+                patch_error: action.patch_error,
+                patch_success: action.patch_success,
             }
         case DELETE_REQUEST:
             return {

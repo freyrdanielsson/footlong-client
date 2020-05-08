@@ -6,11 +6,11 @@ import Select from '../select/Select';
 import SquadLists from '../squadLists/SquadLists';
 
 export default function MtPlayerSearch(props) {
-    const { teamProps, playerProps, squadFetcher, playerSetter } = props;
+    const { selectionProps, handlers } = props;
+    const { leagues, leaguesIsFetching, leaguesError } = selectionProps;
     const [ teamIndex, setTeamIndex ] = useState(0);
 
-
-    if (teamProps.isFetching || teamProps.teams.length === 0) {
+    if (leaguesIsFetching || leagues.length === 0) {
         return (
             <div>
                 <p>Loading teams...</p>
@@ -18,28 +18,41 @@ export default function MtPlayerSearch(props) {
         )
     }
 
-    if (teamProps.error) {
+    if (leaguesError) {
         return (
             <div>
-                <p>{teamProps.error}</p>
+                <p>{leaguesError}</p>
             </div>
         )
     }
 
-    const { teams } = teamProps;
-    teams.map( (obj, i) => obj.value = i);
+    leagues.map( (obj, i) => obj.value = i);
     const getLeagueClick = (val) => {
         setTeamIndex(val)
-        squadFetcher(teams[val].teams[0].team_id);
+        handlers.handleFetchSquad(leagues[val].teams[0].team_id);
     }
-
+        
     return (
         <div className='searchContainer'>
             <div className='searchTeam'>
-                <Select options={teams} onClickFun={getLeagueClick} label='Leagues' valueKey='value' labelKey='title' />
-                <Select options={teams[teamIndex].teams} onClickFun={squadFetcher} label='Teams' valueKey='team_id' labelKey='name' />
+                <Select 
+                    options={leagues} 
+                    onClickFun={getLeagueClick} 
+                    label='Leagues' 
+                    valueKey='value' 
+                    labelKey='title' />
+                <Select 
+                    options={leagues[teamIndex].teams}
+                    onClickFun={handlers.handleFetchSquad}
+                    label='Teams'
+                    valueKey='team_id'
+                    labelKey='name' />
             </div>
-            <SquadLists playerProps={playerProps} playerSetter={playerSetter}/>
+            <SquadLists 
+                isFetching={selectionProps.squadIsFetching}
+                squad={selectionProps.squad}
+                error={selectionProps.squadError} 
+                playerSetter={handlers.setPlayer}/>
         </div>
     )
 }

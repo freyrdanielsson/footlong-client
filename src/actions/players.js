@@ -13,6 +13,7 @@ function requestTeams() {
         type: TEAMS_REQUEST,
         teams_isFetching: true,
         teams_error: null,
+        teams: []
     }
 }
 
@@ -21,6 +22,7 @@ function teamsError(error) {
         type: TEAMS_ERROR,
         teams_isFetching: false,
         teams_error: error,
+        teams: []
     }
 }
 
@@ -37,6 +39,7 @@ function requestPlayers() {
         type: PLAYERS_REQUEST,
         players_isFetching: true,
         players_error: null,
+        players: []
     }
 }
 
@@ -45,6 +48,7 @@ function playersError(error) {
         type: PLAYERS_ERROR,
         players_isFetching: false,
         players_error: error,
+        players: []
     }
 }
 
@@ -52,6 +56,7 @@ function playersSuccess(players) {
     return {
         type: PLAYERS_SUCCESS,
         players_isFetching: false,
+        players_error: null,
         players,
     }
 }

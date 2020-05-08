@@ -1,0 +1,27 @@
+@import '../../config.scss';
+
+.edit-team {
+    margin: $gutter;
+
+    &__pitchWrapper {
+        width: 600px;
+        height: 400px;
+        margin-top: $gutter;
+    }
+
+    &__viewSearch {
+        display: flex;
+    }
+
+    &__pitch {
+        display: flex;
+        height: 100%;
+        margin-right: $gutter;
+        flex-direction: column;
+    }
+
+    &__options {
+        display: flex;
+        justify-content: space-between;
+    }
+}
