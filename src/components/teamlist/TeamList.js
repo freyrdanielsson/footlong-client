@@ -35,7 +35,7 @@ export default function TeamList(props) {
                 <thead className='teams__header'>
                     <tr className='teams__title'>
                         <th>Owner</th>
-                        <th>Team</th>
+                        <th>Team Name</th>
                         <th>Created</th>
                     </tr>
                 </thead>

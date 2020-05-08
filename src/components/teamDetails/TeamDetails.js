@@ -35,10 +35,13 @@ export default function TeamDetails(props) {
                         transition={transition}
                         className='teamDetails'>
                             <div className='teamDetails__header'>
-                                <h4>{label}</h4>
                                 <button className='teamDetails__close' onClick={onClose}>
                                     <span>✕</span>
                                 </button>
+                                <div className='teamDetails__headerinfo'>
+                                    <div className='teamDetails__protection'></div>
+                                    <h1 className='teamDetails__headerText'>{label}</h1>
+                                </div>
                             </div>
                             <div className='teamDetails__body'>
                                 <TeamDisplay myTeam={props.idTeamProps} />

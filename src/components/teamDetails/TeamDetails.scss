@@ -33,15 +33,38 @@
         }
     }
 
+    &__header {
+        display: flex; 
+        height: 100px;
+        padding-left: 5px;
+        flex-direction: column;
+    }
+
+    &__protection {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.35);
+    }
+
+    &__headerinfo {
+        position: relative;
+        height: 100%;
+        background: transparent url('./images/backgroundImg.jpg') no-repeat;
+        background-size: cover;
+    }
+
+    &__headerText {
+        position: relative;
+        padding-top: 10px;
+        text-align: center;
+    }
+
     &__content {
         height: 700px;
         overflow: scroll;
-    }
-
-    &__header {
-        display: flex;
-        justify-content: space-between;
-        padding-left: 5px;
     }
 
     &__body {
@@ -54,10 +77,11 @@
         font-size: 1em;
         font-weight: 700;
         border-width: 0;
+        align-self: flex-end;
     }
 
     &__edit {
-        padding: 5px 15px;
+        padding: 5px $gutter/2;
         margin: 10px 0 0 5px;
         color: #fff;
         background-color: $color-darkGray;
