@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import queryString from 'query-string';
 
 import { fetchCustomTeams } from '../../actions/teams';
 import { fetchTeamById } from '../../actions/team';
@@ -13,6 +14,13 @@ import './AllTeams.scss';
 
 function AllTeams(props) {
     const { dispatch, teamListProps, idTeamProps } = props;
+    
+    useEffect(() => {
+        const parsedQuery = queryString.parse(props.location.search);
+        if (parsedQuery.id) {
+            dispatch(fetchTeamById(parsedQuery.id))
+        }
+    }, [dispatch, props.location.search]);
 
     useEffect(() => {
         dispatch(fetchCustomTeams('/custom-teams'));
