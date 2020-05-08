@@ -18,11 +18,15 @@ export default function League(props) {
                 <div className={`league__logo league__logo--${title.replace(/\s+/g, '')}`} />
             </div>
             <motion.ul variants={fixtureAnimation} className='league__list'>
-                {fixtures.map((fixture, i) => {
+                {fixtures.length > 0 && fixtures.map((fixture, i) => {
                     return <li key={i} onClick={() => selectFixture(fixture)}>
-                        <Fixture  fixture={fixture} />
+                        <Fixture fixture={fixture} />
                     </li>
                 })}
+
+                {fixtures.length === 0 &&
+                <p>Sorry, no games today.</p>
+                }
             </motion.ul>
         </motion.div>
     );
