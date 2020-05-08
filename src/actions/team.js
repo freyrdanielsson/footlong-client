@@ -67,36 +67,10 @@ export function fetchTeamById(id) {
         const parsedLineup = JSON.parse(result.data[0].lineup);
         result.data[0].lineup = parsedLineup;
 
-        dispatch(setMyTeam(parsedLineup))
         dispatch(teamByIdSuccess(result.data[0]));
     }
 }
 
-function myPlayerSet(myPlayer) {
-    return {
-        type: MY_TEAM_PLAYER_SET,
-        myPlayer,
-    }
-}
-
-export function setMyPlayer(player) {
-    return (dispatch) => {
-        dispatch(myPlayerSet(player));
-    }
-}
-
-function myTeamSet(myTeam) {
-    return {
-        type: MY_TEAM_SET,
-        myTeam,
-    }
-}
-
-export function setMyTeam(team) {
-    return (dispatch) => {
-        dispatch(myTeamSet(team));
-    }
-}
 
 function saveRequest() {
     return {
@@ -222,6 +196,7 @@ function deleteSuccess() {
         type: DELETE_SUCCESS,
         delete_isDeleting: false,
         delete_success: true,
+        delete_error: null
     }
 }
 

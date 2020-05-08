@@ -111,6 +111,7 @@ export default (state = initialState, action) => {
                 ...state,
                 delete_isDeleting: action.delete_isDeleting,
                 delete_success: action.delete_success,
+                delete_error: action.delete_error,
             }
         case DELETE_ERROR:
             return {
