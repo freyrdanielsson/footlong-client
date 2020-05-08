@@ -4,29 +4,48 @@ import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 import { fetchCustomTeams } from '../../actions/teams';
+import { fetchTeamById } from '../../actions/team';
 import TeamList from '../../components/teamlist/TeamList';
+import TeamDetails from '../../components/teamDetails/TeamDetails';
+
+import './AllTeams.scss';
+
 
 function AllTeams(props) {
-    const { dispatch, customTeamProps } = props;
+    const { dispatch, teamListProps, idTeamProps } = props;
 
     useEffect(() => {
         dispatch(fetchCustomTeams('/custom-teams'));
     }, [dispatch]);
 
-    /*
-    <div className='allTeams'>
-        <Helmet title="Teams" />
-        <ListTeams customTeamProps={customTeamProps} all={true} />
-    </div>
-    */
+    const handleTeamClick = (id) => {
+        dispatch(fetchTeamById(id));
+        props.history.push({
+            pathname: '/teams',
+            search: `?id=${id}`
+        });
+    }
+
+    const handleEditTeamClick = (id) => {
+        props.history.push({pathname: `/profile/edit/${id}`});
+    }
+
+    const handleCloseDetails = () => {
+        dispatch(fetchTeamById(null));
+        props.history.push({pathname: '/teams'});
+    }
 
     return (
         <React.Fragment>
             <Helmet title='Teams'/>
-            <div className='allTeams'>
+            <div className='teamsHome'>
                 <div className='customTeams'>
-                    <TeamList customTeamProps={customTeamProps}/>
+                    <TeamList teamListProps={teamListProps} handler={handleTeamClick}/>
                 </div>
+                <TeamDetails 
+                    idTeamProps={idTeamProps} 
+                    onClose={handleCloseDetails} 
+                    onEdit={handleEditTeamClick}/>
             </div>
 
         </React.Fragment>
@@ -34,15 +53,21 @@ function AllTeams(props) {
 }
 
 const mapStateToProps = (state) => {
-    const { teams } = state;
-    const customTeamProps = {
+    const { teams, team } = state;
+    const teamListProps = {
         customTeams: teams.customTeams,
         error: teams.customTeams_error,
         isFetching: teams.customTeams_isFetching,
     };
+    const idTeamProps = {
+        idTeam: team.fetchedTeam,
+        error: team.idTeam_error,
+        isFetching: team.idTeam_isFetching,
+    }
 
     return {
-        customTeamProps,
+        teamListProps,
+        idTeamProps
     }
 }
 

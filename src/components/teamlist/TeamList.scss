@@ -3,7 +3,7 @@
 .teams {
     @include row;
     flex-wrap: wrap;
-    max-width: 600px;
+    min-width: 400px;
     margin: $gutter auto;
 
     &__table {
@@ -18,6 +18,10 @@
     &__list {
         @include columns(12);
         text-align: center;
+    }
+
+    &__line {
+        cursor: pointer;
     }
 
 }

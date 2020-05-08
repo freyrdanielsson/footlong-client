@@ -1,0 +1,71 @@
+@import '../../config.scss';
+
+.teamDetails {
+    min-width: 500px;
+    min-height: 350px;
+    margin-left: 2 * $gutter;
+
+    @media (max-width: 1200px) {
+        margin-left: 0;
+    }
+
+    @media (max-width: 1000px) {
+        position: relative;
+        width: 600px;
+        padding: 1em;
+        margin: auto;
+        background-color: #fff;
+        border: 1px solid #000;
+        border-radius: 5px;
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.75);
+
+        &__wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            font-size: 20px;
+            // Same color as $color-background but with opacity
+            background-color: rgba(225, 225, 225, 0.7);
+        }
+    }
+
+    &__content {
+        height: 700px;
+        overflow: scroll;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 5px;
+    }
+
+    &__body {
+        height: 350px;
+        margin-top: 5px;
+    }
+
+    &__close {
+        padding: 2px;
+        font-size: 1em;
+        font-weight: 700;
+        border-width: 0;
+    }
+
+    &__edit {
+        padding: 5px 15px;
+        margin: 10px 0 0 5px;
+        color: #fff;
+        background-color: $color-darkGray;
+        border: #000;
+        border-radius: 5px;
+    }
+
+    &__edit:hover {
+        cursor: pointer;
+    }
+}

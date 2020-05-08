@@ -5,20 +5,28 @@ import './TeamList.scss';
 import { fixtureAnimation, leagueAnimation } from '../league/animations';
 
 export default function TeamList(props) {
-    const { customTeamProps } = props;
-    const { isFetching, customTeams, error } = customTeamProps;
+    const { teamListProps, handler } = props;
+    const { isFetching, customTeams, error } = teamListProps;
 
     const DisplayListItems = () => {
         return customTeams.map( obj => {
+            const created = new Date(obj.created);
             return (
-                <tr key={obj.id}>
+                <tr key={obj.id} className='teams__line' onClick={() => handler(obj.id)}>
                     <td>{obj.owner_username}</td>
                     <td>{obj.team_name}</td>
-                    <td>{obj.created}</td>
+                    <td>{created.toDateString()}</td>
                 </tr>
             )
-        })
-        
+        }) 
+    }
+
+    if (isFetching) {
+        return <p>Fetching teams...</p>
+    }
+
+    if (error) {
+        return <p>Could not fetch teams</p>
     }
     
     return (
