@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-import { logoutUser } from '../../actions/auth';
-
 import './Header.scss';
 
 export default function Header(props) {
-    const { isAuth, dispatch } = props
+    const { isAuth } = props
 
-    const toDisplay = isAuth ? <p onClick={() => dispatch(logoutUser())}>Logout</p>
+    const login = isAuth
+        ? <NavLink activeClassName='header__link--selected' exact to='/profile'>Profile</NavLink>
         : <NavLink activeClassName='header__link--selected' exact to='/login'>Login</NavLink>;
 
     return (
@@ -19,8 +18,15 @@ export default function Header(props) {
 
             <nav className='header__nav'>
                 <ul className='header__list'>
-                    <li className='header__item'><NavLink activeClassName='header__link--selected' exact to='/highlights'>Highlights</NavLink></li>
-                    <li className='header__item'>{toDisplay}</li>
+                    <li className='header__item header__item--dream-teams'>
+                        <NavLink activeClassName='header__link--selected' exact to='/teams'>
+                            Dream teams <span role='img' aria-label=''>🏆</span>
+                        </NavLink>
+                    </li>
+                    <li className='header__item'>
+                        <NavLink activeClassName='header__link--selected' exact to='/highlights'>Highlights</NavLink>
+                    </li>
+                    <li className='header__item'>{login}</li>
                 </ul>
             </nav>
 

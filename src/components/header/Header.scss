@@ -12,16 +12,21 @@
 
     &__list {
         display: flex;
+        align-items: baseline;
         list-style: none;
     }
 
     &__item {
         margin-right: $gutter / 2;
+
+        &--dream-teams {
+            margin-right: $gutter;
+        }
     }
 
     &__link {
         &--selected {
-            text-decoration: underline;
+            font-weight: 700;
         }
     }
 
