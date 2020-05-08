@@ -61,7 +61,7 @@ function AllTeams(props) {
 }
 
 const mapStateToProps = (state) => {
-    const { teams, team } = state;
+    const { teams, team, auth } = state;
     const teamListProps = {
         customTeams: teams.customTeams,
         error: teams.customTeams_error,
@@ -71,6 +71,7 @@ const mapStateToProps = (state) => {
         idTeam: team.fetchedTeam,
         error: team.idTeam_error,
         isFetching: team.idTeam_isFetching,
+        user: auth.user
     }
 
     return {

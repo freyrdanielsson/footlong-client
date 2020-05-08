@@ -8,19 +8,18 @@ import TeamDisplay from '../teamDisplay/TeamDisplay';
 
 export default function TeamDetails(props) {
     const { onClose, onEdit } = props;
-    const { idTeam, isFetching } = props.idTeamProps;
+    const { idTeam, isFetching, user } = props.idTeamProps;
     const [ isOwner, setOwner ] = useState(false);
     const label = idTeam ? isFetching ? '...' : idTeam[0].team_name : 'Error';
     
     useEffect(() => {
         if(idTeam && !isFetching) {
-            const user = JSON.parse(window.localStorage.getItem('user'));
             if(!user) {
                 setOwner(false);
             }
             setOwner(user.id === idTeam[0].owner_id);
         }
-    }, [idTeam, isFetching]);
+    }, [idTeam, isFetching, user]);
 
      
     return (
