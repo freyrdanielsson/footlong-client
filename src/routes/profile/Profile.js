@@ -33,7 +33,15 @@ function Profile(props) {
             <Helmet title='Teams' />
             <ListTeams customTeamProps={customTeamProps} />
 
-            {!edit &&
+            <div>
+
+            </div>
+
+            {userProps.isFetching &&
+                <p>Updating profile...</p>
+            }
+
+            {!edit && !userProps.isFetching &&
                 <UserDetail userProps={userProps} onEdit={() => setEdit(true)} />
             }
 
