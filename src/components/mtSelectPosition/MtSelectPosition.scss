@@ -1,7 +1,32 @@
 @import '../../config.scss';
 
+.player {
+    padding: $gutter / 2;
+    padding-right: 4 * $gutter;
+    border: 1px solid black;
+}
+
 .confirmPlayer {
     width: 100%;
     margin: $gutter;
     border: 1px solid black;
+}
+
+.positionSelect {
+    max-width: 5 * $gutter;
+    padding: 5px;
+    margin-top: $gutter / 2;
+    margin-right: $gutter / 2;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.addToTeam {
+    padding: 5px $gutter/2;
+    margin-right: $gutter/2;
+    color: #fff;
+    cursor: pointer;
+    background-color: $color-darkGray;
+    border: #000;
+    border-radius: 5px;
 }

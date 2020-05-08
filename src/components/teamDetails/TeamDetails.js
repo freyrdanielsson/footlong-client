@@ -12,7 +12,7 @@ export default function TeamDetails(props) {
     const [ isOwner, setOwner ] = useState(false);
     const [ updated, setUpdated ] = useState('N/A');
 
-    const label = idTeam ? isFetching ? '...' : idTeam[0].team_name : 'Error';
+    const label = idTeam ? isFetching ? '...' : idTeam.team_name : 'Error';
     
     useEffect(() => {
         if(idTeam && !isFetching) {
@@ -20,9 +20,9 @@ export default function TeamDetails(props) {
                 setOwner(false);
             }
             else {
-                setOwner(user.id === idTeam[0].owner_id);
+                setOwner(user.id === idTeam.owner_id);
             }
-            const dateUpdate = new Date(idTeam[0].updated);
+            const dateUpdate = new Date(idTeam.updated);
             setUpdated(dateUpdate.toDateString());
         } else {
             setUpdated('N/A');
@@ -51,11 +51,11 @@ export default function TeamDetails(props) {
                                 </div>
                             </div>
                             <div className='teamDetails__body'>
-                                <TeamDisplay myTeam={props.idTeamProps} />
+                                <TeamDisplay idTeam={idTeam} isFetching={isFetching} error={error} />
                                 {!isFetching &&
                                     <div className='teamDetails__footer'>
                                         <div>
-                                            {isOwner && <button onClick={ () => onEdit(idTeam[0].id)} className='teamDetails__edit'>Edit Team</button>}
+                                            {isOwner && <button onClick={ () => onEdit(idTeam.id)} className='teamDetails__edit'>Edit Team</button>}
                                         </div>
                                         <div className='teamDetails__updated'>
                                             <h4 className='teamDetails__updatedLabel'>Last Edited:</h4>

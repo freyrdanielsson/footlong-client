@@ -19,7 +19,6 @@ function Profile(props) {
 
     const [edit, setEdit] = useState(false);
 
-
     useEffect(() => {
         dispatch(fetchCustomTeams('/custom-teams/my-teams/me'));
     }, [dispatch]);

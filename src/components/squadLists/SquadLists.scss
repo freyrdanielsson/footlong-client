@@ -3,7 +3,7 @@
 .allListsContainer {
     display: flex;
     flex-wrap: wrap;
-    height: 90%;
+    height: 350px;
     margin-top: $gutter;
     overflow: hidden;
 }
@@ -45,7 +45,7 @@
     background: $color-darkGray;
 }
 
-@media (max-width: $max-width - 132px) {
+@media (max-width: $max-width - 40px) {
     .listContainer {
         height: 48%;
         margin-bottom: 0.333 * $gutter;
