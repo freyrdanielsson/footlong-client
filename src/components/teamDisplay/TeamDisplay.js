@@ -7,11 +7,21 @@ export default function TeamDisplay(props) {
     const { idTeam, isFetching, error } = props.myTeam;
 
     if (isFetching) {
-        return <div className='pitch'></div>
+        return (
+            <div className='pitch__noTeam'>
+                <p>Fetching team...</p>
+                <div className='pitch'></div>
+            </div>
+        )
     }
 
     if (error) {
-        return <p>Could not fetch team</p>
+        return (
+            <div className='pitch__noTeam'>
+                <p>Could not fetch team</p>
+                <div className='pitch'></div>
+            </div>
+        )
     }
 
     const PositionFormation = (props) => {

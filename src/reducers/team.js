@@ -41,13 +41,15 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 idTeam_isFetching: action.idTeam_isFetching,
-                fetchedTeam: action.fetchedTeam,
+                idTeam_error: action.idTeam_error,
+                fetchedTeam: action.fetchedTeam
             }
         case TEAM_BY_ID_ERROR:
             return {
                 ...state,
                 idTeam_isFetching: action.idTeam_isFetching,
                 idTeam_error: action.idTeam_error,
+                fetchedTeam: action.fetchedTeam
             }
         case SAVE_REQUEST:
             return {
