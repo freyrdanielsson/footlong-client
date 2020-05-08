@@ -1,4 +1,5 @@
 import api from '../api';
+import { formations } from '../utils/formations';
 
 export const TEAM_BY_ID_REQUEST = 'TEAM_BY_ID_REQUEST';
 export const TEAM_BY_ID_ERROR = 'TEAM_BY_ID_ERROR';
@@ -12,12 +13,13 @@ export const DELETE_SUCCESS = 'DELETE_SUCCESS';
 export const MY_TEAM_SET = 'MY_TEAM_SET';
 export const MY_TEAM_PLAYER_SET = 'MY_TEAM_PLAYER_SET';
 
+
 function teamByIdRequest(fetchedTeam) {
     return {
         type: TEAM_BY_ID_REQUEST,
         idTeam_isFetching: true,
         idTeam_error: null,
-        fetchedTeam
+        fetchedTeam,
     }
 }
 
@@ -26,7 +28,6 @@ function teamByIdError(error) {
         type: TEAM_BY_ID_ERROR,
         idTeam_isFetching: false,
         idTeam_error: error,
-        fetchedTeam: null
     }
 }
 
@@ -34,8 +35,133 @@ function teamByIdSuccess(fetchedTeam) {
     return {
         type: TEAM_BY_ID_SUCCESS,
         idTeam_isFetching: false,
-        idTeam_error: null,
         fetchedTeam
+    }
+}
+
+export function fetchTeamById(id) {
+    return async (dispatch) => {
+        dispatch(teamByIdRequest(id));
+        if(id === null) return;
+
+        let result;
+        try {
+            result = await api.get(`/custom-teams/${id}`);
+        } catch (e) {
+            return dispatch(teamByIdError(e));
+        }
+
+        if (result.status === 404) {
+            return dispatch(teamByIdError('Team Not Found'))
+        }
+
+        if (result.status === 500 || result.data.error) {
+            return dispatch(teamByIdError('Unable to get team'))
+        }
+
+        const teamObj = JSON.parse(result.data[0].lineup);
+        dispatch(setMyTeam(teamObj))
+        dispatch(teamByIdSuccess(result.data));
+    }
+}
+
+function myPlayerSet(myPlayer) {
+    return {
+        type: MY_TEAM_PLAYER_SET,
+        myPlayer,
+    }
+}
+
+export function setMyPlayer(player) {
+    return (dispatch) => {
+        dispatch(myPlayerSet(player));
+    }
+}
+
+function myTeamSet(myTeam) {
+    return {
+        type: MY_TEAM_SET,
+        myTeam,
+    }
+}
+
+export function setMyTeam(team) {
+    return (dispatch) => {
+        dispatch(myTeamSet(team));
+    }
+}
+
+function saveRequest() {
+    return {
+        type: SAVE_REQUEST,
+        save_isSaving: true,
+        save_error: null,
+        save_success: false,
+    }
+}
+
+function saveError(error) {
+    return {
+        type: SAVE_ERROR,
+        save_isSaving: false,
+        save_error: error,
+        save_success: false,
+    }
+}
+
+function saveSuccess(id) {
+    return {
+        type: SAVE_SUCCESS,
+        save_isSAVING: false,
+        save_success: true,
+        id,
+    }
+}
+
+export function createTeam(teamHeader) {
+    return async (dispatch) => {
+        dispatch(saveRequest());
+        let result;
+        try {
+            result = await api.post('/custom-teams', {
+                ...teamHeader,
+                lineup: formations[0],
+            });
+        } catch (e) {
+            return dispatch(saveError(e));
+        }        
+
+        if (result.status === 400) {
+            return dispatch(saveError(result.data));
+        }
+
+        if (result.status === 500 || result.data.error) {
+            return dispatch(saveError('Could not create team'))
+        }        
+
+        dispatch(saveSuccess(result.data.id));
+    }
+}
+
+export function patchTeam(id, team) {
+    return async (dispatch) => {
+        dispatch(saveRequest());
+        let result;
+        try {
+            result = await api.patch(`/custom-teams/${id}`, team);
+        } catch (e) {
+            return dispatch(saveError(e));
+        }
+
+        if (result.status === 400) {
+            return dispatch(saveError(result.data));
+        }
+
+        if (result.status === 500 || result.data.error) {
+            return dispatch(saveError('Could not save team'))
+        }
+
+        dispatch(saveSuccess(id));
     }
 }
 
@@ -65,140 +191,16 @@ function deleteSuccess() {
     }
 }
 
-function saveRequest() {
-    return {
-        type: SAVE_REQUEST,
-        save_isSaving: true,
-        save_error: null,
-        save_success: false,
-    }
-}
-
-function saveError(error) {
-    return {
-        type: SAVE_ERROR,
-        save_isSaving: false,
-        save_error: error,
-        save_success: false,
-    }
-}
-
-function saveSuccess() {
-    return {
-        type: SAVE_SUCCESS,
-        save_isSAVING: false,
-        save_success: true,
-    }
-}
-
-function myTeamSet(myTeam) {
-    return {
-        type: MY_TEAM_SET,
-        myTeam,
-    }
-}
-
-function myPlayerSet(myPlayer) {
-    return {
-        type: MY_TEAM_PLAYER_SET,
-        myPlayer,
-    }
-}
-
-export function setMyPlayer(player) {
-    return (dispatch) => {
-        dispatch(myPlayerSet(player));
-    }
-}
-
-export function setMyTeam(team) {
-    return (dispatch) => {
-        dispatch(myTeamSet(team));
-    }
-}
-
-export function fetchTeamById(id) {
-    return async (dispatch) => {
-        
-        dispatch(teamByIdRequest(id));
-        
-        if(id === null) return;
-        
-        let result;
-        try {
-            result = await api.get(`/custom-teams/${id}`);
-        } catch(e) {
-            return dispatch(teamByIdError(e));
-        }
-
-        if (result.status === 404 ) {
-            return dispatch(teamByIdError('Team Not Found'))
-        }
-        
-        if (result.status === 500 || result.data.error) {
-            return dispatch(teamByIdError('Unable to get team'))
-        }
-
-        const teamObj = JSON.parse(result.data[0].lineup);
-        dispatch(setMyTeam(teamObj))
-        dispatch(teamByIdSuccess(result.data));
-    }
-}
-
-export function createTeam(team) {
-    return async (dispatch) => {
-        dispatch(saveRequest());
-        let result;
-        try {
-            result = await api.post('/custom-teams', team);
-        } catch(e) {
-            return dispatch(saveError(e));
-        }
-
-        if (result.status === 400) {
-            return dispatch(saveError(result.data));
-        }
-        
-        if (result.status === 500 || result.data.error) {
-            return dispatch(saveError('Could not save team'))
-        }
-
-        dispatch(saveSuccess());
-    }
-}
-
-export function patchTeam(id, team) {
-    return async (dispatch) => {
-        dispatch(saveRequest());
-        let result;
-        try {
-            result = await api.patch(`/custom-teams/${id}`, team);
-        } catch(e) {
-            return dispatch(saveError(e));
-        }
-
-        if (result.status === 400) {
-            return dispatch(saveError(result.data));
-        }
-        
-        if (result.status === 500 || result.data.error) {
-            return dispatch(saveError('Could not save team'))
-        }
-
-        dispatch(saveSuccess());
-    }
-}
-
 export function deleteTeam(id) {
     return async (dispatch) => {
         dispatch(deleteRequest());
         let result;
         try {
             result = await api.delete(`/custom-teams/${id}`);
-        } catch(e) {
+        } catch (e) {
             return dispatch(deleteError(e));
         }
-        
+
         if (result.status === 500 || result.data.error) {
             return dispatch(deleteError('Could not delete team'))
         }

@@ -4,7 +4,6 @@ import './ProfileUpdateForm.scss';
 
 export default function ProfileUpdateForm(props) {
     const { userProps, submitUpdate, uploadError, onCancel } = props;
-    const { message } = userProps;
 
     const [username, setUsername] = useState(userProps.user.username);
     const [email, setEmail] = useState(userProps.user.email);
@@ -22,7 +21,7 @@ export default function ProfileUpdateForm(props) {
         password, rePassword,
         changePassword,
         userProps.user.username,
-        userProps.user.email])
+        userProps.user.email]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -39,6 +38,14 @@ export default function ProfileUpdateForm(props) {
         }
 
         submitUpdate({ username, email, password });
+    }
+
+    const toggle = (bool) => {
+        setChangePassword(bool);
+        setPassword('');
+        setRePassword('');
+        setUsername(userProps.user.username);
+        setEmail(userProps.user.email);
     }
 
     return (
@@ -61,7 +68,7 @@ export default function ProfileUpdateForm(props) {
                             <input className='user-form__input' id='email' type='email' name='email' value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
 
-                        <button className='user-form__navigate' onClick={() => setChangePassword(true)}>Change password</button>
+                        <button className='user-form__navigate' onClick={() => toggle(true)}>Change password</button>
                     </React.Fragment>
                 }
 
@@ -79,22 +86,11 @@ export default function ProfileUpdateForm(props) {
                             <input className='user-form__input' id='rePassword' type='password' name='rePassword' value={rePassword} onChange={(e) => setRePassword(e.target.value)} />
                         </div>
 
-                        <button className='user-form__navigate' onClick={() => setChangePassword(false)}>Change profile</button>
+                        <button className='user-form__navigate' onClick={() => toggle(false)}>Change profile</button>
                     </React.Fragment>
                 }
                 <button className={`user-form__button ${buttonDisabled ? 'disabled' : ''}`} disabled={buttonDisabled}>Update profile</button>
             </form>
-
-            {message &&
-                <ul>
-                    {message.map((error, i) => {
-                        return (
-                            <ul className='register-form__error' key={i}>
-                                <dd>{error.message}</dd>
-                            </ul>);
-                    })}
-                </ul>
-            }
         </div>
     );
 }
