@@ -39,7 +39,7 @@ function AllTeams(props) {
         <React.Fragment>
             <Helmet title='Teams'/>
             <div className='teamsHome'>
-                <div className='customTeams'>
+                <div className='teamsHome__listcontainer'>
                     <TeamList teamListProps={teamListProps} handler={handleTeamClick}/>
                 </div>
                 <TeamDetails 

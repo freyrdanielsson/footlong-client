@@ -3,10 +3,14 @@
 .teamDetails {
     min-width: 500px;
     min-height: 350px;
-    margin-left: 2 * $gutter;
+    padding: 4px 10px 4px 4px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.75);
 
     @media (max-width: 1200px) {
-        margin-left: 0;
+        margin-left: $gutter/2;
     }
 
     @media (max-width: 1000px) {
@@ -14,10 +18,6 @@
         width: 600px;
         padding: 1em;
         margin: auto;
-        background-color: #fff;
-        border: 1px solid #000;
-        border-radius: 5px;
-        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.75);
 
         &__wrapper {
             position: fixed;

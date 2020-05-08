@@ -3,7 +3,7 @@
 .teams {
     @include row;
     flex-wrap: wrap;
-    min-width: 400px;
+    max-width: 600px;
     margin: $gutter auto;
 
     &__table {
