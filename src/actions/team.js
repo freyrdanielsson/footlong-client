@@ -7,12 +7,15 @@ export const TEAM_BY_ID_SUCCESS = 'TEAM_BY_ID_SUCCESS';
 export const SAVE_REQUEST = 'SAVE_REQUEST';
 export const SAVE_ERROR = 'SAVE_ERROR';
 export const SAVE_SUCCESS = 'SAVE_SUCCESS';
+export const SAVE_REFRESH = 'SAVE_REFRESH';
 export const PATCH_REQUEST = 'PATCH_REQUEST';
 export const PATCH_ERROR = 'PATCH_ERROR';
 export const PATCH_SUCCESS = 'PATCH_SUCCESS';
+export const PATCH_REFRESH = 'PATCH_REFRESH';
 export const DELETE_REQUEST = 'DELETE_REQUEST';
 export const DELETE_ERROR = 'DELETE_ERROR';
 export const DELETE_SUCCESS = 'DELETE_SUCCESS';
+export const DELETE_REFRESH = 'DELETE_REFRESH';
 export const MY_TEAM_SET = 'MY_TEAM_SET';
 export const MY_TEAM_PLAYER_SET = 'MY_TEAM_PLAYER_SET';
 
@@ -67,36 +70,10 @@ export function fetchTeamById(id) {
         const parsedLineup = JSON.parse(result.data[0].lineup);
         result.data[0].lineup = parsedLineup;
 
-        dispatch(setMyTeam(parsedLineup))
         dispatch(teamByIdSuccess(result.data[0]));
     }
 }
 
-function myPlayerSet(myPlayer) {
-    return {
-        type: MY_TEAM_PLAYER_SET,
-        myPlayer,
-    }
-}
-
-export function setMyPlayer(player) {
-    return (dispatch) => {
-        dispatch(myPlayerSet(player));
-    }
-}
-
-function myTeamSet(myTeam) {
-    return {
-        type: MY_TEAM_SET,
-        myTeam,
-    }
-}
-
-export function setMyTeam(team) {
-    return (dispatch) => {
-        dispatch(myTeamSet(team));
-    }
-}
 
 function saveRequest() {
     return {
@@ -119,11 +96,21 @@ function saveError(error) {
 function saveSuccess(id) {
     return {
         type: SAVE_SUCCESS,
-        save_isSAVING: false,
+        save_isSaving: false,
         save_success: true,
         id,
     }
 }
+
+export function saveRefresh() {
+    return {
+    type: SAVE_REFRESH,
+    save_isSaving: false,
+    save_success: false,
+    save_error: null,
+    } 
+}
+
 
 export function createTeam(teamHeader) {
     return async (dispatch) => {
@@ -171,11 +158,22 @@ function patchError(error) {
 function patchSuccess(id) {
     return {
         type: PATCH_SUCCESS,
-        patch_isSAVING: false,
+        patch_isSaving: false,
         patch_success: true,
+        patch_error: null,
         id,
     }
 }
+
+export function patchRefresh() {
+    return {
+        type: PATCH_REFRESH,
+        patch_isSaving: false,
+        patch_success: false,
+        patch_error: null
+    }
+}
+
 
 export function patchTeam(id, team) {
     return async (dispatch) => {
@@ -222,6 +220,16 @@ function deleteSuccess() {
         type: DELETE_SUCCESS,
         delete_isDeleting: false,
         delete_success: true,
+        delete_error: null
+    }
+}
+
+export function deleteRefresh() {
+    return {
+        type: DELETE_REFRESH,
+        delete_isDeleting: false,
+        delete_success: false,
+        delete_error: null
     }
 }
 
