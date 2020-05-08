@@ -8,4 +8,16 @@
     &__error {
         color: $color-card-red;
     }
+
+    &__button {
+        border-radius: 5px;
+        margin-top: $gutter / 2;
+        font-weight: 700;
+        font-size: 1em;
+        padding: 5px 0;
+        width: $gutter * 10;
+        background-color: $color-card-red;
+        color: #fff;
+        cursor: pointer;
+    }
 }

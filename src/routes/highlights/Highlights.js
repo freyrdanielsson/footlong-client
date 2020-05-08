@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import './Highlights.scss'
 
@@ -6,6 +7,8 @@ function Highlights() {
 
     return (
         <div className='highlights'>
+            <Helmet title='Highlights' />
+
             <iframe
                 id='highlights__widget'
                 title='highlights'
