@@ -10,6 +10,7 @@ export default function TeamDetails(props) {
     const { onClose, onEdit } = props;
     const { idTeam, isFetching, user } = props.idTeamProps;
     const [ isOwner, setOwner ] = useState(false);
+    const [ updated, setUpdated ] = useState('');
     const label = idTeam ? isFetching ? '...' : idTeam[0].team_name : 'Error';
     
     useEffect(() => {
@@ -18,9 +19,10 @@ export default function TeamDetails(props) {
                 setOwner(false);
             }
             setOwner(user.id === idTeam[0].owner_id);
+            const dateUpdate = new Date(idTeam[0].updated);
+            setUpdated(dateUpdate.toDateString());
         }
     }, [idTeam, isFetching, user]);
-
      
     return (
         <React.Fragment>
@@ -44,7 +46,15 @@ export default function TeamDetails(props) {
                             </div>
                             <div className='teamDetails__body'>
                                 <TeamDisplay myTeam={props.idTeamProps} />
-                                {isOwner && <button onClick={ () => onEdit(idTeam[0].id)} className='teamDetails__edit'>Edit Team</button>}
+                                <div className='teamDetails__footer'>
+                                    <div>
+                                        {isOwner && <button onClick={ () => onEdit(idTeam[0].id)} className='teamDetails__edit'>Edit Team</button>}
+                                    </div>
+                                    <div className='teamDetails__updated'>
+                                        <h4 className='teamDetails__updatedLabel'>Last Edited:</h4>
+                                        <p>{updated}</p>
+                                    </div>
+                                </div>
                             </div>
                     </motion.div>
                 </div>}

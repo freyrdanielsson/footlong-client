@@ -82,7 +82,6 @@
 
     &__edit {
         padding: 5px $gutter/2;
-        margin: 10px 0 0 5px;
         color: #fff;
         background-color: $color-darkGray;
         border: #000;
@@ -91,5 +90,20 @@
 
     &__edit:hover {
         cursor: pointer;
+    }
+
+    &__footer {
+        display: flex;
+        margin: 10px 0 0 5px;
+        justify-content: space-between;
+    }
+
+    &__updated {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    &__updatedLabel {
+        margin-right: 10px;
     }
 }
