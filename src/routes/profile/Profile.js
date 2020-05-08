@@ -4,11 +4,11 @@ import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 import { fetchCustomTeams } from '../../actions/teams';
-import { createTeam } from '../../actions/team';
+import { createTeam, fetchTeamById } from '../../actions/team';
 import { updateUser, uploadError } from '../../actions/auth';
 
 import CreateTeam from '../../components/createTeam/CreateTeam';
-import ListTeams from '../../components/listTeams/ListTeams';
+import TeamList from '../../components/teamlist/TeamList';
 import UserDetail from '../../components/userDetail/UserDetail';
 import UpdateForm from '../../components/profileUpdateForm/ProfileUpdateForm';
 
@@ -44,10 +44,18 @@ function Profile(props) {
         dispatch(createTeam(team));
     }
 
+    const onTeamClick = (id) => {
+        dispatch(fetchTeamById(id));
+        props.history.push({
+            pathname: '/teams',
+            search: `?id=${id}`
+        });
+    }
+
     return (
         <div className='profile'>
             <Helmet title='Teams' />
-            <ListTeams customTeamProps={customTeamProps} />
+            <TeamList teamListProps={customTeamProps} handler={onTeamClick} />
 
             {!createTeamProps.isCreating && <CreateTeam onSubmit={onSubmit} />}
 
