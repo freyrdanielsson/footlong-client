@@ -3,16 +3,30 @@ import React, { useState } from 'react';
 import './ProfileUpdateForm.scss';
 
 export default function ProfileUpdateForm(props) {
-    const { user, submitUpdate } = props;
-    const [username, setUsername] = useState(user.username);
-    const [email, setEmail] = useState(user.email);
+    const { userProps, submitUpdate, uploadError } = props;
+    const { message } = userProps;
+
+    const [username, setUsername] = useState(userProps.user.username);
+    const [email, setEmail] = useState(userProps.user.email);
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
     const [changePassword, setChangePassword] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        submitUpdate(username, email, password);
+        if (password !== rePassword) {
+            return uploadError([
+                {
+                    field: 'password',
+                    message: 'Passwords do not match'
+                },
+                {
+                    field: 'rePassword'
+                }
+            ]);
+        }
+
+        submitUpdate({ username, email, password });
     }
 
     return (
@@ -56,9 +70,19 @@ export default function ProfileUpdateForm(props) {
                     </React.Fragment>
                 }
 
-
                 <button className='user-form__button' disabled={false}>Update profile</button>
             </form>
+
+            {message &&
+                <ul>
+                    {message.map((error, i) => {
+                        return (
+                            <ul className='register-form__error' key={i}>
+                                <dd>{error.message}</dd>
+                            </ul>);
+                    })}
+                </ul>
+            }
         </div>
     );
 }

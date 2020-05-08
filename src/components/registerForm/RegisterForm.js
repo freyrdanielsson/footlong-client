@@ -97,7 +97,8 @@ export default function RegisterForm(props) {
                                 <dd>{error.message}</dd>
                             </ul>);
                     })}
-                </ul>}
+                </ul>
+            }
 
         </div>
     );
