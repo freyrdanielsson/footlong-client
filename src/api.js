@@ -34,7 +34,7 @@ async function request(method, path, data = '') {
         return {
             status: 500,
             result: {
-                errors: [{ message: 'Error fetching data' }]
+                errors: [{ message: 'Network error' }]
             }
         }
     }

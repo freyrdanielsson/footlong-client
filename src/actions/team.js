@@ -138,7 +138,7 @@ export function fetchTeamById(id) {
     }
 }
 
-export function saveTeam(team) {
+export function createTeam(team) {
     return async (dispatch) => {
         dispatch(saveRequest());
         let result;

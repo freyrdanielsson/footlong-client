@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { fetchTeamById, saveTeam, patchTeam, deleteTeam, setMyPlayer, setMyTeam } from '../../actions/team';
+import { fetchTeamById, createTeam, patchTeam, deleteTeam, setMyPlayer, setMyTeam } from '../../actions/team';
 import { fetchTeams, fetchPlayers } from '../../actions/players';
 import DisplayField from '../../components/displayField/DisplayField';
 import EditableTeam from '../../components/editableTeam/EditableTeam';
@@ -44,7 +44,7 @@ function TeamById(props) {
     const teamSetter = (team) => dispatch(setMyTeam(team));
     const squadFetcher = (id) => dispatch(fetchPlayers(id));
     const playerSetter = (player) => dispatch(setMyPlayer(player));
-    const teamSaver = (team) => dispatch(saveTeam(team));
+    const teamSaver = (team) => dispatch(createTeam(team));
     const teamPatcher = (id, team) => dispatch(patchTeam(id,team));
     const teamDelete = (id) => dispatch(deleteTeam(id)); 
     

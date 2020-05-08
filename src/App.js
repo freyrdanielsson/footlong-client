@@ -11,7 +11,7 @@ import Highlights from './routes/highlights/Highlights';
 import Login from './routes/login/Login';
 import Register from './routes/register/Register';
 import AllTeams from './routes/allTeams/AllTeams';
-import MyTeams from './routes/myTeams/MyTeams';
+import Profile from './routes/profile/Profile';
 import TeamById from './routes/teamById/TeamById';
 
 import './App.scss';
@@ -31,9 +31,9 @@ function App(props) {
                     <Route exact path='/highlights' component={Highlights} />
                     <Route exact path='/teams' component={AllTeams} />
                     <Route exact path='/teams/:id' component={TeamById} />
-                    <UserRoute path='/my-teams' authenticated={isAuthenticated} redirect='/login' component={MyTeams} />
-                    <UserRoute path='/login' authenticated={!isAuthenticated} redirect='/my-teams' component={Login} />
-                    <UserRoute path='/register' authenticated={!isAuthenticated} redirect='/my-teams' component={Register} />
+                    <UserRoute path='/profile' authenticated={isAuthenticated} redirect='/login' component={Profile} />
+                    <UserRoute path='/login' authenticated={!isAuthenticated} redirect='/profile' component={Login} />
+                    <UserRoute path='/register' authenticated={!isAuthenticated} redirect='/profile' component={Register} />
                 </Switch>
             </main>
         </Fragment>
