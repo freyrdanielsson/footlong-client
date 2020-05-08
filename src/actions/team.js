@@ -28,6 +28,7 @@ function teamByIdError(error) {
         type: TEAM_BY_ID_ERROR,
         idTeam_isFetching: false,
         idTeam_error: error,
+        fetchedTeam: null
     }
 }
 
@@ -35,6 +36,7 @@ function teamByIdSuccess(fetchedTeam) {
     return {
         type: TEAM_BY_ID_SUCCESS,
         idTeam_isFetching: false,
+        idTeam_error: null,
         fetchedTeam
     }
 }
