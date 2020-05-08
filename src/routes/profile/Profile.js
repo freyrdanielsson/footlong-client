@@ -46,10 +46,7 @@ function Profile(props) {
 
     const onTeamClick = (id) => {
         dispatch(fetchTeamById(id));
-        props.history.push({
-            pathname: '/teams',
-            search: `?id=${id}`
-        });
+        props.history.push({pathname: `/profile/edit/${id}`});
     }
 
     return (
