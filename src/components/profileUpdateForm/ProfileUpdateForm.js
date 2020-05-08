@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './ProfileUpdateForm.scss';
 
 export default function ProfileUpdateForm(props) {
-    const { userProps, submitUpdate, uploadError } = props;
+    const { userProps, submitUpdate, uploadError, onCancel } = props;
     const { message } = userProps;
 
     const [username, setUsername] = useState(userProps.user.username);
@@ -44,6 +44,7 @@ export default function ProfileUpdateForm(props) {
     return (
         <div className='user-form'>
             <h1>Public profile</h1>
+            <button className='user-form__navigate user-form__navigate--cancel' onClick={onCancel}>Cancel</button>
 
             <form className='user-form__content' method='PATCH' onSubmit={e => handleSubmit(e)}>
 
@@ -60,7 +61,7 @@ export default function ProfileUpdateForm(props) {
                             <input className='user-form__input' id='email' type='email' name='email' value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
 
-                        <button className='user-form__button user-form__button--password' onClick={() => setChangePassword(true)}>Change password?</button>
+                        <button className='user-form__navigate' onClick={() => setChangePassword(true)}>Change password</button>
                     </React.Fragment>
                 }
 
@@ -78,10 +79,9 @@ export default function ProfileUpdateForm(props) {
                             <input className='user-form__input' id='rePassword' type='password' name='rePassword' value={rePassword} onChange={(e) => setRePassword(e.target.value)} />
                         </div>
 
-                        <button className='user-form__button user-form__button--password' onClick={() => setChangePassword(false)}>Cancel</button>
+                        <button className='user-form__navigate' onClick={() => setChangePassword(false)}>Change profile</button>
                     </React.Fragment>
                 }
-
                 <button className={`user-form__button ${buttonDisabled ? 'disabled' : ''}`} disabled={buttonDisabled}>Update profile</button>
             </form>
 

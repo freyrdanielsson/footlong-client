@@ -34,11 +34,11 @@ function Profile(props) {
             <ListTeams customTeamProps={customTeamProps} />
 
             {!edit &&
-                <UserDetail userProps={userProps} onEdit={() => setEdit(true)}/>
+                <UserDetail userProps={userProps} onEdit={() => setEdit(true)} />
             }
 
             {edit &&
-                <UpdateForm userProps={userProps} submitUpdate={submitUpdate} uploadError={msg => dispatch(uploadError(msg))} />
+                <UpdateForm userProps={userProps} submitUpdate={submitUpdate} uploadError={msg => dispatch(uploadError(msg))} onCancel={() => setEdit(false)} />
             }
 
 

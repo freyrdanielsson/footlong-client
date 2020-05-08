@@ -4,10 +4,15 @@
     margin: 0 auto;
     min-width: 300px;
 
+    &__content {
+        display: flex;
+        flex-direction: column;
+    }
+
     &__input-container {
         display: flex;
         flex-direction: column;
-        margin: $gutter / 2 0;
+        margin: $gutter / 4 0;
         width: 100%;
     }
 
@@ -43,23 +48,25 @@
         width: 100%;
         background-color: $color-sub;
         color: #fff;
-
-        &--password {
-            text-align: left;
-            border: 0;
-            padding: 0;
-            font-size: 0.8em;
-            width: 50%;
-            color: $color-card-red;
-            background-color: #fff;
-        }
+        cursor: pointer;
     }
 
-    &__button:hover {
+    &__navigate {
+        max-width: 50%;
+        margin-top: $gutter / 4;
+        text-align: left;
+        border: 0;
+        font-size: 0.8em;
+        font-weight: 700;
         cursor: pointer;
+
+        &--cancel {
+            color: $color-card-red;
+        }
     }
 
     .disabled {
         background-color: $color-gray;
+        cursor: default;
     }
 }
