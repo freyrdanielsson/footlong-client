@@ -113,7 +113,7 @@ function EditTeam(props) {
                                     labelKey='label' 
                                 />
                                 <div className='edit-team__pitchWrapper'>
-                                    <TeamDisplay idTeam={team} />
+                                    <TeamDisplay idTeam={team} playerSetter={setPlayer}/>
                                 </div>
                             </div>
                             <MtPlayerSearch 

@@ -132,7 +132,7 @@ export function createTeam(teamHeader) {
         try {
             result = await api.post('/custom-teams', {
                 ...teamHeader,
-                lineup: formations[0],
+                lineup: JSON.stringify(formations[0]),
             });
         } catch (e) {
             return dispatch(saveError(e));
