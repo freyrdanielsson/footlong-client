@@ -20,12 +20,12 @@ export function Home(props) {
 
     useEffect(() => {
         dispatch(fetchLeagues(date));
-    }, [dispatch, date]);
+    }, [dispatch, date]);    
 
-    if (leaguesProps.loading) {
+    if (leaguesProps.isFetching) {
         return (
             <div>
-                <p>1 sec pls</p>
+                <p>Fetching fixtures...</p>
             </div>
         )
     }

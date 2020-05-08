@@ -4,8 +4,8 @@ import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 import { fetchCustomTeams } from '../../actions/teams';
+import { updateUser, uploadError, logoutUser } from '../../actions/auth';
 import { createTeam, fetchTeamById } from '../../actions/team';
-import { updateUser, uploadError } from '../../actions/auth';
 
 import CreateTeam from '../../components/createTeam/CreateTeam';
 import TeamList from '../../components/teamlist/TeamList';
@@ -51,7 +51,7 @@ function Profile(props) {
 
     return (
         <div className='profile'>
-            <Helmet title='Teams' />
+            <Helmet title='Profile' />
             <TeamList teamListProps={customTeamProps} handler={onTeamClick} />
 
             {!createTeamProps.isCreating && <CreateTeam onSubmit={onSubmit} />}
@@ -69,6 +69,8 @@ function Profile(props) {
             {edit &&
                 <UpdateForm userProps={userProps} submitUpdate={submitUpdate} uploadError={msg => dispatch(uploadError(msg))} onCancel={() => setEdit(false)} />
             }
+
+            <button className='profile__button' onClick={() => dispatch(logoutUser())}>Logout</button>
 
             {userProps.message &&
                 <p>{userProps.message[0].message}</p>
