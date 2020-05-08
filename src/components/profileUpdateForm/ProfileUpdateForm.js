@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './ProfileUpdateForm.scss';
 
@@ -11,6 +11,18 @@ export default function ProfileUpdateForm(props) {
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
     const [changePassword, setChangePassword] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+
+    useEffect(() => {
+        setButtonDisabled(
+            (username === userProps.user.username && email === userProps.user.email && !changePassword)
+            || (rePassword === '' && rePassword === '' && changePassword))
+    }, [username,
+        email,
+        password, rePassword,
+        changePassword,
+        userProps.user.username,
+        userProps.user.email])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -70,7 +82,7 @@ export default function ProfileUpdateForm(props) {
                     </React.Fragment>
                 }
 
-                <button className='user-form__button' disabled={false}>Update profile</button>
+                <button className={`user-form__button ${buttonDisabled ? 'disabled' : ''}`} disabled={buttonDisabled}>Update profile</button>
             </form>
 
             {message &&

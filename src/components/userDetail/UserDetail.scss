@@ -1,0 +1,33 @@
+@import '../../config.scss';
+
+.user-detail {
+    min-width: 300px;
+
+    &__label {
+        font-size: 0.9em;
+        margin-bottom: $gutter / 6;
+        margin-top: $gutter / 2;
+    }
+
+    &__value {
+        border: 1px solid $color-darkGray;
+        background-color: $color-lightGray;
+        border-radius: 2px;
+        padding: 5px;
+    }
+
+    &__button {
+        border-radius: 5px;
+        margin-top: $gutter / 2;
+        font-weight: 700;
+        font-size: 1em;
+        padding: 5px 0;
+        width: 100%;
+        background-color: $color-sub;
+        color: #fff;
+    }
+
+    &__button:hover {
+        cursor: pointer;
+    }
+}
