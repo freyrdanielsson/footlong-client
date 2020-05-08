@@ -1,16 +1,16 @@
 import React from 'react';
 
+import './Highlights.scss'
+
 function Highlights() {
 
     return (
-        <React.Fragment>
+        <div className='highlights'>
             <iframe
-                id='highlights_iframe'
+                id='highlights__widget'
                 title='highlights'
                 src='https://www.scorebat.com/embed/'
                 frameBorder='0' width='600' height='760'
-                /* allow='autoplay; fullscreen'
-                allowFullScreen */
                 style={{
                     width: '600px',
                     height: '760px',
@@ -18,7 +18,7 @@ function Highlights() {
                     display: 'block',
                 }}
                 className='_scorebatEmbeddedPlayer_' />
-        </React.Fragment>
+        </div >
     )
 }
 
