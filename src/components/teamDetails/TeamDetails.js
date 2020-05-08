@@ -55,7 +55,7 @@ export default function TeamDetails(props) {
                                 {!isFetching &&
                                     <div className='teamDetails__footer'>
                                         <div>
-                                            {isOwner && <button onClick={ () => onEdit(idTeam[0].id)} className='teamDetails__edit'>Edit Team</button>}
+                                            {isOwner && <button onClick={ () => onEdit(idTeam.id)} className='teamDetails__edit'>Edit Team</button>}
                                         </div>
                                         <div className='teamDetails__updated'>
                                             <h4 className='teamDetails__updatedLabel'>Last Edited:</h4>
