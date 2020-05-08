@@ -12,11 +12,12 @@ export const DELETE_SUCCESS = 'DELETE_SUCCESS';
 export const MY_TEAM_SET = 'MY_TEAM_SET';
 export const MY_TEAM_PLAYER_SET = 'MY_TEAM_PLAYER_SET';
 
-function teamByIdRequest() {
+function teamByIdRequest(fetchedTeam) {
     return {
         type: TEAM_BY_ID_REQUEST,
         idTeam_isFetching: true,
         idTeam_error: null,
+        fetchedTeam
     }
 }
 
@@ -25,6 +26,7 @@ function teamByIdError(error) {
         type: TEAM_BY_ID_ERROR,
         idTeam_isFetching: false,
         idTeam_error: error,
+        fetchedTeam: null
     }
 }
 
@@ -32,6 +34,7 @@ function teamByIdSuccess(fetchedTeam) {
     return {
         type: TEAM_BY_ID_SUCCESS,
         idTeam_isFetching: false,
+        idTeam_error: null,
         fetchedTeam
     }
 }
@@ -116,7 +119,11 @@ export function setMyTeam(team) {
 
 export function fetchTeamById(id) {
     return async (dispatch) => {
-        dispatch(teamByIdRequest());
+        
+        dispatch(teamByIdRequest(id));
+        
+        if(id === null) return;
+        
         let result;
         try {
             result = await api.get(`/custom-teams/${id}`);

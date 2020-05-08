@@ -1,0 +1,17 @@
+.teamsHome {
+    display: flex;
+    justify-content: center;
+    max-height: 90vh;
+    overflow: hidden;
+    align-items: baseline;
+
+    @media (max-width: 1000px) {
+        max-height: none;
+        flex-direction: column;
+
+    }
+
+    &__listcontainer {
+        width: 100%;
+    }
+}

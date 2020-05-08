@@ -25,7 +25,7 @@ const initialState = {
     delete_error: null,
     delete_success: false,
     myPlayer: {},
-    fetchedTeam: [],
+    fetchedTeam: null,
 }
 
 export default (state = initialState, action) => {
@@ -35,6 +35,7 @@ export default (state = initialState, action) => {
                 ...state,
                 idTeam_isFetching: action.idTeam_isFetching,
                 idTeam_error: action.idTeam_error,
+                fetchedTeam: action.fetchedTeam
             }
         case TEAM_BY_ID_SUCCESS:
             return {
