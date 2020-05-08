@@ -18,7 +18,9 @@ export default function TeamDetails(props) {
             if(!user) {
                 setOwner(false);
             }
-            setOwner(user.id === idTeam[0].owner_id);
+            else {
+                setOwner(user.id === idTeam[0].owner_id);
+            }
             const dateUpdate = new Date(idTeam[0].updated);
             setUpdated(dateUpdate.toDateString());
         }
