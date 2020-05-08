@@ -6,7 +6,6 @@ import './TeamDisplay.scss';
 export default function TeamDisplay(props) {
     const { idTeam, isFetching, error } = props;
 
-
     if (isFetching) {
         return (
             <div className='pitch__noTeam'>
