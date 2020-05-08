@@ -44,14 +44,14 @@ export default function MtSelectPosition(props) {
         <React.Fragment>
             {player.player_id &&
                 <div className='player' >
-                    <p>Name: {player.player_name}</p>
-                    <p>Age: {player.age}</p>
-                    <p>Nationality: {player.nationality}</p>
-                    <p>Position: {player.position}</p>
+                    <h5>Name: {player.player_name}</h5>
+                    <h5>Age: {player.age}</h5>
+                    <h5>Nationality: {player.nationality}</h5>
+                    <h5>Position: {player.position}</h5>
                     <select className='positionSelect'>
                         {allPos.map( k => <option key={k} value={k}>{k}</option>)}
                     </select>
-                    <button onClick={() => addToTeam()}>Add to Team</button>
+                    <button className='addToTeam' onClick={() => addToTeam()}>Add to Team</button>
                 </div>
             }
         </React.Fragment>

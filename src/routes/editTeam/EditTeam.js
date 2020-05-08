@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import './EditTeam.scss';
+
 import { getAllPositions, formations } from '../../utils/formations';
 import { fetchTeamById, patchTeam, deleteTeam } from '../../actions/team';
 import { fetchTeams, fetchPlayers } from '../../actions/players';
@@ -101,8 +103,8 @@ function EditTeam(props) {
             <div className='edit-team'>
                 {team &&
                     <div>
-                        <div>
-                            <div>
+                        <div className='edit-team__viewSearch'>
+                            <div className='edit-team__pitch'>
                                 <Select 
                                     options={formations} 
                                     onClickFun={handleChangeFormation}
@@ -110,25 +112,29 @@ function EditTeam(props) {
                                     valueKey='value' 
                                     labelKey='label' 
                                 />
-                                <TeamDisplay idTeam={team} />
+                                <div className='edit-team__pitchWrapper'>
+                                    <TeamDisplay idTeam={team} />
+                                </div>
                             </div>
                             <MtPlayerSearch 
                                 selectionProps={selectionProps} 
                                 handlers={handlerProps} 
                             />
                         </div>
-                        <SaveTeam 
-                            teamProps={teamProps} 
-                            handlers={editHandlers} 
-                            team={team} 
-                            user={user}
-                        />
-                        <MtSelectPosition 
-                            team={team}
-                            player={player}
-                            teamSetter={handleSetTeam}
-                            playerSetter={setPlayer}
-                        />
+                        <div className='edit-team__options'>
+                            <SaveTeam 
+                                teamProps={teamProps} 
+                                handlers={editHandlers} 
+                                team={team} 
+                                user={user}
+                            />
+                            <MtSelectPosition 
+                                team={team}
+                                player={player}
+                                teamSetter={handleSetTeam}
+                                playerSetter={setPlayer}
+                            />
+                        </div>
                     </div>
   
                 }

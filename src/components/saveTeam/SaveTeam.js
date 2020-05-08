@@ -42,13 +42,15 @@ export default function SaveTeam(props) {
     
     return (
         <div className='saveTeam'>
-            <div className='doubleButtonLayout'>
-                <label>Team Name</label>
-                <input type='text' defaultValue={team.team_name} onChange={(e) => setTname(e.target.value)}></input>
-                <button onClick={ () => handlers.handleEditTeam(team.id, createInfo())}>Save Team</button>
-                <button onClick={ () => handlers.handleDeleteTeam(team.id)}>Delete Team</button>
-                {patchError && <ErrorDisplay />}
+            <div className='saveTeam__labels'>
+                <h4>Team Name</h4>
+                <input className='saveTeam__input' type='text' defaultValue={team.team_name} onChange={(e) => setTname(e.target.value)}></input>
             </div>
+            <div className='saveTeam__buttons'>
+                <button className='saveTeam__button' onClick={ () => handlers.handleEditTeam(team.id, createInfo())}>Save Team</button>
+                <button className='saveTeam__button' onClick={ () => handlers.handleDeleteTeam(team.id)}>Delete Team</button>
+            </div>
+            {patchError && <ErrorDisplay />}
         </div>
     )
 }
