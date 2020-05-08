@@ -11,6 +11,7 @@ export default function TeamDetails(props) {
     const { idTeam, isFetching, user } = props.idTeamProps;
     const [ isOwner, setOwner ] = useState(false);
     const [ updated, setUpdated ] = useState('');
+
     const label = idTeam ? isFetching ? '...' : idTeam[0].team_name : 'Error';
     
     useEffect(() => {
