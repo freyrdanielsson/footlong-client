@@ -11,9 +11,9 @@ Then install the packages using either of the two:<br/><br/>
     &nbsp;&nbsp;&nbsp;$ yarn install<br/><br/>
 Users then need to create a .env file and add to it:<br/><br/>
     &nbsp;&nbsp;&nbsp;REACT_APP_SERVICE_URL=<link to back-end><br/><br/>
-Since this is running locally, users also need to add REACT_APP_RAPID_API_KEY and REACT_APP_RAPID_API_HOST to the .env file. The host should be 'api-football-v1.p.rapidapi.com' but users need to get their own key from https://rapidapi.com/ to be able to recieve data from the API. <br /><br/>
 If user have cloned the backend and are running it locally then the link will be to localhost and then the port it is running on (3001 if nothing was changed in the back-end code). If not then the link should be to the running API link listed below. 
 Lastly, to start the application, users need to run either of the two, depending on prefrence:<br/><br/>
+Since this is running locally, users also need to add REACT_APP_RAPID_API_KEY and REACT_APP_RAPID_API_HOST to the .env file. The host should be 'api-football-v1.p.rapidapi.com' but users need to get their own key from https://rapidapi.com/ to be able to recieve data from the API. <br /><br/>
     &nbsp;&nbsp;&nbsp;$ npm run start<br/><br/>
     &nbsp;&nbsp;&nbsp;$ yarn run start<br/><br/>
 The application then start running on localhost on port 3000.
