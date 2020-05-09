@@ -2,19 +2,20 @@
 This site can be visited on the link bellow. It is also possible to run it locally. The user then needs to run the back-end as well or configure the app to use the running back-end, the link to that is also bellow. 
 
 ### Run locally
-Users then need to clone the repo using git.
-     $ git clone https://github.com/freyrdanielsson/footlong-client.git
-They then need to install the packages that the application needs. This can be done using either npm or yarn. They need to navigate to the git repo first using:
-    $ cd footlong-client
-Then install the packages using either of the two:
-    $ npm install
-    $ yarn install
-Users then need to create a .env file and add to it:
-    REACT_APP_SERVICE_URL=<link to back-end>
+Users then need to clone the repo using git.<br/>
+     $ git clone https://github.com/freyrdanielsson/footlong-client.git<br/>
+They then need to install the packages that the application needs. This can be done using either npm or yarn. They need to navigate to the git repo first using:<br/>
+    $ cd footlong-client<br/>
+Then install the packages using either of the two:<br/>
+    $ npm install<br/>
+    $ yarn install<br/>
+Users then need to create a .env file and add to it:<br/>
+    REACT_APP_SERVICE_URL=<link to back-end><br/>
+Since this is running locally, users also need to add REACT_APP_RAPID_API_KEY and REACT_APP_RAPID_API_HOST to the .env file. The host should be 'api-football-v1.p.rapidapi.com' but users need to get their own key from https://rapidapi.com/ to be able to recieve data from the API. <br />
 If user have cloned the backend and are running it locally then the link will be to localhost and then the port it is running on (3001 if nothing was changed in the back-end code). If not then the link should be to the running API link listed below. 
-Lastly, to start the application, users need to run either of the two, depending on prefrence:
-    $ npm run start
-    $ yarn run start
+Lastly, to start the application, users need to run either of the two, depending on prefrence:<br/>
+    $ npm run start<br/>
+    $ yarn run start<br/>
 The application then start running on localhost on port 3000.
 
 ## Short description of project
