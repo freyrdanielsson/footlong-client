@@ -3,19 +3,19 @@ This site can be visited on the link bellow. It is also possible to run it local
 
 ### Run locally
 Users then need to clone the repo using git.<br/><br/>
-     &nbsp;&nbsp;&nbsp$ git clone https://github.com/freyrdanielsson/footlong-client.git<br/><br/>
+     &nbsp;&nbsp;&nbsp;$ git clone https://github.com/freyrdanielsson/footlong-client.git<br/><br/>
 They then need to install the packages that the application needs. This can be done using either npm or yarn. They need to navigate to the git repo first using:<br/><br/>
-    &nbsp;&nbsp;&nbsp$ cd footlong-client<br/><br/>
+    &nbsp;&nbsp;&nbsp;$ cd footlong-client<br/><br/>
 Then install the packages using either of the two:<br/><br/>
-    &nbsp;&nbsp;&nbsp$ npm install<br/><br/>
-    &nbsp;&nbsp;&nbsp$ yarn install<br/><br/>
+    &nbsp;&nbsp;&nbsp;$ npm install<br/><br/>
+    &nbsp;&nbsp;&nbsp;$ yarn install<br/><br/>
 Users then need to create a .env file and add to it:<br/><br/>
-    &nbsp;&nbsp;&nbspREACT_APP_SERVICE_URL=<link to back-end><br/><br/>
+    &nbsp;&nbsp;&nbsp;REACT_APP_SERVICE_URL=<link to back-end><br/><br/>
 Since this is running locally, users also need to add REACT_APP_RAPID_API_KEY and REACT_APP_RAPID_API_HOST to the .env file. The host should be 'api-football-v1.p.rapidapi.com' but users need to get their own key from https://rapidapi.com/ to be able to recieve data from the API. <br /><br/>
 If user have cloned the backend and are running it locally then the link will be to localhost and then the port it is running on (3001 if nothing was changed in the back-end code). If not then the link should be to the running API link listed below. 
 Lastly, to start the application, users need to run either of the two, depending on prefrence:<br/><br/>
-    &nbsp;&nbsp;&nbsp$ npm run start<br/><br/>
-    &nbsp;&nbsp;&nbsp$ yarn run start<br/><br/>
+    &nbsp;&nbsp;&nbsp;$ npm run start<br/><br/>
+    &nbsp;&nbsp;&nbsp;$ yarn run start<br/><br/>
 The application then start running on localhost on port 3000.
 
 ## Short description of project
