@@ -83,6 +83,10 @@ function EditTeam(props) {
         setTeam(team);
     }
 
+    const handleClose = () => {
+        setPlayer({});
+    }
+
     const editHandlers = {
         handleDeleteTeam,
         handleEditTeam,
@@ -128,6 +132,7 @@ function EditTeam(props) {
                                 player={player}
                                 teamSetter={handleSetTeam}
                                 playerSetter={setPlayer}
+                                onClose={handleClose}
                             />
                         </div>
                     </div>
@@ -135,7 +140,6 @@ function EditTeam(props) {
                 }
             </div>
         </React.Fragment>
-
     )
 }
 

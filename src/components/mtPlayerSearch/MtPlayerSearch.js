@@ -9,6 +9,7 @@ export default function MtPlayerSearch(props) {
     const { selectionProps, handlers } = props;
     const { leagues, leaguesIsFetching, leaguesError } = selectionProps;
     const [ teamIndex, setTeamIndex ] = useState(0);
+    const [ teamLogo, setLogo ] = useState(null);    
 
     if (leaguesIsFetching || leagues.length === 0) {
         return (
@@ -29,8 +30,27 @@ export default function MtPlayerSearch(props) {
 
     leagues.map( (obj, i) => obj.value = i);
     const getLeagueClick = (val) => {
-        setTeamIndex(val)
+        setTeamIndex(val);
+        setLogo(leagues[val].teams[0].logo);
         handlers.handleFetchSquad(leagues[val].teams[0].team_id);
+    }
+
+    const fetchSquadCatch = (val) => {
+        for (let i = 0; i<leagues.length; i += 1 ) {
+            const found = leagues[i].teams.find( ({team_id}) => team_id === parseInt(val, 10));
+            if(found) {
+                setLogo(found.logo);
+                break;
+            }
+        } 
+        
+        handlers.handleFetchSquad(val);
+    }
+
+    const playerSelectCatch = (player) => {
+        const logo = teamLogo ? teamLogo : leagues[0].teams[0].logo;
+        player.logo = logo;
+        handlers.setPlayer(player);
     }
         
     return (
@@ -44,7 +64,7 @@ export default function MtPlayerSearch(props) {
                     labelKey='title' />
                 <Select 
                     options={leagues[teamIndex].teams}
-                    onClickFun={handlers.handleFetchSquad}
+                    onClickFun={fetchSquadCatch}
                     label='Teams'
                     valueKey='team_id'
                     labelKey='name' />
@@ -53,7 +73,7 @@ export default function MtPlayerSearch(props) {
                 isFetching={selectionProps.squadIsFetching}
                 squad={selectionProps.squad}
                 error={selectionProps.squadError} 
-                playerSetter={handlers.setPlayer}/>
+                playerSetter={playerSelectCatch}/>
         </div>
     )
 }

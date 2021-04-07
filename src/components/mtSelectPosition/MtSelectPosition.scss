@@ -1,32 +1,81 @@
 @import '../../config.scss';
 
 .player {
-    padding: $gutter / 2;
-    padding-right: 4 * $gutter;
-    border: 1px solid black;
-}
-
-.confirmPlayer {
-    width: 100%;
-    margin: $gutter;
-    border: 1px solid black;
-}
-
-.positionSelect {
-    max-width: 5 * $gutter;
-    padding: 5px;
-    margin-top: $gutter / 2;
-    margin-right: $gutter / 2;
-    cursor: pointer;
+    position: relative;
+    width: 600px;
+    padding: 1em;
+    margin: auto;
+    background-color: #fff;
+    border: 1px solid #000;
     border-radius: 5px;
-}
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.75);
 
-.addToTeam {
-    padding: 5px $gutter/2;
-    margin-right: $gutter/2;
-    color: #fff;
-    cursor: pointer;
-    background-color: $color-darkGray;
-    border: #000;
-    border-radius: 5px;
+    &__wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        font-size: 20px;
+        // Same color as $color-background but with opacity
+        background-color: rgba(225, 225, 225, 0.7);
+    }
+
+    &__closeWrapper {
+        padding-left: 95%;
+    }
+
+    &__close {
+        font-size: 1em;
+        font-weight: 700;
+        cursor: pointer;
+        background-color: #fff;
+        border-width: 0;
+    }
+
+    &__title {
+        margin-bottom: $gutter / 2;
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    &__line {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__el {
+        flex: 1 1 0;
+        margin-bottom: $gutter / 2;
+    }
+
+    &__el:nth-child(2) {
+        padding-left: $gutter * 2;
+    }
+
+    &__select {
+        width: 5 * $gutter;
+        padding: 5px;
+        margin-top: $gutter / 2;
+        margin-right: $gutter * 2;
+        margin-bottom: $gutter / 2;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    &__add {
+        padding: 5px $gutter/2;
+        margin-right: $gutter/2;
+        font-size: 1em;
+        font-weight: 700;
+        color: #fff;
+        cursor: pointer;
+        background-color: $color-sub;
+        border: #000;
+        border-radius: 5px;
+
+    }
 }
