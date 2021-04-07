@@ -26,6 +26,16 @@ function teamByIdRequest(fetchedTeam) {
         idTeam_isFetching: true,
         idTeam_error: null,
         fetchedTeam,
+        save_success: false,
+        save_isSaving: false,
+        save_error: null,
+        id: null,
+        patch_isSaving: false,
+        patch_success: false,
+        patch_error: null,
+        delete_isDeleting: false,
+        delete_success: false,
+        delete_error: null,
     }
 }
 
@@ -64,16 +74,15 @@ export function fetchTeamById(id) {
         }
 
         if (result.status === 500 || result.data.error) {
-            return dispatch(teamByIdError('Unable to get team'))
+            return dispatch(teamByIdError(result.data.error))
         }
 
-        const parsedLineup = JSON.parse(result.data[0].lineup);
-        result.data[0].lineup = parsedLineup;
+        const parsedLineup = JSON.parse(result.data.lineup);
+        result.data.lineup = parsedLineup;
 
-        dispatch(teamByIdSuccess(result.data[0]));
+        dispatch(teamByIdSuccess(result.data));
     }
 }
-
 
 function saveRequest() {
     return {
@@ -81,15 +90,30 @@ function saveRequest() {
         save_isSaving: true,
         save_error: null,
         save_success: false,
+        id: null,
+        idTeam_isFetching: false,
+        idTeam_error: null,
+        fetchedTeam: null,
+        patch_isSaving: false,
+        patch_success: false,
+        patch_error: null,
+        delete_isDeleting: false,
+        delete_success: false,
+        delete_error: null,
+
     }
 }
 
 function saveError(error) {
+    const err = error.validation && error.validation.length > 0
+        ? error.validation[0].message
+        : error.error;
     return {
         type: SAVE_ERROR,
         save_isSaving: false,
-        save_error: error,
+        save_error: err,
         save_success: false,
+        id: null
     }
 }
 
@@ -98,19 +122,10 @@ function saveSuccess(id) {
         type: SAVE_SUCCESS,
         save_isSaving: false,
         save_success: true,
+        save_error: null,
         id,
     }
 }
-
-export function saveRefresh() {
-    return {
-    type: SAVE_REFRESH,
-    save_isSaving: false,
-    save_success: false,
-    save_error: null,
-    } 
-}
-
 
 export function createTeam(teamHeader) {
     return async (dispatch) => {
@@ -123,16 +138,16 @@ export function createTeam(teamHeader) {
             });
         } catch (e) {
             return dispatch(saveError(e));
-        }        
-
+        }
+                
         if (result.status === 400) {
             return dispatch(saveError(result.data));
         }
-
+        
         if (result.status === 500 || result.data.error) {
-            return dispatch(saveError('Could not create team'))
+            return dispatch(saveError(result.data))
         }        
-
+        
         dispatch(saveSuccess(result.data.id));
     }
 }
@@ -143,15 +158,29 @@ function patchRequest() {
         patch_isSaving: true,
         patch_error: null,
         patch_success: false,
+        id: null,
+        idTeam_isFetching: false,
+        idTeam_error: null,
+        fetchedTeam: null,
+        save_isSaving: false,
+        save_error: null,
+        save_success: false,
+        delete_isDeleting: false,
+        delete_success: false,
+        delete_error: null,
     }
 }
 
 function patchError(error) {
+    const err = error.validation && error.validation.length > 0
+    ? error.validation[0].message
+    : error.error;
     return {
         type: PATCH_ERROR,
         patch_isSaving: false,
-        patch_error: error,
+        patch_error: err,
         patch_success: false,
+        id: null
     }
 }
 
@@ -164,16 +193,6 @@ function patchSuccess(id) {
         id,
     }
 }
-
-export function patchRefresh() {
-    return {
-        type: PATCH_REFRESH,
-        patch_isSaving: false,
-        patch_success: false,
-        patch_error: null
-    }
-}
-
 
 export function patchTeam(id, team) {
     return async (dispatch) => {
@@ -190,7 +209,7 @@ export function patchTeam(id, team) {
         }
 
         if (result.status === 500 || result.data.error) {
-            return dispatch(patchError('Could not save team'))
+            return dispatch(patchError({ error: 'Error saving team'}));
         }
 
         dispatch(patchSuccess(id));
@@ -203,6 +222,16 @@ function deleteRequest() {
         delete_isDeleting: true,
         delete_error: null,
         delete_success: false,
+        idTeam_isFetching: false,
+        idTeam_error: null,
+        fetchedTeam: null,
+        save_isSaving: false,
+        save_error: null,
+        save_success: false,
+        id: null,
+        patch_isSaving: false,
+        patch_error: null,
+        patch_success: false,
     }
 }
 
@@ -220,15 +249,6 @@ function deleteSuccess() {
         type: DELETE_SUCCESS,
         delete_isDeleting: false,
         delete_success: true,
-        delete_error: null
-    }
-}
-
-export function deleteRefresh() {
-    return {
-        type: DELETE_REFRESH,
-        delete_isDeleting: false,
-        delete_success: false,
         delete_error: null
     }
 }

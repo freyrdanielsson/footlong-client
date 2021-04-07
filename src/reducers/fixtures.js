@@ -25,11 +25,13 @@ export default (state = initialState, action) => {
                 ...state,
                 leagues_isFetching: action.leagues_isFetching,
                 leagues_error: action.leagues_error,
+                leagues: [],
             }
         case LEAGUES_SUCCESS:
             return {
                 ...state,
                 leagues_isFetching: action.leagues_isFetching,
+                leagues_error: action.leagues_error,
                 leagues: action.leagues,
             }
         case LEAGUES_ERROR:
@@ -37,6 +39,7 @@ export default (state = initialState, action) => {
                 ...state,
                 leagues_isFetching: action.leagues_isFetching,
                 leagues_error: action.leagues_error,
+                leagues: action.leagues,
             }
         case FIXTURE_REQUEST:
             return {
@@ -44,11 +47,14 @@ export default (state = initialState, action) => {
                 fixture: action.fixture,
                 fixture_isFetching: action.fixture_isFetching,
                 fixture_error: action.fixture_error,
+                fixture_events: action.fixture_events,
+                fixture_stats: action.fixture_events,
             }
         case FIXTURE_SUCCESS:
             return {
                 ...state,
                 fixture_isFetching: action.fixture_isFetching,
+                fixture_error: action.fixture_error,
                 fixture_events: action.fixture_events,
                 fixture_stats: action.fixture_stats,
             }
@@ -57,6 +63,9 @@ export default (state = initialState, action) => {
                 ...state,
                 fixture_isFetching: action.fixture_isFetching,
                 fixture_error: action.fixture_error,
+                fixture_events: action.fixture_events,
+                fixture_stats: action.fixture_stats,
+                fixture: action.fixture,
             }
 
         default:

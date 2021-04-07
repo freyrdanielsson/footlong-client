@@ -17,11 +17,13 @@ export default (state = initialState, action) => {
                 ...state,
                 customTeams_isFetching: action.customTeams_isFetching,
                 customTeams_error: action.customTeams_error,
+                customTeams: action.customTeams,
             }
         case CUSTOM_TEAMS_SUCCESS:
             return {
                 ...state,
                 customTeams_isFetching: action.customTeams_isFetching,
+                customTeams_error: action.customTeams_error,
                 customTeams: action.customTeams,
             }
         case CUSTOM_TEAMS_ERROR:
@@ -29,6 +31,7 @@ export default (state = initialState, action) => {
                 ...state,
                 customTeams_isFetching: action.customTeams_isFetching,
                 customTeams_error: action.customTeams_error,
+                customTeams: action.customTeams,
             }
         
         default:

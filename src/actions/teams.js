@@ -9,6 +9,7 @@ function customTeamsRequest() {
         type: CUSTOM_TEAMS_REQUEST,
         customTeams_isFetching: true,
         customTeams_error: null,
+        customTeams: [],
     }
 }
 
@@ -17,6 +18,7 @@ function customTeamsError(error) {
         type: CUSTOM_TEAMS_ERROR,
         customTeams_isFetching: false,
         customTeams_error: error,
+        customTeams: [],
     }
 }
 
@@ -24,6 +26,7 @@ function customTeamsSuccess(customTeams) {
     return {
         type: CUSTOM_TEAMS_SUCCESS,
         customTeams_isFetching: false,
+        customTeams_error: false,
         customTeams,
     }
 }

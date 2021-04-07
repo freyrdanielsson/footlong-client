@@ -12,6 +12,7 @@ function requestLeagues() {
         type: LEAGUES_REQUEST,
         leagues_isFetching: true,
         leagues_error: null,
+        leagues: [],
     }
 }
 
@@ -20,6 +21,7 @@ function leaguesError(error) {
         type: LEAGUES_ERROR,
         leagues_isFetching: false,
         leagues_error: error,
+        leagues: [],
     }
 }
 
@@ -27,6 +29,7 @@ function leaguesSuccess(leagues) {
     return {
         type: LEAGUES_SUCCESS,
         leagues_isFetching: false,
+        leagues_error: null,
         leagues,
     }
 }
@@ -54,6 +57,8 @@ function requestFixture(fixture) {
         type: FIXTURE_REQUEST,
         fixture_isFetching: true,
         fixture_error: null,
+        fixture_events: null,
+        fixture_stats: null,
         fixture
     }
 }
@@ -63,6 +68,9 @@ function fixtureError(error) {
         type: FIXTURE_ERROR,
         fixture_isFetching: false,
         fixture_error: error,
+        fixture_events: null,
+        fixture_stats: null,
+        fixture: null,
     }
 }
 
@@ -70,6 +78,7 @@ function fixtureSuccess(fixture_events, fixture_stats) {
     return {
         type: FIXTURE_SUCCESS,
         fixture_isFetching: false,
+        fixture_error: false,
         fixture_events,
         fixture_stats,
     }
