@@ -1,15 +1,9 @@
 .home {
     display: flex;
     justify-content: center;
-    max-height: 90vh;
-    overflow: hidden;
 
     @media (max-width: 1000px) {
         max-height: none;
         flex-direction: column;
     }
-}
-
-.leagues {
-    overflow: scroll;
 }
