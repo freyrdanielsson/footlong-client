@@ -63,10 +63,11 @@ export function Home(props) {
             <div className='home'>
                 <div className='leagues'>
                     {leaguesProps.leagues && leaguesProps.leagues.map(league => {
+                        const fix = league.data?.fixtures ?? [];
                         return <League
                             key={league.title}
                             title={league.title}
-                            fixtures={league.data.fixtures}
+                            fixtures={fix}
                             selectFixture={selectFixture} />
                     })}
                 </div>
