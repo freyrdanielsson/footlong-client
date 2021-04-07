@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
 import './EditTeam.scss';
 
 import { getAllPositions, formations } from '../../utils/formations';
-import { fetchTeamById, patchTeam, deleteTeam, deleteRefresh, patchRefresh, saveRefresh } from '../../actions/team';
+import { fetchTeamById, patchTeam, deleteTeam } from '../../actions/team';
 import { fetchTeams, fetchPlayers } from '../../actions/players';
 import Select from '../../components/select/Select';
 import TeamDisplay from '../../components/teamDisplay/TeamDisplay';
@@ -42,16 +42,8 @@ function EditTeam(props) {
 
     // Check that authenticated user owns team he is requesting to use
     useEffect(() => {
-        if (!user) {
-            props.history.push({pathname: '/login'});
-            return;
-        }
-        if (team) {
-            if(team.owner_id === user.id) 
-                return;
-            
-            props.history.push({pathname: '/login'});
-        }
+        if (!user) return <Redirect to='/login' /> 
+        if (team && team.owner_id !== user.id) return <Redirect to='/login' />
     }, [props.history, team, user]);
 
     if (teamIsFetching) {
@@ -59,7 +51,12 @@ function EditTeam(props) {
     }
 
     if (teamError) {
-        return <p>Error fetching team :( </p>
+        const msg = typeof teamError === 'string' ? teamError : 'Error fetching team :(';
+        return <p>{msg}</p>
+    }
+
+    if (teamProps.delSuccess || teamProps.patchSuccess) {
+        return <Redirect to='/profile'/>
     }
     
     const handleDeleteTeam = (id) => dispatch(deleteTeam(id));
@@ -86,17 +83,13 @@ function EditTeam(props) {
         setTeam(team);
     }
 
-    const handleSuccess = () => {
-        dispatch(deleteRefresh());
-        dispatch(patchRefresh());
-        dispatch(saveRefresh());
-        props.history.push({pathname: '/profile'});
+    const handleClose = () => {
+        setPlayer({});
     }
 
     const editHandlers = {
         handleDeleteTeam,
         handleEditTeam,
-        handleSuccess
     }
 
     const handlerProps = {
@@ -133,13 +126,13 @@ function EditTeam(props) {
                                 teamProps={teamProps} 
                                 handlers={editHandlers} 
                                 team={team} 
-                                user={user}
                             />
                             <MtSelectPosition 
                                 team={team}
                                 player={player}
                                 teamSetter={handleSetTeam}
                                 playerSetter={setPlayer}
+                                onClose={handleClose}
                             />
                         </div>
                     </div>
@@ -147,7 +140,6 @@ function EditTeam(props) {
                 }
             </div>
         </React.Fragment>
-
     )
 }
 

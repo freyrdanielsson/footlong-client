@@ -4,7 +4,7 @@ import './Statistics.scss';
 
 export default function Statistics(props) {
     const { fixture_stats } = props;
-    const { statistics } = fixture_stats.data;
+    const statistics = fixture_stats?.data?.statistics ?? {};
 
     const ratio = (stat, team) => {
         const home = parseInt(stat.home);

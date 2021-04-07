@@ -1,8 +1,10 @@
+@import '../../config.scss';
+
 .teamsHome {
     display: flex;
     justify-content: center;
     max-height: 90vh;
-    overflow: hidden;
+    overflow: auto;
     align-items: baseline;
 
     @media (max-width: 1000px) {
@@ -14,4 +16,18 @@
     &__listcontainer {
         width: 100%;
     }
+}
+
+.teamsHome::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    margin-top: 10px;
+}
+
+.teamsHome::-webkit-scrollbar-thumb {
+    background: $color-gray;
+}
+
+.teamsHome::-webkit-scrollbar-thumb:hover {
+    background: $color-darkGray;
 }

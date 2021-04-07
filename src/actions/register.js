@@ -20,10 +20,13 @@ function registerSuccess() {
 }
 
 export function registerError(message) {
+    const msg = message.validation && message.validation.length > 0
+        ? message.validation
+        : message;
     return {
         type: REGISTER_FAILURE,
         isFetching: false,
-        message
+        message: msg
     }
 }
 

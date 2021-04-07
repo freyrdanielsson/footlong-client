@@ -73,6 +73,7 @@ function logout() {
         isFetching: false,
         isAuthenticated: false,
         user: null,
+        message: undefined,
     }
 }
 
@@ -97,15 +98,18 @@ function receiveUpload(user) {
         type: UPDATE_USER_SUCCESS,
         isFetching: false,
         user,
-        message: [{field: 'success', message: 'Profile updated!'}],
+        message: {field: 'success', message: 'Profile updated!'},
     }
 }
 
 export function uploadError(message) {
+    const msg = message.validation && message.validation.length > 0
+        ?   message.validation[0]
+        :   { field: 'error', message: message.error }
     return {
         type: UPDATE_USER_FAILURE,
         isFetching: false,
-        message
+        message: msg
     }
 }
 
@@ -131,11 +135,10 @@ export const updateUser = (userInfo) => {
         
 
         if (update.status === 200) {
-            const user = update.data[0];
+            const user = update.data;
             // Important to update current user information!
             window.localStorage.setItem('user', JSON.stringify(user))
             dispatch(receiveUpload(user));
-            dispatch(receiveLogin(user));
         }
     }
 }

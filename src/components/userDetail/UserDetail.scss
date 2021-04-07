@@ -4,27 +4,27 @@
     min-width: 300px;
 
     &__label {
-        font-size: 0.9em;
-        margin-bottom: $gutter / 6;
         margin-top: $gutter / 2;
+        margin-bottom: $gutter / 6;
+        font-size: 0.9em;
     }
 
     &__value {
-        border: 1px solid $color-darkGray;
-        background-color: $color-lightGray;
-        border-radius: 2px;
         padding: 5px;
+        background-color: $color-lightGray;
+        border: 1px solid $color-darkGray;
+        border-radius: 2px;
     }
 
     &__button {
-        border-radius: 5px;
-        margin-top: $gutter / 2;
-        font-weight: 700;
-        font-size: 1em;
-        padding: 5px 0;
         width: 100%;
-        background-color: $color-sub;
+        padding: 5px 0;
+        margin-top: $gutter / 2;
+        font-size: 1em;
+        font-weight: 700;
         color: #fff;
+        background-color: $color-sub;
+        border-radius: 5px;
     }
 
     &__button:hover {

@@ -26,15 +26,15 @@ export default function ProfileUpdateForm(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password !== rePassword) {
-            return uploadError([
-                {
+            return uploadError({
+                validation: [{
                     field: 'password',
                     message: 'Passwords do not match'
                 },
                 {
                     field: 'rePassword'
                 }
-            ]);
+            ]});
         }
 
         submitUpdate({ username, email, password });

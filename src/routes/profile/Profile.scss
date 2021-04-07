@@ -10,14 +10,14 @@
     }
 
     &__button {
-        border-radius: 5px;
-        margin-top: $gutter / 2;
-        font-weight: 700;
-        font-size: 1em;
-        padding: 5px 0;
         width: $gutter * 10;
-        background-color: $color-card-red;
+        padding: 5px 0;
+        margin-top: $gutter / 2;
+        font-size: 1em;
+        font-weight: 700;
         color: #fff;
         cursor: pointer;
+        background-color: $color-card-red;
+        border-radius: 5px;
     }
 }

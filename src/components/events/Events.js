@@ -63,7 +63,7 @@ export default function Events(props) {
     return (
         <div className='events'>
             <h2 className='events__title'>Match events</h2>
-            {fixture_events.data.events.map((event, i) => {
+            {fixture_events.data?.events?.map((event, i) => {
                 return (
                     <div className={`event event--${teamSide(event.teamName)}`} key={i}>
                         <p className='event__elapsed'>{event.elapsed}'</p>

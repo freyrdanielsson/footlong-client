@@ -73,7 +73,7 @@ function Profile(props) {
             <button className='profile__button' onClick={() => dispatch(logoutUser())}>Logout</button>
 
             {userProps.message &&
-                <p>{userProps.message[0].message}</p>
+                <p>{userProps.message.message}</p>
             }
 
 

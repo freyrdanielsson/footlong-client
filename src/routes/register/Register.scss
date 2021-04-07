@@ -5,16 +5,16 @@
     flex-direction: column;
 
     &__login {
-        margin: $gutter auto;
         display: flex;
+        margin: $gutter auto;
 
         &__text {
             margin-right: 5px;
         }
 
         &__link {
-            color: $color-sub;
             font-weight: 600;
+            color: $color-sub;
         }
     }
 }

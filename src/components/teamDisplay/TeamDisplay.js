@@ -10,16 +10,21 @@ export default function TeamDisplay(props) {
         return (
             <div className='pitch__noTeam'>
                 <p>Fetching team...</p>
-                <div className='pitch'></div>
+                <div className='pitch'>
+                    <div className='pitch__protection'></div>
+                </div>
             </div>
         )
     }
-
+    
     if (error) {
+        const msg = typeof error === 'string' ? error : 'Error fetching team';
         return (
             <div className='pitch__noTeam'>
-                <p>Could not fetch team</p>
-                <div className='pitch'></div>
+                <p>{msg}</p>
+                <div className='pitch'>
+                    <div className='pitch__protection'></div>
+                </div>
             </div>
         )
     }
@@ -33,9 +38,28 @@ export default function TeamDisplay(props) {
                 {formation[pos].map( k => { 
                     const playerName = team[k].player_name ? team[k].player_name : k;
                     if (playerSetter) {
-                        return <p onClick={ () => playerSetter(team[k])} key={k} id={k} className='pitch__player'>{playerName}</p> 
+                        return (
+                            <div key={k} className='pitch__obj'>
+                                <div className='pitch__circle'>
+                                    <img alt='' className='pitch__logo' src={team[k].logo}></img>
+                                </div>
+                                <h5 
+                                    onClick={ () => playerSetter(team[k])} 
+                                    id={k} 
+                                    className='pitch__player'>
+                                    {playerName.toUpperCase()}
+                                </h5>
+                            </div>
+                        ) 
                     }
-                    return <p key={k} id={k} className='pitch__player'>{playerName}</p>            
+                    return (
+                        <div key={k} className='pitch__obj'>
+                            <div className='pitch__circle'>
+                                <img alt='' className='pitch__logo' src={team[k].logo}></img>
+                            </div>
+                            <h5 id={k} className='pitch__player'>{playerName.toUpperCase()}</h5>  
+                        </div> 
+                    )         
                 })}
             </div>
         )
@@ -44,10 +68,12 @@ export default function TeamDisplay(props) {
     
     return (
         <div className='pitch'>
-            <PositionFormation pos='gk' />
-            <PositionFormation pos='def' />
-            <PositionFormation pos='mid' />
-            <PositionFormation pos='att' />
+            <div className='pitch__protection'>
+                <PositionFormation pos='gk' />
+                <PositionFormation pos='def' />
+                <PositionFormation pos='mid' />
+                <PositionFormation pos='att' />
+            </div>
         </div>
     )
 }

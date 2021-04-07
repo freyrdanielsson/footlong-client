@@ -31,9 +31,10 @@ export function Home(props) {
     }
 
     if (leaguesProps.error) {
+        const msg = typeof leaguesProps.error === 'string' ? leaguesProps.error : 'Error fetching matches';
         return (
             <div>
-                <p>{leaguesProps.error}</p>
+                <p>{msg}</p>
             </div>
         )
     }
@@ -62,10 +63,11 @@ export function Home(props) {
             <div className='home'>
                 <div className='leagues'>
                     {leaguesProps.leagues && leaguesProps.leagues.map(league => {
+                        const fix = league.data?.fixtures ?? [];
                         return <League
                             key={league.title}
                             title={league.title}
-                            fixtures={league.data.fixtures}
+                            fixtures={fix}
                             selectFixture={selectFixture} />
                     })}
                 </div>

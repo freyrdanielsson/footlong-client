@@ -13,6 +13,7 @@ import Register from './routes/register/Register';
 import AllTeams from './routes/allTeams/AllTeams';
 import Profile from './routes/profile/Profile';
 import EditTeam from './routes/editTeam/EditTeam';
+import NotFound from './routes/notFound/NotFound';
 
 import './App.scss';
 
@@ -34,6 +35,7 @@ function App(props) {
                     <UserRoute exact path='/profile/edit/:id' authenticated={isAuthenticated} redirect='/login' component={EditTeam} />
                     <UserRoute path='/login' authenticated={!isAuthenticated} redirect='/profile' component={Login} />
                     <UserRoute path='/register' authenticated={!isAuthenticated} redirect='/profile' component={Register} />
+                    <Route component={NotFound} />
                 </Switch>
             </main>
         </Fragment>

@@ -16,15 +16,15 @@ export default function RegisterForm(props) {
 
         // Client side validation for matching pw
         if (password !== rePassword) {
-            return registerError([
-                {
+            return registerError({
+                validation: [{
                     field: 'password',
                     message: 'Passwords do not match'
                 },
                 {
                     field: 'rePassword'
-                }
-            ])
+                }]
+            });
         }
         setErrorClass({});
         return registerDispatch(email, username, password)
@@ -50,7 +50,7 @@ export default function RegisterForm(props) {
     }
 
     // If message contains error attribute, it's an internal server error.
-    if (message && message[0].error) {
+    if (message && message.error) {
         return (
             <div>
                 <p>Internal Error - Could not create user</p>

@@ -1,3 +1,5 @@
+@import '../../config.scss';
+
 .home {
     display: flex;
     justify-content: center;
@@ -12,4 +14,18 @@
 
 .leagues {
     overflow: scroll;
+}
+
+.leagues::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    margin-top: 10px;
+}
+
+.leagues::-webkit-scrollbar-thumb {
+    background: $color-gray;
+}
+
+.leagues::-webkit-scrollbar-thumb:hover {
+    background: $color-darkGray;
 }
