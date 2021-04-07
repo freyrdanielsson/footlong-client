@@ -31,9 +31,10 @@ export function Home(props) {
     }
 
     if (leaguesProps.error) {
+        const msg = typeof leaguesProps.error === 'string' ? leaguesProps.error : 'Error fetching matches';
         return (
             <div>
-                <p>{leaguesProps.error}</p>
+                <p>{msg}</p>
             </div>
         )
     }

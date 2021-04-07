@@ -19,9 +19,10 @@ export default function MtPlayerSearch(props) {
     }
 
     if (leaguesError) {
+        const msg = typeof leaguesError === 'string' ? leaguesError : 'Error fetching data';
         return (
             <div>
-                <p>{leaguesError}</p>
+                <p>{msg}</p>
             </div>
         )
     }

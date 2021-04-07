@@ -16,9 +16,10 @@ export default function TeamDisplay(props) {
     }
 
     if (error) {
+        const msg = typeof error === 'string' ? error : 'Error fetching team';
         return (
             <div className='pitch__noTeam'>
-                <p>Could not fetch team</p>
+                <p>{msg}</p>
                 <div className='pitch'></div>
             </div>
         )

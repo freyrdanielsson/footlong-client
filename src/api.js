@@ -33,9 +33,7 @@ async function request(method, path, data = '') {
         console.error('Error fetching', error);
         return {
             status: 500,
-            result: {
-                errors: [{ message: 'Network error' }]
-            }
+            data: { error: 'Network error' }
         }
     }
 
