@@ -24,6 +24,7 @@
     &__list {
         @include columns(12);
         list-style: none;
+        cursor: pointer;
     }
 
     &__decoration {

@@ -30,8 +30,8 @@ export default function SaveTeam(props) {
                 <input className='saveTeam__input' type='text' defaultValue={team.team_name} onChange={(e) => setTname(e.target.value)}></input>
             </div>
             <div className='saveTeam__buttons'>
-                <button className='saveTeam__button' onClick={ () => handlers.handleEditTeam(team.id, createInfo())}>Save Team</button>
-                <button className='saveTeam__button' onClick={ () => handlers.handleDeleteTeam(team.id)}>Delete Team</button>
+                <button className='saveTeam__edit' onClick={ () => handlers.handleEditTeam(team.id, createInfo())}>Save Team</button>
+                <button className='saveTeam__delete' onClick={ () => handlers.handleDeleteTeam(team.id)}>Delete Team</button>
             </div>
             {patchError && 
                 <div><p>{patchError}</p></div>

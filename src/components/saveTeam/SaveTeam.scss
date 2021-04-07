@@ -1,6 +1,7 @@
 @import '../../config.scss';
 
 .saveTeam {
+    margin-right: 5px;
 
     &__labels {
         display: flex;
@@ -10,20 +11,44 @@
 
     &__buttons {
         display: flex;
+        margin-top: $gutter/2;
     }
 
-    &__button {
-        padding: 5px $gutter/2;
+    &__input {
+        margin-top: 10px;
+        font-size: 1em;
+        background-color: #fff;
+        border: 0;
+        border-bottom: 1px solid $color-gray;
+    }
+
+    &__input:focus {
+        outline: none;
+    }
+
+    &__edit {
+        width: $gutter * 5;
+        padding: 5px 0;
         margin-right: $gutter/2;
+        font-size: 1em;
+        font-weight: 700;
         color: #fff;
         cursor: pointer;
-        background-color: $color-darkGray;
+        background-color: $color-sub;
         border: #000;
         border-radius: 5px;
     }
 
-    &__input {
-        padding: 5px;
+    &__delete {
+        width: $gutter * 5;
+        padding: 5px 0;
+        margin-right: $gutter/2;
+        font-size: 1em;
+        font-weight: 700;
+        color: #fff;
+        cursor: pointer;
+        background-color: $color-card-red;
+        border: #000;
         border-radius: 5px;
     }
 }

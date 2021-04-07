@@ -1,8 +1,8 @@
 @import '../../config.scss';
 
 .user-form {
-    margin: 0 auto;
     min-width: 300px;
+    margin: 0 auto;
 
     &__content {
         display: flex;
@@ -11,16 +11,16 @@
 
     &__input-container {
         display: flex;
-        flex-direction: column;
-        margin: $gutter / 4 0;
         width: 100%;
+        margin: $gutter / 4 0;
+        flex-direction: column;
     }
 
     &__input {
         font-size: 1em;
-        border: none;
-        border-bottom: 1px solid $color-gray;
         background-color: #fff;
+        border: 0;
+        border-bottom: 1px solid $color-gray;
     }
 
     &__input:focus {
@@ -33,32 +33,32 @@
     }
 
     &__error {
+        padding-top: 5px;
         margin-top: 10px;
         text-align: center;
         border-top: 1px solid $color-card-red;
-        padding-top: 5px;
     }
 
     &__button {
-        border-radius: 5px;
-        margin-top: $gutter / 2;
-        font-weight: 700;
-        font-size: 1em;
-        padding: 5px 0;
         width: 100%;
-        background-color: $color-sub;
+        padding: 5px 0;
+        margin-top: $gutter / 2;
+        font-size: 1em;
+        font-weight: 700;
         color: #fff;
         cursor: pointer;
+        background-color: $color-sub;
+        border-radius: 5px;
     }
 
     &__navigate {
         max-width: 50%;
         margin-top: $gutter / 4;
-        text-align: left;
-        border: 0;
         font-size: 0.8em;
         font-weight: 700;
+        text-align: left;
         cursor: pointer;
+        border: 0;
 
         &--cancel {
             color: $color-card-red;
@@ -66,7 +66,7 @@
     }
 
     .disabled {
-        background-color: $color-gray;
         cursor: default;
+        background-color: $color-gray;
     }
 }

@@ -1,9 +1,31 @@
+@import '../../config.scss';
+
 .home {
     display: flex;
     justify-content: center;
+    max-height: 90vh;
+    overflow: hidden;
 
     @media (max-width: 1000px) {
         max-height: none;
         flex-direction: column;
     }
+}
+
+.leagues {
+    overflow: scroll;
+}
+
+.leagues::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    margin-top: 10px;
+}
+
+.leagues::-webkit-scrollbar-thumb {
+    background: $color-gray;
+}
+
+.leagues::-webkit-scrollbar-thumb:hover {
+    background: $color-darkGray;
 }

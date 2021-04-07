@@ -78,20 +78,21 @@
         padding: 2px;
         font-size: 1em;
         font-weight: 700;
+        background-color: #fff;
         border-width: 0;
         align-self: flex-end;
     }
 
     &__edit {
-        padding: 5px $gutter/2;
+        width: $gutter * 5;
+        padding: 5px 0;
+        font-size: 1em;
+        font-weight: 700;
         color: #fff;
-        background-color: $color-darkGray;
+        cursor: pointer;
+        background-color: $color-sub;
         border: #000;
         border-radius: 5px;
-    }
-
-    &__edit:hover {
-        cursor: pointer;
     }
 
     &__footer {
