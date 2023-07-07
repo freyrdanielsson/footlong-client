@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@primer/css": "^14.3.0",
-    "stylelint": "^13.2.1",
+    "stylelint": "^15.10.1",
     "stylelint-config-primer": "^9.0.0"
   }
 }
